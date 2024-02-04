@@ -1,8 +1,12 @@
 import React from 'react'
 import Hero from '../components/hero'
 import { GiDonut, GiHotMeal } from "react-icons/gi";
-import { FaCommentDots } from "react-icons/fa";
+import { FaCommentDots, FaBoxOpen } from "react-icons/fa";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
+import { IoMdTimer } from "react-icons/io";
+import { GrPlan } from "react-icons/gr";
+import { SlBookOpen } from "react-icons/sl";
+import  model from "..//assets/model1.png";
 
 const Home = () => {
 
@@ -57,6 +61,51 @@ const Home = () => {
                 ))} 
             </ul>
         </div>
+    </div>
+    <div className='flex p-12 gap-10 justify-around'>
+      <div>
+      <img src={model} 
+            alt=""
+            className='rounded-b-full' />
+      </div>
+      <div className='py-3'>
+        <div className='font-bold text-4xl py-10'>
+          <p >We are beyond <span className='text-orange-600'>food</span></p>
+          <p > we <span className='text-yellow-300'>Engineer </span>culinary</p>
+          <p> excellence</p>
+        </div>
+        <p className='text-gray-600 text-lg'>We make home made and healthy food and drinks.</p>
+        <div className='grid grid-cols-2 gap-7 py-5 font-semibold  text-orange-600 '>
+            <div className='flex gap-3 items-center'>
+            <GiHotMeal size={25}/>
+              <p className='text-black'>Online Order</p>
+            </div>
+            <div className='flex gap-3 items-center'>
+              <IoMdTimer size={25}/>
+              <p className='text-black'>24/7 Service</p>
+            </div>
+            <div className='flex gap-3 items-center'>
+              <SlBookOpen size={25} />
+              <p className='text-black'>Pre-Reservation</p>
+            </div>
+            <div className='flex gap-3 items-center'>
+              <FaBoxOpen size={25} />
+              <p className='text-black'>Suprise packages</p>
+            </div>
+            <div className='flex gap-3 items-center'>
+              <GrPlan size={25} />
+              <p className='text-black'>Diet meal plan</p>
+            </div>
+        </div>
+        <button className='rounded-full text-white bg-orange-600 my-5 px-3 py-2'>About us</button>
+      </div>
+    </div>
+    <div className="bg-cover bg-center bg-no-repeat bg-[url('..//assets/food1.jpg')]">
+      <div className='flex flex-col text-5xl font-extrabold'>
+        <p>Are you ready to order with </p>
+        <p>the best deals?</p>
+      </div>
+      <button className='bg-gradient-to-r from-orange-600 to-orange-400 px-5 py-3 rounded-lg text-white font-bold'>PROCEED TO ORDER</button>
     </div>
     </>
   )
