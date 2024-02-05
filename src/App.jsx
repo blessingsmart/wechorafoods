@@ -1,5 +1,5 @@
 // import './App.css'
-import Menu from "./components/Menu"
+import Menu from "./components/menu"
 import Footer from "./components/footer"
 import Navbar from "./components/navbar"
 import Home from "./pages/home"
