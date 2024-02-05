@@ -27,7 +27,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <div className='flex items-center text-center'>
+        <div className='flex items-center text-center place-self-center pt-10'>
             <p>Copyright © 2023 Wechora Foods.</p>
         </div>
     </div>
