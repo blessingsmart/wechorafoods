@@ -28,7 +28,7 @@ const Hero = () => {
       }, []); 
 
   return (
-    <div className='flex justify-between m-20'>
+    <div className='flex justify-center m-20'>
         <div className='flex flex-col justify-center gap-10'>
             <div className='text-6xl font-semibold'>
                 <h1>Food Products, </h1>
@@ -42,27 +42,27 @@ const Hero = () => {
                     Register <MdKeyboardArrowRight /> </button>
             </div>
         </div>
-        <div name="Testimonials" className="splide w-1/2 bg-white rounded-lg">
+        <div name="hero" className="splide w-1/2 bg-white rounded-lg">
             <div className="splide__track">
                 <ul className="splide__list"> 
                 <li className="splide__slide px-1">
-                    {/* <div className=''>  */}
+                    <div className=''> 
                         <img src={food} alt="Image 1" className='rounded-lg w-96 '/>
-                    {/* </div> */}
+                    </div>
                 </li>
                 <li className="splide__slide px-1">
-                    {/* <div className=''>  */}
+                    <div className=''> 
                         <img src={beans} alt="Image 2" className='rounded-lg w-96 '/>
-                    {/* </div> */}
+                    </div>
                 </li>
                 <li className="splide__slide px-1">
-                    {/* <div className=''>  */}
+                    <div className=''> 
                         <img src={food} alt="Image 3" className='rounded-lg w-96 '/>
-                    {/* </div> */}
+                    </div>
                 </li>
-                </ul>
-            </div>
-        </div>
+                 </ul>
+             </div>
+         </div>
     </div>
   )
 }

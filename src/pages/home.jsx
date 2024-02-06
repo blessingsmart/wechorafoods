@@ -1,5 +1,10 @@
 import React from 'react'
 import Hero from '../components/hero'
+import Menu from "../components/menu"
+import Footer from "../components/footer"
+import Navbar from "../components/navbar"
+// import Testimonial from "./components/testimonial"
+import Promo from "../components/promo"
 import { GiDonut, GiHotMeal } from "react-icons/gi";
 import { FaCommentDots, FaBoxOpen } from "react-icons/fa";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
@@ -39,6 +44,7 @@ const Home = () => {
 
   return (
     <>
+    < Navbar />
     < Hero />
     <div className='p-12 bg-gradient-to-b from-orange-100 to-white'>
         <h1 className='flex justify-center font-bold text-4xl py-12 text-orange-600'>What we offer </h1>
@@ -101,6 +107,10 @@ const Home = () => {
       </div>
     </div>
     {/* <div className="bg-cover bg-center bg-no-repeat bg-[url('..//assets/food1.jpg')]"> */}
+    < Menu />
+    {/* < Testimonial /> */}
+    < Promo />
+    < Footer />
     </>
   )
 }

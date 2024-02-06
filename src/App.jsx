@@ -1,21 +1,14 @@
 // import './App.css'
-import Menu from "./components/menu"
-import Footer from "./components/footer"
-import Navbar from "./components/navbar"
-import Home from "./pages/home"
-import Testimonial from "./components/testimonial"
-import Promo from "./components/promo"
+import { React} from "react";
+import  {RouterProvider}  from "react-router-dom";
+import BrowserRouter from "./routes";
+
 
 function App() {
 
   return (
     <>
-    < Navbar />
-    < Home />
-    < Menu />
-    < Testimonial />
-    < Promo />
-    < Footer />
+      <RouterProvider router={BrowserRouter} />
     </>
   )
 }
