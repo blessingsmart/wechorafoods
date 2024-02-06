@@ -14,7 +14,7 @@ const Login = () => {
             <section className="my-10 p-10 bg-white rounded-r-lg flex flex-col justify-center gap-5">
                 <form
                     onSubmit={''}
-                    className="flex flex-col items-center justify-center sm:pl-6"
+                    className="flex flex-col items-center justify-center"
                 >
                     <div className="w-full max-w-[30rem] grid grid-cols-1 gap-4 mb-6 md:mb-12">
                         <h1 className="text-orange-600 md:text-4xl text-2xl font-semibold">
@@ -50,14 +50,14 @@ const Login = () => {
                     </div>
                 </form>
                     <button
-                        className="w-full mt-6 max-w-[30rem] bg-orange-600 px-3 text-white rounded-full"
+                        className="w-full mt-6  bg-orange-600 px-3 text-white rounded-full"
                     >
                         Login
                     </button>
-                    <div className="w-full max-w-[30rem] grid grid-cols-1 gap-4">
+                    <div className="w-full  grid grid-cols-1 gap-4">
                         <h5 className="text-sm lg:text-xl font-medium">
                             Don{`'`}t have an Account?{" "}
-                            <a className="text-sky-950 text-sm lg:text-xl font-bold" href="/signup">
+                            <a className="text-gray-600 text-sm lg:text-xl font-bold" href="/signup">
                                 Sign Up
                             </a>
                         </h5>
