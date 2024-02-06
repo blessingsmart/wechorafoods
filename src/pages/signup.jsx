@@ -1,104 +1,72 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link as RouterLink} from "react-router-dom";
 
 const SignUp = () => {
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
-    const { mutateAsync: registerUser } = useRegisterMutation();
-
-    const { errors, register, handleSubmit } = useSubmit(SignUpSchema);
-
-    const onSubmit = async (data) => {
-        setLoading(true);
-        try {
-            const response = await registerUser(data);
-            if (!response) {
-                return;
-            }
-
-            SuccessToast(response?.message);
-            navigate("/auth-otp");
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
+    
     return (
-        <main className="main lg:pr-[5%]">
+        <main className="bg-orange-600 h-screen text-white flex flex-col">
             <section className="left-section">
                 <div className="imgg">
                     <div className="vector"></div>
                 </div>
             </section>
-            <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-[90%] max-w-[60rem] mt-8">
+            <form onSubmit={''} className="mx-auto w-[90%] max-w-[60rem] mt-8">
                 <div className="hdngs">
-                    <h2>WELCOME TO BOOKSLAB</h2>
+                    <h2>WELCOME TO WECHORA FOODS</h2>
                     <p>Register your account</p>
                 </div>
-                <Input
+                <input
                     label="Name"
                     name="name"
                     type="text"
-                    register={register}
-                    errors={errors}
                     autoComplete="name"
                     placeholder="Name..."
                 />
-                <Input
+                <input
                     label="Username"
                     name="username"
                     type="text"
-                    register={register}
-                    errors={errors}
                     placeholder="Username..."
                     autoComplete="username"
                 />
-                <Input
+                <input
                     label="Email"
                     name="email"
                     type="email"
-                    register={register}
-                    errors={errors}
                     autoComplete="email"
                     placeholder="Email..."
                 />
                 {/* container for passwords */}
                 <div className="w-full flex flex-col md:flex-row justify-between gap-[5%] items-center">
                     <div className="w-full">
-                        <Input
+                        <input
                             label="Password"
                             name="password"
                             type="password"
-                            register={register}
-                            errors={errors}
                             placeholder="Password..."
                             id="new-password"
                             autoComplete="new-password"
                         />
                     </div>
                     <div className="w-full">
-                        <Input
+                        <input
                             label=" Confirm Password"
                             name="confirm_password"
                             type="password"
-                            register={register}
-                            errors={errors}
                             autoComplete="new-password"
                             placeholder="Confirm Password..."
                             id="new_password"
                         />
                     </div>
                 </div>
-                <Button borderVariant="noRadius" variant="primary" isLoading={loading}>
+                <button >
                     Sign Up
-                </Button>{" "}
+                </button>{" "}
                 <h5 className="mb-8">
                     Have an Account?
-                    <Link to="/login">
+                    <RouterLink to="/login">
                         {" "}
                         <span>Login</span>
-                    </Link>
+                    </RouterLink>
                 </h5>
             </form>
         </main>

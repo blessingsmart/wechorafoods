@@ -6,6 +6,7 @@ import  food from "..//assets/food.png";
 import  beans from "..//assets/Kidneybeans.jpg";
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { Link as RouterLink } from "react-router-dom";
 
 const Hero = () => {
     useEffect(() => {
@@ -38,8 +39,10 @@ const Hero = () => {
             <div className='flex gap-5'>
                 <button className='bg-orange-600 flex items-center gap-2 rounded-xl text-white px-5 py-2 cursor-pointer hover:scale-105 duration-200'>
                     Order Now  <FaShoppingBasket /> </button>
+                <RouterLink to='/signup'>
                 <button className='bg-white flex items-center gap-2 rounded-xl drop-shadow-lg text-black px-5 py-2 cursor-pointer hover:scale-105 duration-200 '>
                     Register <MdKeyboardArrowRight /> </button>
+                </RouterLink>
             </div>
         </div>
         <div name="hero" className="splide w-1/2 bg-white rounded-lg">
