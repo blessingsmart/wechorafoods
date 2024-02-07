@@ -1,21 +1,34 @@
 import React from 'react'
+import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <div className='p-12 flex flex-col'>
-        <div className='flex gap-10 justify-around'>
-            <div className='flex flex-col gap-5'>
+    <div name="footer" className='p-12 flex flex-col'>
+        <div className='flex md:flex-row flex-col gap-10 justify-around'>
+            <div className='flex flex-col md:items-start items-center gap-5'>
                 <div className='flex gap-2 text-2xl font-bold'>
                 <p className='text-orange-600'>Wechora</p> <p>Foods</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur  </p>
+                <p>We make home made and healthy food and drinks.  </p>
+                <div className='flex text-orange-600 gap-2'>
+                    <a href="https://web.facebook.com/wechora"><FaFacebookF size={20} /></a>
+                   <a href="https://www.instagram.com/wechora/"> <FaInstagram size={20} /> </a>
+                   <a href="https://twitter.com/wechorafoods"> <FaTwitter size={20} /> </a>
+                </div>
             </div>
-            <div className='flex flex-col gap-5'>
+            <div className='flex flex-col md:items-start items-center gap-5'>
                 <h2 className='text-orange-600 font-semibold text-2xl'>About Us</h2>
-                <h3>Contact Us</h3>
-                <h3>Company</h3>
+                <div className='flex gap-2'>
+                    <p className='font-semibold'>Address:</p><p>44 king George V Road , Onikan off Awolowo Way, Lagos, Nigeria</p>
+                </div>
+                <div className='flex gap-2'>
+                    <p className='font-semibold'>Email:</p><p>sales.wechora@gmail.com</p>
+                </div>
+                <div className='flex gap-2'>
+                    <p className='font-semibold'>Phone:</p><p>0904 374 3730</p>
+                </div>
             </div>
-            <div className='flex flex-col gap-5'>
+            <div className='flex flex-col  md:items-start items-center gap-5'>
                 <h2 className='text-orange-600 font-semibold text-2xl'>Get in touch</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p>
                 <div className=''>

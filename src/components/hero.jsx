@@ -2,8 +2,17 @@ import React, { useEffect } from 'react'
 import Splide from '@splidejs/splide';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
 import '@splidejs/react-splide/css';
-import  food from "..//assets/food.png";
+import  mango from "..//assets/mango.jpg";
 import  beans from "..//assets/Kidneybeans.jpg";
+import  jellof from "..//assets/chopmoney.jpg";
+import  yogurt from "..//assets/ProbioticGreekYogurt.jpg";
+import  Package from "..//assets/Package.jpg";
+import  lunch from "..//assets/lunch.jpg";
+import  soup from "..//assets/soup.jpg";
+import  breakfast from "..//assets/breakfast.jpg";
+import  lunchbox from "..//assets/lunchbox.jpg";
+import  chicken from "..//assets/chicken.jpg";
+import  smoothie from "..//assets/smoothie.jpg";
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
@@ -15,7 +24,7 @@ const Hero = () => {
           type: 'loop',
           drag: 'free',
           focus: 'center',
-          perPage: 1,
+          perPage: 2,
           breakpoints: {
             640: {
               perPage: 1,},
@@ -29,16 +38,16 @@ const Hero = () => {
       }, []); 
 
   return (
-    <div className='flex justify-center m-20'>
-        <div className='flex flex-col justify-center gap-10'>
-            <div className='text-6xl font-semibold'>
-                <h1>Food Products, </h1>
-                <h1>Services and Consulting</h1>
-            </div>
-                <h2 className='text-gray-500'>We make home made and healthy food and drinks.</h2>
-            <div className='flex gap-5'>
-                <button className='bg-orange-600 flex items-center gap-2 rounded-xl text-white px-5 py-2 cursor-pointer hover:scale-105 duration-200'>
-                    Order Now  <FaShoppingBasket /> </button>
+    <div className='flex flex-col lg:flex-row items-center justify-center gap-20 m-20'>
+        <div className='flex flex-col justify-center basis-1/2 gap-10'>
+                <p className=' text-4xl sm:text-6xl font-semibold' >Food Products, Services and Consulting </p>
+                <p className='text-gray-500 text-sm sm:text-lg'>welcome to a world of mouthwatering, homemade goodness and optimized diet plans! We are passionate about whippin...</p>
+            <div className='flex md:flex-row flex-col items-center gap-5'>
+                <a href="https://www.whatsapp.com/catalog/2349043743730/?app_absent=0">
+                    <button className='bg-orange-600 text-sm flex items-center gap-2 rounded-xl text-white px-5 py-2 cursor-pointer hover:scale-105 duration-200'>
+                        Order Now  <FaShoppingBasket /> 
+                    </button>
+                </a>
                 <RouterLink to='/signup'>
                 <button className='bg-white flex items-center gap-2 rounded-xl drop-shadow-lg text-black px-5 py-2 cursor-pointer hover:scale-105 duration-200 '>
                     Register <MdKeyboardArrowRight /> </button>
@@ -50,7 +59,7 @@ const Hero = () => {
                 <ul className="splide__list"> 
                 <li className="splide__slide px-1">
                     <div className=''> 
-                        <img src={food} alt="Image 1" className='rounded-lg w-96 '/>
+                        <img src={mango} alt="Image 1" className='rounded-lg w-96 '/>
                     </div>
                 </li>
                 <li className="splide__slide px-1">
@@ -60,7 +69,47 @@ const Hero = () => {
                 </li>
                 <li className="splide__slide px-1">
                     <div className=''> 
-                        <img src={food} alt="Image 3" className='rounded-lg w-96 '/>
+                        <img src={yogurt} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={Package} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={lunch} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={breakfast} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={soup} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={jellof} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={lunchbox} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={chicken} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={smoothie} alt="Image 3" className='rounded-lg w-96 '/>
                     </div>
                 </li>
                  </ul>

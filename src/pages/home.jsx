@@ -12,6 +12,7 @@ import { IoMdTimer } from "react-icons/io";
 import { GrPlan } from "react-icons/gr";
 import { SlBookOpen } from "react-icons/sl";
 import  model from "..//assets/model1.png";
+import { Link } from "react-scroll";
 
 const Home = () => {
 
@@ -20,25 +21,25 @@ const Home = () => {
           id: 1,
           icon: <FaCommentDots size={96}/> ,
           title: "Consultation",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "Choose the location where your food will be delivered.",
         },
         {
           id: 2,
           icon:  <GiHotMeal size={96}/>,
           title: "Choose Order",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "Review our packages to select your preferred one.",
         },
         {
           id: 3,
           icon:<RiMoneyDollarBoxFill size={96}/>,
           title: "Pay Advance",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "It's quick, safe, and simple. ",
         },
         {
           id: 4,
           icon: <GiDonut size={96}/>,
           title: "Enjoy Meals",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "Food is made and delivered directly to your home.",
         },
       ];
 
@@ -49,7 +50,7 @@ const Home = () => {
     <div className='p-12 bg-gradient-to-b from-orange-100 to-white'>
         <h1 className='flex justify-center font-bold text-4xl py-12 text-orange-600'>What we offer </h1>
         <div>
-            <ul className='flex justify-between items-center'>
+            <ul className='flex md:flex-row flex-col justify-between items-center'>
                 {links.map(({id, icon, title, text}) => (
                     <li 
                         className="flex "
@@ -68,7 +69,7 @@ const Home = () => {
             </ul>
         </div>
     </div>
-    <div className='flex p-12 gap-10 justify-around'>
+    <div className='flex md:flex-row flex-col items-center p-12 gap-10 justify-around'>
       <div>
       <img src={model} 
             alt=""
@@ -103,7 +104,9 @@ const Home = () => {
               <p className='text-black'>Diet meal plan</p>
             </div>
         </div>
+        <Link to="footer" smooth duration={500} activeClass="active" spy={true} offset={-50} >
         <button className='rounded-full text-white bg-orange-600 my-5 px-3 py-2'>About us</button>
+        </Link >
       </div>
     </div>
     {/* <div className="bg-cover bg-center bg-no-repeat bg-[url('..//assets/food1.jpg')]"> */}

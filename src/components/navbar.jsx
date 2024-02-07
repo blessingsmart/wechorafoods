@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 
+
 const Navbar = () => {
 
     const links = [
@@ -12,10 +13,12 @@ const Navbar = () => {
         {
             id: 2,
             link: "About us",
+            to: "footer"
         },
         {
             id: 3,
             link: "Explore Foods",
+            to: "menu"
         },
         {
             id: 4,   
@@ -34,11 +37,11 @@ const Navbar = () => {
         </div>
         <div className='flex items-center gap-10'>
             <ul className="hidden md:flex">
-                {links.map(({id, link}) => (
+                {links.map(({id, link, to}) => (
                     <li 
                         key={id} className='px-4 cursor-pointer capitalize font-medium text-orange-600 hover:scale-105 duration-200'>
                         {/* <Link to={link} smooth duration={500}>{link}</Link> */}
-                        <Link>{link}</Link>
+                        <Link to={to} smooth duration={500} activeClass="active" spy={true} offset={-50}>{link}</Link>
                     </li>
                 ))}      
             </ul>

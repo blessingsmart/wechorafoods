@@ -18,7 +18,6 @@ const SignUp = () => {
                     label="Name"
                     name="name"
                     type="text"
-                    autoComplete="name"
                     placeholder="Name..."
                 />
                 <input
@@ -26,13 +25,11 @@ const SignUp = () => {
                     name="username"
                     type="text"
                     placeholder="Username..."
-                    autoComplete="username"
                 />
                 <input
                     label="Email"
                     name="email"
                     type="email"
-                    autoComplete="email"
                     placeholder="Email..."
                 />
                 {/* container for passwords */}
