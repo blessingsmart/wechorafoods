@@ -71,10 +71,10 @@ const Home = () => {
     </div>
     <div className='flex md:flex-row flex-col items-center p-12 gap-10 justify-around'>
       <div>
-        <div className=' absolute translate-y-6 bg-gradient-to-b from-orange-600/70 via-white to-white  w-96 h-96 rounded-full'></div>
+        <div className=' absolute translate-y-6 bg-gradient-to-b from-orange-600/70 via-white to-white  sm:w-96 sm:h-96 rounded-full'></div>
         <img src={model} 
             alt=""
-            className=' relative rounded-b-full w-96 h-96' />
+            className=' relative rounded-b-full sm:w-96 sm:h-96' />
       </div>
       <div className='py-3'>
         <div className='font-bold text-4xl py-10'>
