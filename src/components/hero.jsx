@@ -13,6 +13,12 @@ import  breakfast from "..//assets/breakfast.jpg";
 import  lunchbox from "..//assets/lunchbox.jpg";
 import  chicken from "..//assets/chicken.jpg";
 import  smoothie from "..//assets/smoothie.jpg";
+import  wechorafarm from "..//assets/wechorafarm.jpg";
+import  farm from "..//assets/farm.jpg";
+import  farm2 from "..//assets/farm2.jpg";
+import  bag from "..//assets/bag.jpg";
+import  palm from "..//assets/palm.jpg";
+import  farm3 from "..//assets/farm3.jpg";
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
@@ -22,9 +28,11 @@ const Hero = () => {
 
         const splide = new Splide('.splide', {
           type: 'loop',
+          padding: '5rem',
+          perMove: 1,
           drag: 'free',
           focus: 'center',
-          perPage: 2,
+          perPage: 1,
           breakpoints: {
             640: {
               perPage: 1,},
@@ -110,6 +118,36 @@ const Hero = () => {
                 <li className="splide__slide px-1">
                     <div className=''> 
                         <img src={smoothie} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={wechorafarm} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={farm} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={farm2} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={bag} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={palm} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={farm3} alt="Image 3" className='rounded-lg w-96 '/>
                     </div>
                 </li>
                  </ul>
