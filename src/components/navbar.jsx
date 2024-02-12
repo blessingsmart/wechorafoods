@@ -24,6 +24,7 @@ const Navbar = () => {
         {
             id: 4,   
             link: "Reviews",
+            to: "Testimonials"
         },
         // {
         //     id: 5,

@@ -19,6 +19,7 @@ import  farm2 from "..//assets/farm2.jpg";
 import  bag from "..//assets/bag.jpg";
 import  palm from "..//assets/palm.jpg";
 import  farm3 from "..//assets/farm3.jpg";
+import  peppersoup from "..//assets/pepersoup.jpg";
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { Link as RouterLink } from "react-router-dom";
@@ -52,7 +53,7 @@ const Hero = () => {
     <div className='flex flex-col lg:flex-row items-center justify-center gap-20 m-20'>
         <div className='flex flex-col justify-center basis-1/2 gap-10'>
                 <p className=' text-4xl sm:text-6xl font-semibold' >Food Products, Services and Consulting </p>
-                <p className='text-gray-500 text-sm sm:text-lg'>welcome to a world of mouthwatering, homemade goodness and optimized diet plans! We are passionate about whippin...</p>
+                <p className='text-gray-500 text-sm sm:text-lg'>Welcome to a world of mouthwatering, homemade goodness and optimized diet plans! We are passionate about whippin...</p>
             <div className='flex md:flex-row flex-col items-center gap-5'>
                 <a href="https://www.whatsapp.com/catalog/2349043743730/?app_absent=0">
                     <button className='bg-orange-600 text-sm flex items-center gap-2 rounded-xl text-white px-5 py-2 cursor-pointer hover:scale-105 duration-200'>
@@ -151,6 +152,11 @@ const Hero = () => {
                 <li className="splide__slide px-1">
                     <div className=''> 
                         <img src={farm3} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={peppersoup} alt="Image 3" className='rounded-lg w-96 '/>
                     </div>
                 </li>
                  </ul>

@@ -30,13 +30,13 @@ const Footer = () => {
             </div>
             <div className='flex flex-col  md:items-start items-center gap-5'>
                 <h2 className='text-orange-600 font-semibold text-2xl'>Get in touch</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p>
-                <div className=''>
+                {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p> */}
+                <div className='flex justify-center items-center gap-2'>
                     <input 
                     type="text"
-                    className='border-2 text-gray-400 rounded-full px-3'
+                    className='border-2 text-gray-400 rounded-full px-3 py-2'
                     placeholder='Email' />
-                    <button className=' mx-5 rounded-full text-white bg-orange-600 my-5 px-3 py-2'>Subscribe</button>
+                    <button className='rounded-full text-white bg-orange-600 my-5 px-3 py-2'>Subscribe</button>
                 </div>
             </div>
         </div>

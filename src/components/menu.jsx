@@ -7,7 +7,7 @@ import  tray  from "../assets/tray.png";
 import  Package from "..//assets/Package.jpg";
 import  drink  from "../assets/drink.png";
 import  gift  from "../assets/gift.png";
-import  jollof  from "../assets/jollof.png";
+import  yummy1  from "../assets/yummy1.jpg";
 import  smoothie  from "../assets/smoothie.jpg";
 import  nuts  from "../assets/nuts.png";
 import  cherry  from "../assets/cherry.png";
@@ -41,7 +41,7 @@ const Menu = () => {
         },
         {
           id: 4,
-          src: jollof,
+          src: yummy1,
           title: "Chop Money Jollof",
           text: "Chop Money Jellof Rice comes with a combo of 500ml smoothies to go along side",
           category: "Food Items"
@@ -50,14 +50,14 @@ const Menu = () => {
           id: 5,
           src: stew,
           title: "Soup and stew combo",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "1.5 litres each of Egusi and ogbono Soups with pomo and Proteins (Cow Leg, Goat Meat, Stock Fish, Dried Fish) 1.5 litres of stew with Chicken Leg as protein",
           category: "Food Items"
         },
         {
           id: 6,
           src: yam,
           title: "Yam and goat pepper soup",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "",
           category: "Food Items"
         },
         {
@@ -78,7 +78,7 @@ const Menu = () => {
           id: 9,
           src: drink,
           title: "Drinking yogurt",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "",
           category: "Beverages"
         },
         {
@@ -99,7 +99,7 @@ const Menu = () => {
           id: 12,
           src: Package,
           title: "Special gift box",
-          text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel, nam!",
+          text: "1.5 litre bow of chop money jollof Rice with toppings, 4 chocolates, 1 500ml wechora Smoothies, 1 stick of Meat Kebab, 1 parfait Cup, 1 Sharwama, Fruits (Apple, English Pear, Grape), a bottle of fruit wine, customized box with picture",
           category: "Gift Boxes"
         },
       ];

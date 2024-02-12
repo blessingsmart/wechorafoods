@@ -13,6 +13,7 @@ import { GrPlan } from "react-icons/gr";
 import { SlBookOpen } from "react-icons/sl";
 import  model from "..//assets/model1.png";
 import { Link } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 
 const Home = () => {
 
@@ -105,12 +106,11 @@ const Home = () => {
               <p className='text-black'>Diet meal plan</p>
             </div>
         </div>
-        <Link to="footer" smooth duration={500} activeClass="active" spy={true} offset={-50} >
+        <RouterLink to="about" >
         <button className='rounded-full text-white bg-orange-600 my-5 px-3 py-2'>About us</button>
-        </Link >
+        </RouterLink >
       </div>
     </div>
-    {/* <div className="bg-cover bg-center bg-no-repeat bg-[url('..//assets/food1.jpg')]"> */}
     < Menu />
     < Testimonial />
     < Promo />
