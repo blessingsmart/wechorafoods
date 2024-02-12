@@ -22,7 +22,7 @@ const Home = () => {
           id: 1,
           icon: <FaCommentDots size={96}/> ,
           title: "Consultation",
-          text: "Choose the location where your food will be delivered.",
+          text: "",
         },
         {
           id: 2,

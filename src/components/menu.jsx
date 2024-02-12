@@ -72,14 +72,14 @@ const Menu = () => {
           src: yogurt,
           title: "Wechora Greek yogurt",
           text: "Unsweetened and Sweetened 500ML GREEK YOGHURT",
-          category: "Beverages"
+          category: "Drinks"
         },
         {
           id: 9,
           src: drink,
           title: "Drinking yogurt",
           text: "",
-          category: "Beverages"
+          category: "Drinks"
         },
         {
           id: 10,
@@ -143,9 +143,9 @@ const Menu = () => {
             </button>
             <button 
             className={`border-2 px-3 border-gray-400 rounded-full 
-            bg-${selectedCategory === 'Beverages' ? 'orange-600' : 'transparent'}
-            ${selectedCategory === 'Beverages' ? 'text-white' : 'text-gray-400'}`} 
-            onClick={() => setSelectedCategory('Beverages')}>Beverages
+            bg-${selectedCategory === 'Drinks' ? 'orange-600' : 'transparent'}
+            ${selectedCategory === 'Drinks' ? 'text-white' : 'text-gray-400'}`} 
+            onClick={() => setSelectedCategory('Drinks')}>Drinks
             </button>
         </div>
         <div className='grid sm:grid-cols-2 md:grid-cols-4 gap-8 py-12 sm:px-0'>
