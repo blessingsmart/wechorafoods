@@ -3,7 +3,7 @@ import Hero from '../components/hero'
 import Menu from "../components/menu"
 import Footer from "../components/footer"
 import Navbar from "../components/navbar"
-// import Testimonial from "./components/testimonial"
+import Testimonial from "../components/testimonial"
 import Promo from "../components/promo"
 import { GiDonut, GiHotMeal } from "react-icons/gi";
 import { FaCommentDots, FaBoxOpen } from "react-icons/fa";
@@ -112,7 +112,7 @@ const Home = () => {
     </div>
     {/* <div className="bg-cover bg-center bg-no-repeat bg-[url('..//assets/food1.jpg')]"> */}
     < Menu />
-    {/* < Testimonial /> */}
+    < Testimonial />
     < Promo />
     < Footer />
     </>

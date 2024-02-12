@@ -9,11 +9,12 @@ const Navbar = () => {
         {
             id: 1,
             link: "Home",
+            page: "/"
         },
         {
             id: 2,
             link: "About us",
-            to: "footer"
+            page: "about"
         },
         {
             id: 3,
@@ -37,11 +38,27 @@ const Navbar = () => {
         </div>
         <div className='flex items-center gap-10'>
             <ul className="hidden md:flex">
-                {links.map(({id, link, to}) => (
+                {links.map(({id, link, to, page}) => (
                     <li 
                         key={id} className='px-4 cursor-pointer capitalize font-medium text-orange-600 hover:scale-105 duration-200'>
                         {/* <Link to={link} smooth duration={500}>{link}</Link> */}
-                        <Link to={to} smooth duration={500} activeClass="active" spy={true} offset={-50}>{link}</Link>
+                        {/* <Link to={to} smooth duration={500} activeClass="active" spy={true} offset={-50}>{link}</Link> */}
+                        {to ? (
+                        <Link
+                        to={to}
+                        smooth="true"
+                        duration={500}
+                        activeClass="active"
+                        spy={true}
+                        offset={-50}
+                        >
+                        {link}
+                        </Link>
+                    ) : (
+                        <RouterLink to={page}>
+                        {link}
+                        </RouterLink>
+                    )}
                     </li>
                 ))}      
             </ul>

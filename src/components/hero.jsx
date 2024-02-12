@@ -26,7 +26,7 @@ import { Link as RouterLink } from "react-router-dom";
 const Hero = () => {
     useEffect(() => {
 
-        const splide = new Splide('.splide', {
+        const splide1 = new Splide('#splide1', {
           type: 'loop',
           padding: '5rem',
           perMove: 1,
@@ -40,9 +40,12 @@ const Hero = () => {
           autoScroll: {
             speed: 1,
           },
-        });
-    
-        splide.mount({ AutoScroll });
+        }).mount({ AutoScroll });
+
+        return () => {
+            // Destroy Splide instances on unmount to prevent memory leaks.
+            splide1.destroy();
+        };
       }, []); 
 
   return (
@@ -62,7 +65,7 @@ const Hero = () => {
                 </RouterLink>
             </div>
         </div>
-        <div name="hero" className="splide w-1/2 bg-white rounded-lg">
+        <div name="hero" id="splide1" className="splide w-1/2 bg-white rounded-lg">
             <div className="splide__track">
                 <ul className="splide__list"> 
                 <li className="splide__slide px-1">

@@ -8,7 +8,7 @@ import  food  from "../assets/food.png";
 const Testimonial = () => {
   useEffect(() => {
 
-    const splide = new Splide('.splide', {
+    const splide2 = new Splide('#splide2', {
       type: 'loop',
       drag: 'free',
       focus: 'center',
@@ -20,14 +20,18 @@ const Testimonial = () => {
       autoScroll: {
         speed: 1,
       },
-    });
+    }).mount({ AutoScroll });
 
-    splide.mount({ AutoScroll });
+    return () => {
+        // Destroy Splide instances on unmount to prevent memory leaks.
+        splide2.destroy();
+    };
+
   }, []); 
 
   return (
-    <div className='p-40 bg-orange-600'>
-        <div name="Testimonials" className="splide p-16 bg-white rounded-lg text-black font-medium text-xs md:text-sm">
+    <div className='md:p-20 bg-orange-600  '>
+        <div name="Testimonials" id="splide2" className="splide md:p-16 md:mx-20 bg-white rounded-lg text-black font-medium text-xs md:text-sm">
         <div className="splide__track">
             <ul className="splide__list"> 
             <li className="splide__slide px-5">

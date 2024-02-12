@@ -116,7 +116,7 @@ const Menu = () => {
             <h1><span className='text-orange-600 '>Packages</span> That <span className='text-yellow-300'>Always</span> Make</h1>
             <h1>You Ask For <span className='text-orange-600 '>More</span></h1>
         </div>
-        <div className='flex gap-3 text-gray-400'>
+        <div className='grid grid-cols-2 md:flex gap-3 items-center justify-center text-gray-400'>
             <button 
             className={` px-3 border-2 border-gray-400 rounded-full 
             bg-${selectedCategory === 'All' ? 'orange-600' : 'transparent'}

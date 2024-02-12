@@ -3,6 +3,7 @@ import Loading from "../src/components/loading";
 import { createBrowserRouter }  from "react-router-dom";
 
 const Home = lazy(() => import("./pages/home"));
+const About = lazy(() => import("./pages/about"));
 const Signup = lazy(() => import("./pages/signup"));
 const Login = lazy(() => import("./pages/Login"));
 
@@ -12,6 +13,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <Home />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/about",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <About />
             </React.Suspense>
         ),
     },
