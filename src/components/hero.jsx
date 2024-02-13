@@ -66,7 +66,7 @@ const Hero = () => {
                 </RouterLink>
             </div>
         </div>
-        <div name="hero" id="splide1" className="splide w-1/2 bg-white rounded-lg">
+        <div name="hero" id="splide1" className="splide md:w-1/2 bg-white rounded-lg">
             <div className="splide__track">
                 <ul className="splide__list"> 
                 <li className="splide__slide px-1">
