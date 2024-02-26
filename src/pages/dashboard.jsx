@@ -15,10 +15,16 @@ const Dashboard = () => {
         fetch('http://localhost:5000/api/dashboard', {
             method: 'GET',
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         })
-        .then((response) => response.json())
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Unauth');
+            }
+            return response.json();
+        })
         .then((data) => setUserData(data))
         .catch((error) => console.error('Error fetching user data:', error));
     }, [history]);

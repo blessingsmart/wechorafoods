@@ -13,13 +13,12 @@ const BASE_URL = "http://localhost:5000";
 const SignUp = () => {
     
         const [formData, setFormData] = useState({
-            name: "",
+            firstname: "",
+            lastname: "",
             username: "",
             email: "",
             password: "",
             confirm_password: "",
-            firstname: "",
-            lastname: "",
             gender: "",
             height: "",
             weight: "",
@@ -39,7 +38,7 @@ const SignUp = () => {
     
         const handleSubmit = async (e) => {
             e.preventDefault();
-            if (!formData.name || !formData.username || !formData.email || !formData.password || !formData.confirm_password) {
+            if (!formData.firstname || !formData.firstname || !formData.username || !formData.email || !formData.password || !formData.confirm_password) {
                 setMessage("Please fill in all fields.");
                 setIsOpen(true);
                 return;
@@ -93,7 +92,7 @@ const SignUp = () => {
                                 value={formData.firstname}
                                 onChange={handleChange}
                                 label="Name"
-                                name="name"
+                                name="firstname"
                                 type="text"
                                 placeholder=" First Name..."
                                 className="text-black p-2 w-full border border-gray-600 rounded-md"
@@ -105,7 +104,7 @@ const SignUp = () => {
                                 value={formData.lastname}
                                 onChange={handleChange}
                                 label="Name"
-                                name="name"
+                                name="lastname"
                                 type="text"
                                 placeholder="Surname Name..."
                                 className="text-black p-2 w-full border border-gray-600 rounded-md"
