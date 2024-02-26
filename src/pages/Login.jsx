@@ -1,19 +1,58 @@
-import  food from "..//assets/food.png";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import  food from "..//assets/signup.jpg";
 
 const Login = () => {
 
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
+    const [error, setError] = useState('');
+    const history = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+            localStorage.setItem('token', data.token);
+            history('/dashboard'); // Redirect to dashboard after successful login
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+
 
     return (
-        <main className="bg-orange-600 h-screen">
-            <div className="flex rounded-lg justify-center">
+        <main className="bg-orange-600 ">
+            <div className="flex h-screen rounded-lg justify-center">
                 <img
                     src={food}
                     alt="logo"
-                    className="md:h-3/4 py-10"
+                    className="py-10 hidden md:block"
                 />
             <section className="my-10 p-10 bg-white rounded-r-lg flex flex-col justify-center gap-5">
                 <form
-                    onSubmit={''}
+                    onSubmit={handleSubmit}
                     className="flex flex-col items-center justify-center"
                 >
                     <div className="w-full max-w-[30rem] grid grid-cols-1 gap-4 mb-6 md:mb-12">
@@ -26,38 +65,40 @@ const Login = () => {
                     </div>
                     <div className="w-full max-w-[30rem] grid grid-cols-1 gap-4">
                         <input
-                            className="border-2 border-orange-600 rounded-lg"
+                            className="border border-gray-600 rounded-md p-2"
                             label="Email"
                             name="email"
                             type="email"
-                            register={''}
-                            errors={''}
+                            value={formData.email}
+                            onChange={handleChange}
                             autoComplete="email"
                             placeholder="Email..."
                             id="email"
                         />
                         <input
-                            className="border-2 border-orange-600 rounded-lg"
+                            className="border border-gray-600 rounded-md p-2"
                             label="Password"
                             name="password"
                             type="password"
-                            register={''}
-                            errors={''}
+                            value={formData.password}
+                            onChange={handleChange}
                             placeholder="Password..."
                             id="current-password"
                             autoComplete="current-password"
                         />
                     </div>
-                </form>
                     <button
-                        className="w-full mt-6  bg-orange-600 px-3 text-white rounded-full"
+                        className="w-full mt-6  bg-orange-600 px-3 text-white rounded-full p-2"
+                        type="submit"
                     >
                         Login
                     </button>
+                </form>
+                    {error && <p className="text-red-500">{error}</p>}
                     <div className="w-full  grid grid-cols-1 gap-4">
-                        <h5 className="text-sm lg:text-xl font-medium">
+                        <h5 className="text-sm lg:text-lg font-medium">
                             Don{`'`}t have an Account?{" "}
-                            <a className="text-gray-600 text-sm lg:text-xl font-bold" href="/signup">
+                            <a className="text-gray-600 text-sm lg:text-lg font-bold" href="/signup">
                                 Sign Up
                             </a>
                         </h5>
