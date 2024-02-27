@@ -6,6 +6,7 @@ const Home = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
 const Signup = lazy(() => import("./pages/signup"));
 const Login = lazy(() => import("./pages/Login"));
+const Dashboard = lazy(() => import("./pages/dashboard"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -37,6 +38,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <Login />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/dashboard",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Dashboard />
             </React.Suspense>
         ),
     },

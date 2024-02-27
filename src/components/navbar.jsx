@@ -34,9 +34,9 @@ const Navbar = () => {
 
   return (
     <div className='mx-12 my-3 flex justify-between items-center'>
-        <div className='flex gap-2 text-2xl font-semibold'>
+        <RouterLink to='/' className='flex gap-2 text-2xl font-semibold'>
             <p className='text-orange-600'>Wechora</p> <p>Foods</p>
-        </div>
+        </RouterLink>
         <div className='flex items-center gap-10'>
             <ul className="hidden md:flex">
                 {links.map(({id, link, to, page}) => (
