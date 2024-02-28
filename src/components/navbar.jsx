@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 
 
-const Navbar = () => {
+const Navbar = ({ hideId }) => {
 
     const links = [
         {
@@ -63,11 +63,11 @@ const Navbar = () => {
                     </li>
                 ))}      
             </ul>
-            <RouterLink to='/login'>
-            <button className='bg-orange-600 rounded-2xl text-white px-5 py-1 cursor-pointer hover:scale-105 duration-200'>
-                Login
-            </button>
-            </RouterLink>
+                <RouterLink to='/login'>
+                <button className={`${hideId ? 'hidden' : 'block'} bg-orange-600 rounded-2xl text-white px-5 py-1 cursor-pointer hover:scale-105 duration-200`}>
+                    Login
+                </button>
+                </RouterLink>
         </div>
     </div>
   )

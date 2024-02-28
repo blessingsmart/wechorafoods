@@ -75,7 +75,7 @@ const SignUp = () => {
     
     
     return (
-        <main className="bg-orange-600 text-white md:h-screen flex">
+        <main className="bg-orange-600 text-white md:h-screen px-3 md:px-0 flex">
             <img src={food} alt="" className="hidden md:block" />
             <form onSubmit={handleSubmit} className="mx-auto  max-w-[60rem] mt-3 px-5">
                 <div className="my-3 flex flex-col gap-2">
