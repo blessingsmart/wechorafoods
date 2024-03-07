@@ -22,11 +22,7 @@ const SideNav = ({
     <>
       <div
         className={`bg-orange-600 h-[4.4vw] w-[20px] z-[100] absolute top-0 items-center justify-center ${
-          openSideNav
-            ? "left-[22.5%]"
-            : displayIconName
-            ? "left-6.3%"
-            : "left-0%"
+          openSideNav ? "left-[22.5%]" : displayIconName ? "left-[6.3%]" : "left-[0%]"
         } flex `}
         onClick={() => {
           setDisplayIconName(!displayIconName);
@@ -37,7 +33,7 @@ const SideNav = ({
             cursor: "pointer",
             height: "60px",
             width: "60px",
-            transition: "transform 100ms ease",
+            transition: "transform 200ms ease",
             transform: displayIconName ? "rotate(180deg)" : " none",
           }}
         />
@@ -54,7 +50,7 @@ const SideNav = ({
             <img
               src={logo}
               className={`${displayIconName ? "max-w-[25]" : "max-w-[100px]"}`}
-              alt="DalensAI"
+              alt="wechora logo"
             />
           </Link>
         </div>

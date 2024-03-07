@@ -7,7 +7,8 @@ import SideNav from '../components/sideNav';
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const history = useNavigate();
-    const [hideId, setHideId] = useState(true); // Initialize hideId as true
+    const [hideId, setHideId] = useState(false); // Initialize hideId as true
+    const [showId, setShowId] = useState(false); // Initialize hideId as true
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -31,7 +32,8 @@ const Dashboard = () => {
         })
         .then((data) =>{ 
         setUserData(data);
-        setHideId(false);   
+        setHideId(true);   
+        setShowId(true);   
         })
         .catch((error) => console.error('Error fetching user data:', error));
     }, [history]);
@@ -39,11 +41,32 @@ const Dashboard = () => {
     return (
         <>  
             <div>
-                <SideNav  />
+                <SideNav />
                 <div className='pl-16'>
-                    <Navbar hideId={hideId} />
-                    <main className="bg-orange-600 text-white md:h-full m-20 rounded-lg p-10 flex flex-col items-center justify-center">
+                    <Navbar 
+                    hideId={hideId}
+                    showId={showId} />
+                    <h1 className='font-semibold text-5xl text-center my-5'>Dashboard</h1>
                     {userData ? (
+                    <div className='flex'>
+                        <button className='w-52 h-32 bg-orange-600 rounded-lg mx-20 my-10 p-5'>
+                            <h2 className='text-lg'>BMR</h2>
+                            <p className='text-5xl font-bold'>{userData.bmr}</p>
+                        </button>
+                        <button className='w-52 h-32 bg-orange-600 rounded-lg mx-20 my-10 p-5'>
+                            <h2 className='text-lg'>BMI</h2>
+                            <p className='text-5xl font-bold'>{}</p>
+                        </button>
+                        <button className='w-52 h-32 bg-orange-600 rounded-lg mx-20 my-10 p-5'>
+                            <h2 className='text-lg'>TEE</h2>
+                            <p className='text-5xl font-bold'>{}</p>
+                        </button>
+                    </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                    {userData ? (
+                    <main className="bg-orange-600 text-white md:h-full mx-20 rounded-lg p-10 flex flex-col items-center justify-center">
                         <div className="text-center">
                             <h1 className="text-4xl font-bold">Welcome, {userData.name}!</h1>
                             <p className="my-4">Your Basal Metabolic Rate (BMR) is {userData.bmr}.</p>
@@ -62,10 +85,10 @@ const Dashboard = () => {
                                 out our <RouterLink to="/bmr-info">BMR information</RouterLink> page.
                             </p>
                         </div>
+                        </main>
                     ) : (
                         <p>Loading...</p>
                     )}
-                    </main>
                 </div>
             </div>
         </>
