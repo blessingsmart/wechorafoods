@@ -45,7 +45,7 @@ const Navbar = ({ hideId, showId }) => {
     ];
 
   return (
-    <div className='fixed top-0 h-12 w-screen px-10 flex justify-between items-center bg-orange-600'>
+    <div className='fixed top-0 h-12 w-screen px-10 flex justify-between items-center bg-orange-600 z-20'>
         <RouterLink to='/' className='mx-12 flex gap-2 text-2xl font-semibold'>
             <p className='text-[#f4f1ee]'>Wechora</p> <p>Foods</p>
         </RouterLink>

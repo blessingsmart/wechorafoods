@@ -6,7 +6,7 @@ import  food from "..//assets/signup.jpg";
 
 Modal.setAppElement("#root");
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://severside-wechorafoods.vercel.app/";
 
 
 
@@ -44,7 +44,7 @@ const SignUp = () => {
                 return;
             }
             try {
-                const response = await fetch("http://localhost:5000/api/register", {
+                const response = await fetch("https://severside-wechorafoods.vercel.app/api/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
