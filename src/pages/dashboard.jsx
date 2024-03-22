@@ -17,7 +17,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('https://severside-wechorafoods.vercel.app/api/dashboard', {
+        fetch('https://serverside.wechorafoods.com/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
