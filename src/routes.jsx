@@ -9,7 +9,7 @@ const Login = lazy(() => import("./pages/Login"));
 const SideNav = lazy(() => import("./components/sideNav"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/profile"));
-const Calory = lazy(() => import("./pages/calory"));
+const Calory = lazy(() => import("./components/calory"));
 
 const BrowserRouter = createBrowserRouter([
     {

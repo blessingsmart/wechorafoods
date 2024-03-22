@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import SideNav from '../components/sideNav';
-import Calory from './calory'
+import Calory from '../components/calory'
 // import hideId from '../components/sideNav';
 
 const Dashboard = () => {
