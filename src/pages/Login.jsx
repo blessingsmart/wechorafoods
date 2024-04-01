@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import  food from "..//assets/signup.jpg";
+import  food from "..//assets/logo.png";
 
 const Login = () => {
 
@@ -98,9 +98,9 @@ const Login = () => {
                     <div className="w-full  grid grid-cols-1 gap-4">
                         <h5 className="text-sm lg:text-lg font-medium">
                             Don{`'`}t have an Account?{" "}
-                            <a className="text-gray-600 text-sm lg:text-lg font-bold" href="/signup">
+                            <RouterLink className="text-gray-600 text-sm lg:text-lg font-bold" to="/signup">
                                 Sign Up
-                            </a>
+                            </RouterLink>
                         </h5>
                     </div>
             </section>

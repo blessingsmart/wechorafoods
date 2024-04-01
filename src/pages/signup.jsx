@@ -2,7 +2,7 @@ import { Link as RouterLink} from "react-router-dom";
 import { useState } from "react";
 import Popup from "../components/popup";
 import Modal from "react-modal";
-import  food from "..//assets/signup.jpg";
+import  food from "..//assets/logo.png";
 
 Modal.setAppElement("#root");
 
@@ -44,7 +44,7 @@ const SignUp = () => {
                 return;
             }
             try {
-                const response = await fetch("https://severside-wechorafoods.com/api/register", {
+                const response = await fetch("https://serverside.wechorafoods.com/api/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
