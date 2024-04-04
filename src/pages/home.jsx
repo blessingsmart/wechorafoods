@@ -14,6 +14,7 @@ import { SlBookOpen } from "react-icons/sl";
 import  model from "..//assets/model1.png";
 import { Link } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
+// import Video from '../components/video'
 
 const Home = () => {
 
@@ -111,6 +112,7 @@ const Home = () => {
         </RouterLink >
       </div>
     </div>
+    {/* < Video /> */}
     < Menu />
     < Testimonial />
     < Promo />

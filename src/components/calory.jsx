@@ -36,7 +36,7 @@ function Calory() {
 
   return (
     <div style={{ padding: 20 }}>
-      <img className="mx-[38%] pb-3 rounded-[30%] w-[20%]" src={wechora_logo} alt="" />
+      <img className="size-36 " src={wechora_logo} alt="" />
       <form onSubmit={(e) => { e.preventDefault(); searchItems(searchInput); }}>
         <div className="flex m-4 justify-center">
           <input
