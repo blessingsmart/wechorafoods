@@ -9,7 +9,7 @@ const Login = lazy(() => import("./pages/Login"));
 const SideNav = lazy(() => import("./components/sideNav"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/profile"));
-const Calory = lazy(() => import("./pages/calory"));
+const Tee = lazy(() => import("./pages/tee"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -69,10 +69,10 @@ const BrowserRouter = createBrowserRouter([
         ),
     },
     {
-        path: "/calory",
+        path: "/Tee",
         element: (
             <React.Suspense fallback={<Loading />}>
-                <Calory/>
+                <Tee/>
             </React.Suspense>
         ),
     },

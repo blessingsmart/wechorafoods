@@ -35,15 +35,12 @@ function Calory() {
   };
 
   return (
-    <div style={{ padding: 20 }} className="bg-bg-[#f45906]">
-      <div>
-        <Link to="/" className="bg-[#f45906] border rounded-2xl md:mx-[95%] mx-[90%] mt-[10%] text-xl px-3">Back</Link>
-      </div>
+    <div style={{ padding: 20 }}>
       <img className="mx-[38%] pb-3 rounded-[30%] w-[20%]" src={wechora_logo} alt="" />
       <form onSubmit={(e) => { e.preventDefault(); searchItems(searchInput); }}>
         <div className="flex m-4 justify-center">
           <input
-            className="w-[60%] border border-gray-600 rounded-md p-2"
+            className="w-[60%] text-gray-600 border border-gray-600 rounded-md p-2"
             label="calory"
             name="calory"
             type="text"
@@ -71,27 +68,27 @@ function Calory() {
           </div>
           <div>
             <div className="bg-gray-200 mx-[10%] max-w-[1200px] item-center my-5 rounded-md pb-3">
-              <h2 className="md:text-4xl sm:text-2xl text-xl font-bold mt-[5%] pt-5 text-center">Nutritional values</h2>
+              <h2 className="text-black md:text-4xl sm:text-2xl text-xl font-bold mt-[5%] pt-5 text-center">Nutritional values</h2>
               <ul>
-                <li className="mx-[8%] mt-[5%] bg-[#f45906] rounded-md border p-2 text-xl">Serving Size Per 100/Grams<span className="float-end"></span></li>
-                <li className="mx-[8%] mt-[5%]">Carbonhydrate: <span className="float-end">{item.carbohydrates_total_g}</span></li>
-                <li className="mx-[8%] mt-4">Cholesterol: <span className="float-end">{item.cholesterol_mg}</span></li>
-                <li className="mx-[8%] mt-4">Saturated Fat: <span className="float-end">{item.fat_saturated_g}</span></li>
-                <li className="mx-[8%] mt-4">Total Fat: <span className="float-end">{item.fat_total_g}</span></li>
-                <li className="mx-[8%] mt-4">Fibre Content: <span className="float-end">{item.fiber_g}</span></li>
-                <li className="mx-[8%] mt-4">Potassium: <span className="float-end">{item.potassium_mg}</span></li>
-                <li className="mx-[8%] mt-4">Protein: <span className="float-end">{item.protein_g}</span></li>
-                <li className="mx-[8%] mt-4">Sodium: <span className="float-end">{item.sodium_mg}</span></li>
-                <li className="mx-[8%] mt-4 mb-5">Sugar: <span className="float-end">{item.sugar_g}</span></li>
+                <li className="text-black mx-[8%] mt-[5%] bg-[#f45906] rounded-md border p-2 text-xl">Serving Size Per 100/Grams<span className="float-end"></span></li>
+                <li className="text-black mx-[8%] mt-[5%]">Carbonhydrate: <span className="float-end">{item.carbohydrates_total_g}</span></li>
+                <li className="text-black mx-[8%] mt-4">Cholesterol: <span className="float-end">{item.cholesterol_mg}</span></li>
+                <li className="text-black mx-[8%] mt-4">Saturated Fat: <span className="float-end">{item.fat_saturated_g}</span></li>
+                <li className="text-black mx-[8%] mt-4">Total Fat: <span className="float-end">{item.fat_total_g}</span></li>
+                <li className="text-black mx-[8%] mt-4">Fibre Content: <span className="float-end">{item.fiber_g}</span></li>
+                <li className="text-black mx-[8%] mt-4">Potassium: <span className="float-end">{item.potassium_mg}</span></li>
+                <li className="text-black mx-[8%] mt-4">Protein: <span className="float-end">{item.protein_g}</span></li>
+                <li className="text-black mx-[8%] mt-4">Sodium: <span className="float-end">{item.sodium_mg}</span></li>
+                <li className="text-black mx-[8%] mt-4 mb-5">Sugar: <span className="float-end">{item.sugar_g}</span></li>
               </ul>
             </div>
             <div className="bg-gray-200 max-w-[1200px] mx-[10%] p-2">
-              <h4 className="bg-[#f45906] border rounded text-center mx-[10%] md:text-4xl sm:text-xl text-xl">To burn <span className="font-bold">{item.calories}</span> calories you will have to</h4>
+              <h4 className="bg-[#f45906] border rounded-md text-black text-center mx-[8%] md:text-3xl sm:text-xl text-xl">To burn <span className="font-bold">{item.calories}</span> calories you will have to</h4>
               <div className="flex mx-[10%] mt-10">
                 <div>
                   <img src={jogging_logo} alt="" />
                 </div>
-                <div className="px-[11%]">
+                <div className="text-black px-[11%]">
                   <h5 className="font-bold">Jog</h5>
                   <p>You will have to jog for <strong>{Math.round((item.calories / 229) * 60)}</strong> minutes</p>
                 </div>
@@ -101,7 +98,7 @@ function Calory() {
                 <div>
                   <img src={power_yoga} alt="" />
                 </div>
-                <div className="px-[11%]">
+                <div className="text-black px-[11%]">
                   <h5 className="font-bold">Do Power Yoga</h5>
                   <p>You will have to do Power Yoga for <strong>{Math.round((item.calories / 223) * 60)}</strong> minutes</p>
                 </div>
@@ -111,7 +108,7 @@ function Calory() {
                 <div>
                   <img src={gym_walkout} alt="" />
                 </div>
-                <div className="px-[10%]">
+                <div className="text-black px-[10%]">
                   <h5 className="font-bold">Get a Gym Workout</h5>
                   <p>You will have to lift weights for <strong>{Math.round((item.calories / 484) * 60)}</strong> minutes</p>
                 </div>
@@ -121,7 +118,7 @@ function Calory() {
                 <div>
                   <img src={brisk_logo} alt="" />
                 </div>
-                <div className="px-[10%]">
+                <div className="text-black px-[10%]">
                   <h5 className="font-bold">Go for a Brisk Walk</h5>
                   <p>You will have to brisk walk for <strong>{Math.round((item.calories / 294) * 60)}</strong> minutes</p>
                 </div>

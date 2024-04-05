@@ -33,10 +33,6 @@ const Navbar = ({ hideId, showId }) => {
             link: "Reviews",
             to: "Testimonials"
         },
-        // {
-        //     id: 5,
-        //     link: "Contact",
-        // },
     ];
 
   return (
