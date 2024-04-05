@@ -19,7 +19,7 @@ import  farm2 from "..//assets/farm2.jpg";
 import  grain from "..//assets/grain.jpg";
 import  palm from "..//assets/palm.jpg";
 import  farm3 from "..//assets/farm3.jpg";
-import  cow from "..//assets/cow.jpg";
+import  cow from "..//assets/cow1.jpg";
 import  peppersoup from "..//assets/pepersoup.jpg";
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
