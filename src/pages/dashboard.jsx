@@ -19,7 +19,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('http://localhost:5000/api/dashboard', {
+        fetch('https://serverside.wechorafoods.com/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
