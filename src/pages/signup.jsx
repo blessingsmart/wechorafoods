@@ -22,7 +22,8 @@ const SignUp = () => {
             gender: "",
             height: "",
             weight: "",
-            age: ""
+            age: "",
+            activity_level: ""
         });
 
         const [isOpen, setIsOpen] = useState(false);
@@ -153,6 +154,24 @@ const SignUp = () => {
                             placeholder="Email..."
                             className="text-black p-2 w-full border border-gray-600 rounded-md"
                         />
+                    </div>
+                    <div>
+                        <h2>Activity Level</h2>
+                        <select
+                            value={formData.activity_level}
+                            onChange={handleChange}
+                            label="activity_level"
+                            name="activity_level"
+                            type="text"
+                            placeholder="Activity_level..."
+                            className="text-black p-2 w-full border border-gray-600 rounded-md"
+                        >
+                            <option value="sedentary">Sedentary (little or no exercise)</option>
+                            <option value="lightlyActive">Lightly active (light exercise/sports 1-3 days/week)</option>
+                            <option value="moderatelyActive">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+                            <option value="veryActive">Very active (hard exercise/sports 6-7 days a week)</option>
+                            <option value="extraActive">Extra active (very hard exercise & physical job or 2x training)</option>
+                        </select>
                     </div>
                 </div>
                 {/* container for passwords */}
