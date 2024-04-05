@@ -3,7 +3,7 @@ import { useNavigate, Link as RouterLink, Link } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import SideNav from '../components/sideNav';
 import axios from "axios";
-import Calory from './calory';
+import Calory from '../components/calory';
 // import hideId from '../components/sideNav';
 
 const Dashboard = () => {
