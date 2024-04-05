@@ -33,11 +33,6 @@ const Navbar = ({ hideId, showId }) => {
             link: "Reviews",
             to: "Testimonials"
         },
-        {
-            id: 5,
-            link: "Calory",
-            page: "calory"
-        },
         // {
         //     id: 5,
         //     link: "Contact",

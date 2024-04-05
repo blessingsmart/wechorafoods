@@ -35,7 +35,7 @@ function Calory() {
   };
 
   return (
-    <div style={{ padding: 20 }} className="bg-[#8c6d5c]">
+    <div style={{ padding: 20 }} className="bg-bg-[#f45906]">
       <div>
         <Link to="/" className="bg-[#f45906] border rounded-2xl md:mx-[95%] mx-[90%] mt-[10%] text-xl px-3">Back</Link>
       </div>

@@ -40,9 +40,9 @@ const Testimonial = () => {
                   <div className='flex flex-col gap-2 items-center md:px-20'> 
                       <CgProfile className='sm:h-20 sm:w-20 w-12 h-12' />
                       <p className='text-center'>"Excellent food. Menu is extensive and seasonal to a particularly high standard. Definitely fine dining. It can be expensive but worth it and they do different deals so it’s worth checking them out before you book. Highly recommended." </p>
-                          <div className='flex flex-col text-xs'>
-                          <p className='text-orange-600 font-bold text-base sm:text-lg'>Usman Abubakar</p>
-                          </div>
+                      <div className='flex flex-col text-xs'>
+                      <p className='text-orange-600 font-bold text-base sm:text-lg'>Usman Abubakar</p>
+                      </div>
                   </div>
               </li>
               </ul>
