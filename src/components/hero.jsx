@@ -16,9 +16,10 @@ import  smoothie from "..//assets/smoothie.jpg";
 import  wechorafarm from "..//assets/wechorafarm.jpg";
 import  farm from "..//assets/farm.jpg";
 import  farm2 from "..//assets/farm2.jpg";
-import  bag from "..//assets/bag.jpg";
+import  grain from "..//assets/grain.jpg";
 import  palm from "..//assets/palm.jpg";
 import  farm3 from "..//assets/farm3.jpg";
+import  cow from "..//assets/cow.jpg";
 import  peppersoup from "..//assets/pepersoup.jpg";
 import { FaShoppingBasket } from "react-icons/fa";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -141,7 +142,7 @@ const Hero = () => {
                 </li>
                 <li className="splide__slide px-1">
                     <div className=''> 
-                        <img src={bag} alt="Image 3" className='rounded-lg w-96 '/>
+                        <img src={grain} alt="Image 3" className='rounded-lg w-96 '/>
                     </div>
                 </li>
                 <li className="splide__slide px-1">
@@ -152,6 +153,11 @@ const Hero = () => {
                 <li className="splide__slide px-1">
                     <div className=''> 
                         <img src={farm3} alt="Image 3" className='rounded-lg w-96 '/>
+                    </div>
+                </li>
+                <li className="splide__slide px-1">
+                    <div className=''> 
+                        <img src={cow} alt="Image 3" className='rounded-lg w-96 '/>
                     </div>
                 </li>
                 <li className="splide__slide px-1">

@@ -2,11 +2,11 @@ import { Link as RouterLink} from "react-router-dom";
 import { useState } from "react";
 import Popup from "../components/popup";
 import Modal from "react-modal";
-import  food from "..//assets/signup.jpg";
+import  food from "..//assets/logo.png";
 
 Modal.setAppElement("#root");
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://severside-wechorafoods.com/";
 
 
 
@@ -44,7 +44,7 @@ const SignUp = () => {
                 return;
             }
             try {
-                const response = await fetch("http://localhost:5000/api/register", {
+                const response = await fetch("https://serverside.wechorafoods.com/api/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -75,7 +75,7 @@ const SignUp = () => {
     
     
     return (
-        <main className="bg-orange-600 text-white md:h-screen flex">
+        <main className="bg-orange-600 text-white md:h-screen px-3 md:px-0 flex">
             <img src={food} alt="" className="hidden md:block" />
             <form onSubmit={handleSubmit} className="mx-auto  max-w-[60rem] mt-3 px-5">
                 <div className="my-3 flex flex-col gap-2">
