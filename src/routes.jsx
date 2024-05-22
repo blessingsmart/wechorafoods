@@ -6,9 +6,10 @@ const Home = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
 const Signup = lazy(() => import("./pages/signup"));
 const Login = lazy(() => import("./pages/Login"));
-const SideNav = lazy(() => import("./components/sideNav"));
-const Dashboard = lazy(() => import("./pages/dashboard"));
-const Profile = lazy(() => import("./pages/profile"));
+const Dashboard = lazy(() => import("./pages/Dashboard/dashboard"));
+const Profile = lazy(() => import("./pages/Dashboard/profile"));
+const Calory = lazy(() => import("./pages/Dashboard/calory"));
+const Smoothie = lazy(() => import("./pages/Dashboard/smoothie"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -44,10 +45,18 @@ const BrowserRouter = createBrowserRouter([
         ),
     },
     {
-        path: "/sidenav",
+        path: "/calory",
         element: (
             <React.Suspense fallback={<Loading />}>
-                <SideNav />
+                <Calory />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/smoothie",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Smoothie />
             </React.Suspense>
         ),
     },

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link as RouterLink, Link } from 'react-router-dom';
-import Navbar from '../components/navbar';
-import SideNav from '../components/sideNav';
+import SideNav from '../../components/Dashboard/sideNav';
 import axios from "axios";
-import Calory from './calory';
-// import hideId from '../components/sideNav';
+import NavBar from '../../components/Dashboard/navbar';
 
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
@@ -67,50 +65,31 @@ const Dashboard = () => {
 
     return (
         <>  
-            <div>
+            <div className='flex'>
+                <div className='basis-1/5'>
                 <SideNav />
-                <div className='pl-16'>
-                    <Navbar 
-                    hideId={hideId}
-                    showId={showId} />
+                </div>
+                <div className='basis-4/5'>
+                    <NavBar />
                     {userData ? (
-                    <main className="bg-orange-600 text-white md:h-full mt-[100px] mx-20 rounded-lg p-10 flex flex-col items-center justify-center">
-                        {/* <div className="text-center">
-                            <h1 className="text-4xl font-bold">Welcome, {userData.name}!</h1>
-                            <p className="my-4">Your Basal Metabolic Rate (BMR) is {userData.bmr}.</p>
-                            <p className="my-4">
-                                Basal Metabolic Rate (BMR) is the number of calories your body needs to
-                                maintain basic physiological functions while at rest. It represents the minimum
-                                amount of energy required to keep your body functioning.
-                            </p>
-                            <p className="my-4">
-                                To calculate your BMR, various factors such as age, gender, weight, and height
-                                are taken into account. It is an important factor in determining your daily
-                                caloric needs.
-                            </p>
-                            <p className="my-4">
-                                To learn more about BMR and how it affects your health and fitness goals, check
-                                out our <RouterLink to="/bmr-info">BMR information</RouterLink> page.
-                            </p>
-                        </div> */}
-                        <Calory />
+                    <main className="bg-gray-100 text-white"> 
                     </main>
                     ) : (
                         <p>Loading...</p>
                     )}
                     {userData ? (
-                    <div>
+                    <div className='p-10'>
                         <h3 className='text-2xl text-center font-bold my-5 p-5'><span className='text-3xl'>{userData.name},  </span>  Thank you for signing up. Your health information is as follows</h3>
-                        <div className='flex'>
-                            <button className='w-80 h-32 bg-orange-600 rounded-lg mx-20 my-10 p-5'>
+                        <div className='grid grid-cols-3 gap-2'>
+                            <button className='h-32 max-w-60 bg-orange-600 rounded-lg p-5'>
                                 <h2 className='text-xl'>BMR</h2>
                                 <p className='text-5xl font-bold'>{userData.bmr}</p>
                             </button>
-                            <button className='w-80 h-32 bg-orange-600 rounded-lg mx-20 my-10 p-5'>
+                            <button className='h-32 bg-orange-600 max-w-60 rounded-lg p-5'>
                                 <h2 className='text-xl'>BMI</h2>
                                 <p className='text-5xl font-bold'>{userData.bmi}</p>
                             </button>
-                            <button className='w-80 h-32 bg-orange-600 rounded-lg mx-20 my-10 p-5'>
+                            <button className='h-32 bg-orange-600 max-w-60 rounded-lg p-5'>
                                 <h2 className='text-xl'>TEE</h2>
                                 <p className='text-5xl font-bold'>{userData.tdee}</p>
                             </button>
@@ -118,7 +97,7 @@ const Dashboard = () => {
                     </div>
                     ) : (
                         <p>Loading...</p>
-                    )}
+                    )} 
                 </div>
             </div>
         </>

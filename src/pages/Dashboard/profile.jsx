@@ -1,17 +1,19 @@
 import React from 'react'
-import Navbar from '../components/navbar';
-import SideNav from '../components/sideNav';
-import  food from "..//assets/signup.jpg";
+import SideNav from '../../components/Dashboard/sideNav';
+import  food from "../../assets/signup.jpg";
+import NavBar from '../../components/Dashboard/navbar';
 
 
 const Profile = () => {
   return (
     
     <>  
-    <div>
+    <div className='flex'>
+        <div className='basis-1/5'>
         <SideNav  />
-        <div className='flex flex-col pl-16 '>
-            <Navbar />
+        </div>
+        <div className='flex flex-col pl-16 basis-4/5 '>
+            <NavBar />
             <h1 className='text-center py-5 font-bold text-2xl'>WELCOME TO YOUR PROFILE</h1> 
             <div className='bg-orange-600 flex flex-col md:h-full mx-20 rounded-lg p-10'>
                 <div className='flex gap-5 justify-between'>
