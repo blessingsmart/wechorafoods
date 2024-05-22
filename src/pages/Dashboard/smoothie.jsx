@@ -20,11 +20,13 @@ function Smoothie() {
             </div>
             <h1 className="font-bold text-xl p-8 text-center "><span className='text-orange-600 '>Choose</span> Your <span className='text-yellow-300'>Base</span></h1>
             <div className="flex flex-col justify-center items-center">
-              <div className="rounded-full p-2 bg-orange-600/20 w-fit justify-center flex items-center">
+              <div className="rounded-full p-2 bg-orange-600/20 w-fit justify-center flex items-center m-10">
                 <button className="rounded-full py-2 px-5 hover:text-white hover:bg-orange-600 ">Fruity</button>
                 <button className="rounded-full py-2 px-5 hover:text-white hover:bg-orange-600">Classic Smoothie</button>
               </div>
-              <SmoothieSelector /> 
+              <div className="border-2 rounded-3xl p-10  hover:border-orange-600 mb-10">
+                <SmoothieSelector /> 
+              </div>
             </div>
           </div>
         </div>

@@ -25,20 +25,37 @@ function SmoothieSelector() {
   };
 
   return (
-    <div className='text-black'>
-      <h1>Pick Your Fruits</h1>
-      {fruits.map(fruit => (
-        <div key={fruit.name}>
-          <label>{fruit.name} (#{fruit.price} each): </label>
-          <input
-            type="number"
-            min="0"
-            value={selectedFruits[fruit.name] || 0}
-            onChange={e => handleFruitChange(fruit.name, Number(e.target.value))}
-          />
+    <div className='text-black flex gap-5' >
+      <div className='rounded-3xl bg-gray-100 border p-5'>
+        <h1 className='font-bold my-5'>Pick Your Fruits</h1>
+        <div className='flex gap-10'>
+          <div>
+            {fruits.map(fruit => (
+              <div key={fruit.name}>
+                <label>{fruit.name} (#{fruit.price} each) </label>
+              </div>
+            ))}
+          </div>
+          <div>
+            {fruits.map(fruit => (
+              <div key={fruit.name}>
+                <input
+                  type="number"
+                  min="0"
+                  value={selectedFruits[fruit.name] || 0}
+                  onChange={e => handleFruitChange(fruit.name, Number(e.target.value))}
+                  className='w-20 '
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-      <h2>Total Price: #{calculateTotalPrice().toFixed(2)}</h2>
+      </div>
+      <div className='flex flex-col justify-between items-center'>
+        <h2 className='bg-gray-100 rounded-full px-3 py-1 font-bold'>Total Price</h2>
+        <h2 className='text-3xl font-bold'> #{calculateTotalPrice().toFixed(2)}</h2>
+        <button className='border border-orange-600 hover:bg-orange-600 hover:text-white w-full rounded-2xl py-3 font-bold text-orange-600'>Order</button>
+      </div>
     </div>
   );
 }
