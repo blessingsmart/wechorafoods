@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SideNav from '../../components/Dashboard/sideNav';
 import NavBar from '../../components/Dashboard/navbar';
-import  wechora_logo from "../..//assets/wechora_logo.png";
 import  calory_logo from "../..//assets/calory_logo.jpg";
 import  brisk_logo from "../..//assets/brisk_logo.jpg";
 import  gym_walkout from "../..//assets/gym_walkout.jpg";
 import  jogging_logo from "../..//assets/jogging_logo.png";
 import  power_yoga from "../..//assets/power_yoga.png";
-import { Link } from "react-router-dom";
 
 function Calory() {
   const [APIData, setAPIData] = useState([]);
