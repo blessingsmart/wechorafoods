@@ -1,10 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect }  from 'react'
 import SideNav from '../../components/Dashboard/sideNav';
 import  food from "../../assets/signup.jpg";
 import NavBar from '../../components/Dashboard/navbar';
 
 
 const Profile = () => {
+    const [userData, setUserData] = useState(null);
+    const [hideId, setHideId] = useState(false); // Initialize hideId as true
+    const [showId, setShowId] = useState(false); // Initialize hideId as true
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        
+        fetch("https://serverside.wechorafoods.com/api/dashboard", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${token}`,
+            },
+        })
+        .then((response) => {
+            if(!response.ok){
+                throw new Error('Unauth');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            setUserData(data);
+            setHideId(true);
+            setShowId(true);
+        })
+        .catch((error) => console.error('Error fetching user data:', error));
+    },[history])
+
+    console.log(userData)
+
   return (
     
     <>  
@@ -16,6 +46,7 @@ const Profile = () => {
             <NavBar />
             <h1 className='text-center py-5 font-bold text-2xl'>WELCOME TO YOUR PROFILE</h1> 
             <div className='bg-orange-600 flex flex-col md:h-full mx-20 rounded-lg p-10'>
+                {userData ? (
                 <div className='flex gap-5 justify-between'>
                     <img src={food} 
                     alt="Profile picture"
@@ -26,7 +57,7 @@ const Profile = () => {
                                 <h3>Your Name</h3>
                                 <input 
                                 type="text"
-                                placeholder='Charles Edem'
+                                placeholder={userData.name}
                                 className='p-2 rounded-lg' />
                             </div>
                             <div className='flex flex-col gap-2 w-full'>
@@ -80,6 +111,9 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
+                ): (
+                    <p>Loading...</p>
+                )}
                 <div className='flex gap-2 self-end'>
                     <button  className="mt-6 w-20 bg-white px-3 text-orange-600 rounded-full font-semibold p-2"
                         type="submit">
