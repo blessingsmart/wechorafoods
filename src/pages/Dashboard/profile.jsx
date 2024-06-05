@@ -63,7 +63,7 @@ const Profile = () => {
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>Username</h3>
                                 <input type="text"
-                                placeholder='username'
+                                placeholder={userData.username}
                                 className=' p-2 rounded-lg' />
                             </div>
                         </div>
@@ -71,13 +71,13 @@ const Profile = () => {
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>Email</h3>
                                 <input type="email"
-                                placeholder='email' 
+                                placeholder={userData.email} 
                                 className='w-full p-2 rounded-lg'/>
                             </div>
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>Password</h3>
                                 <input type="password"
-                                placeholder='password'
+                                placeholder={userData.password}
                                 className='w-full p-2 rounded-lg' />
                             </div>
                         </div>
@@ -85,13 +85,13 @@ const Profile = () => {
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>Age</h3>
                                 <input type="date"
-                                placeholder='age' 
+                                placeholder={userData.age}
                                 className='w-full p-2 rounded-lg'/>
                                 </div>
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>Gender</h3>
                                 <input type="gender"
-                                placeholder='gender'
+                                placeholder={userData.gender}
                                 className='w-full p-2 rounded-lg' />
                                 </div>
                         </div>
@@ -99,13 +99,13 @@ const Profile = () => {
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>height</h3>
                                 <input type="number"
-                                placeholder='height' 
+                                placeholder={userData.height} 
                                 className='w-full p-2 rounded-lg'/>
                             </div>
                             <div className='flex flex-col gap-2 w-full'>
                                 <h3>weight</h3>
                                 <input type="number"
-                                placeholder='weight'
+                                placeholder={userData.weight}
                                 className='w-full p-2 rounded-lg' />
                             </div>
                         </div>

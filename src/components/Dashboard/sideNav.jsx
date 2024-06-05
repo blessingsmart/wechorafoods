@@ -75,6 +75,15 @@ const SideNav = ({
             </span>
           </Link>
           <Link
+            className={`py-5 px-10 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            to="/mealPlan"
+          >
+            <BsGrid />
+            <span className=''>
+              Meal Plan
+            </span>
+          </Link>
+          <Link
             className={`py-5 px-10 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/profile"
           > 
