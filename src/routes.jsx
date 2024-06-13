@@ -13,6 +13,7 @@ const Smoothie = lazy(() => import("./pages/Dashboard/smoothie"));
 const MealPlan = lazy(() => import("./pages/Dashboard/mealPlan"));
 const WeightGain = lazy(() => import("./pages/Dashboard/mealplan/weightGain"));
 const WeightLoss = lazy(() => import("./pages/Dashboard/mealplan/weightLoss"));
+const PaymentPlan = lazy(() => import("./pages/Dashboard/mealplan/paymentPlan"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -92,6 +93,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <WeightLoss />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/paymentPlan",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <PaymentPlan />
             </React.Suspense>
         ),
     },
