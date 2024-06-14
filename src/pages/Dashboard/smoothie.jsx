@@ -1,4 +1,5 @@
 import React from "react";
+import { gsap } from "gsap";
 import SideNav from '../../components/Dashboard/sideNav';
 import NavBar from '../../components/Dashboard/navbar';
 import SmoothieSelector from '../../components/Dashboard/smoothieselector'; // Import the SmoothieSelector component
