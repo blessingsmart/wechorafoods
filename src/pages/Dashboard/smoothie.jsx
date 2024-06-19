@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import SideNav from '../../components/Dashboard/sideNav';
 import NavBar from '../../components/Dashboard/navbar';
 import SmoothieSelector from '../../components/Dashboard/smoothieselector'; // Import the SmoothieSelector component
+import {weightGainSmoothies} from './data'
+import {weightLossSmoothies} from './data'
+import {weightGainFruit} from './data'
+import {weightLossFruit} from './data'
+import {weightGainParfait} from './data'
+import {weightLossParfait} from './data'
+import Footer from "../../components/footer";
 
 const Smoothie = ()=>{
   const [addItem, setAddItem] = useState([]);
@@ -31,104 +38,6 @@ const Smoothie = ()=>{
     }
   };
 
-  const links = [
-    {
-      id: 1,
-      title: "Smoothie"
-    },
-    {
-      id: 2,
-      title: "Parfait"
-    },
-    {
-      id: 3,
-      title: "Fish Pie"
-    },
-    {
-      id: 4,
-      title: "Meat Pie"
-    },
-    {
-      id: 5,
-      title: "Shawama"
-    },
-    {
-      id: 6,
-      title: "Spring Roll"
-    },
-    {
-      id: 7,
-      title: "Burger"
-    },
-    {
-      id: 8,
-      title: "Pizza"
-    },
-  ];
-  
-  const smoothies = [
-    {
-      id: 9,
-      title: "Berry smoothie",
-    },
-    {
-      id: 10,
-      title: "Crio bru smoothie",
-    },
-    {
-      id: 11,
-      title: "Tropical tumeric smoothie",
-    },
-    {
-      id: 12,
-      title: "Avocado smoothie",
-    },
-    {
-      id: 13,
-      title: "Banana peach smoothie",
-    },
-    {
-      id: 14,
-      title: "Kiwi cucumber smoothie",
-    },
-    {
-      id: 15,
-      title: "Berry beet smoothie",
-    },
-    {
-      id: 16,
-      title: "Strawberry mango green smoothie",
-    },
-    {
-      id: 17,
-      title: "Kale recharge smoothie", // Corrected id values for unique keys
-    },
-    {
-      id: 18,
-      title: "Pineapple weight smoothie",
-    },
-    {
-      id: 19,
-      title: "Caramel cashew smoothie",
-    },
-    {
-      id: 20,
-      title: "Green spirulina smoothie",
-    },
-    {
-      id: 21,
-      title: "Avocado peach weightloss smoothie",
-    },
-    {
-      id: 22,
-      title: "Spinach avocado smoothie",
-    },
-    {
-      id: 23,
-      title: "Apple cinnamon smoothie",
-    },
-  ];
-
 return (
   <>
     <div className="flex">
@@ -139,34 +48,83 @@ return (
         <NavBar />
         <div className="">
           <h1 className="font-bold text-6xl p-8 text-center text-orange-600">Build Your Perfect Smoothie!</h1>
-          <div className="p-10 flex gap-5">
-
-            <div className="basis-5/7">
-              <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Fruit Categories</h4>  
-              <div className="flex md:flex-row grid md:grid-cols-3 gap-2 pt-4 bg-orange-200 px-5">
-                {links.map(({id, title}) => (
-                  <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
-                  {title}
-                </button>
-                ))}
-              </div>
-              <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Smoothies Categories</h4>
-              <div className="flex md:flex-row grid md:grid-cols-3 gap-2 pt-4 bg-orange-200 px-5">
-                {smoothies.map(({id, title}) => (
-                  <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
-                  {title}
-                </button>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Custom Tray</h4>
-              <div className="basis-2/7 p-5 select-none boxes bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 rounded-md md:min-w-64">
-                { addItem.map((item) => (
-                  <div key={item.id} className="bg-gradient-to-t from-orange-600 via-orange-300 to-orange-200 py-5 px-10 my-3 rounded-full text-center" onClick={()=> handleRemoveItem(item)}>
-                  {item.title}
+          <div className="">
+            <div className="p-10 flex gap-5">
+            
+              <div className="basis-5/7 h-screen flex flex-col">
+                <div className="">
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>MENU</h4>
+                </div>
+                <div className="flex-1 overflow-y-auto border-y border-gray-600">
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Weight Gain Smoothies</h4>  
+                  <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
+                    {weightGainSmoothies.map(({id, title}) => (
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      {title}
+                    </button>
+                    ))}
                   </div>
-                ))}
+
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Weight Loss Smoothies</h4>
+                  <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
+                    {weightLossSmoothies.map(({id, title}) => (
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      {title}
+                    </button>
+                    ))}
+                  </div>
+
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Weight Gain Fruit Juice</h4>
+                  <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
+                    {weightGainFruit.map(({id, title}) => (
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      {title}
+                    </button>
+                    ))}
+                  </div>
+
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Weight Loss Fruit Juice</h4>
+                  <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
+                    {weightLossFruit.map(({id, title}) => (
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      {title}
+                    </button>
+                    ))}
+                  </div>
+
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Weight Gain Parfait</h4>
+                  <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
+                    {weightGainParfait.map(({id, title}) => (
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      {title}
+                    </button>
+                    ))}
+                  </div>
+
+                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Weight Loss Parfait</h4>
+                  <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
+                    {weightLossParfait.map(({id, title}) => (
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      {title}
+                    </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="h-screen flex flex-col">
+                <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Custom Tray</h4>
+                <div className="basis-2/7 flex-1 overflow-y-auto p-5 select-none boxes border border-gray-600 rounded-md md:min-w-64">
+                  { addItem.map((item) => (
+                    <div key={item.id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 text-white py-5 px-5 my-3 rounded-full text-center" onClick={()=> handleRemoveItem(item)}>
+                      {item.title}
+                    </div>
+                  ))}
+                  
+                </div>
+                <div className="flex justify-between px-2">
+                    <button className="bg-red-300 text-black hover:text-white font-semibold px-8 py-2 mt-5 rounded-md hover:bg-red-600 hover:scale-105 duration-200">Clear</button>
+                    <button className="bg-red-300 text-black hover:text-white font-semibold px-8 py-2 mt-5 rounded-md hover:bg-green-600 hover:scale-105 duration-200">Pay</button>
+                </div>
               </div>
             </div>
           </div>
@@ -184,6 +142,9 @@ return (
           </div>
         </div>
       </div>
+    </div>
+    <div className="border-t border-gray-600 mt-64">
+      < Footer />
     </div>
   </>
 );
