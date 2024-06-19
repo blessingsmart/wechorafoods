@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SideNav from '../../components/Dashboard/sideNav';
 import NavBar from '../../components/Dashboard/navbar';
-import SmoothieSelector from '../../components/Dashboard/smoothieselector'; // Import the SmoothieSelector component
+import SmoothieSelector from '../../components/Dashboard/smoothieselector';
 import {weightGainSmoothies} from './data'
 import {weightLossSmoothies} from './data'
 import {weightGainFruit} from './data'
