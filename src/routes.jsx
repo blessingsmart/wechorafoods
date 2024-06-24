@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import Loading from "../src/components/loading";
 import { createBrowserRouter }  from "react-router-dom";
+import Test from "./pages/Dashboard/test";
 
 const Home = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
@@ -61,6 +62,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <Smoothie />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/test",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Test />
             </React.Suspense>
         ),
     },
