@@ -62,19 +62,19 @@ return (
       <div className="basis-4/5 ">
         <NavBar />
         <div className="">
-          <h1 className="font-bold text-6xl p-8 text-center text-orange-600">Build Your Perfect Smoothie!</h1>
+          <h1 className="font-bold md:text-6xl text-2xl md:p-8 pt-4 text-center text-orange-600">Build Your Perfect Smoothie!</h1>
           <div className="">
-            <div className="p-10 flex gap-5">
+            <div className="md:p-10 flex gap-5">
             
-              <div className="basis-5/7 h-screen flex flex-col">
+              <div className="basis-5/7 h-screen flex flex-col md:mt-10 mt-8">
                 <div className="">
-                  <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>MENU</h4>
+                  <h4 className='py-2 px-3 md:text-2xl font-bold'>MENU</h4>
                 </div>
-                <div className="flex-1 overflow-y-auto border-y border-gray-600">
+                <div className="flex-1 overflow-y-auto border border-gray-600">
                   <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Smoothies</h4>  
                   <div className="flex md:flex-row grid md:grid-cols-3 gap-2 py-4 bg-orange-200 px-5">
                     {typeOfSmoothie.map(({id, title}) => (
-                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 my-5 p-5 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
+                      <button  key={id} className="bg-gradient-to-t from-orange-600 via-orange-800 to-orange-600 text-xs font-bold my-5 p-2 select-none text-white rounded-full" onClick={()=> handleAddItem({id, title})}>
                       {title}
                     </button>
                     ))}
@@ -153,8 +153,8 @@ return (
                   </div>
                 </div>
               </div>
-              <div className="h-screen flex flex-col">
-                <h4 className='py-2 px-3 mt-10 text-2xl font-bold'>Custom Tray</h4>
+              <div className="h-screen flex flex-col md:mt-10 mt-8">
+                <h4 className='py-2 px-3 md:text-2xl font-bold'>Custom Tray</h4>
                 <div className="basis-2/7 flex-1 overflow-y-auto px-3 select-none boxes border border-gray-600 rounded-md md:min-w-64">
                 {addItem.map(item => (
                     <div key={item.id} className="text-white py-2 my-3 rounded-md">
