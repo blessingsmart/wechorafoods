@@ -33,12 +33,14 @@ const Dashboard = () => {
         .then((data) =>{ 
         setUserData(data);
         setHideId(true);   
-        setShowId(true);   
+        setShowId(true);
         })
+        
         .catch((error) => console.error('Error fetching user data:', error));
     }, [history]);
 
-    const [APIData, setAPIData] = useState([]);
+
+  const [APIData, setAPIData] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
