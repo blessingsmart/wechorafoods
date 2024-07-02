@@ -7,15 +7,9 @@ import NavBar from '../../components/Dashboard/navbar';
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const history = useNavigate();
-    const [hideId, setHideId] = useState(false); // Initialize hideId as true
-    const [showId, setShowId] = useState(false); // Initialize hideId as true
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (!token) {
-            history('/login'); // Redirect to login if token is not present
-            return;
-        }
 
         fetch('https://serverside.wechorafoods.com/api/dashboard', {
             method: 'GET',
@@ -32,38 +26,10 @@ const Dashboard = () => {
         })
         .then((data) =>{ 
         setUserData(data);
-        setHideId(true);   
-        setShowId(true);
         })
         
         .catch((error) => console.error('Error fetching user data:', error));
     }, []);
-
-
-  const [APIData, setAPIData] = useState([]);
-  const [filteredResults, setFilteredResults] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-
-  useEffect(() => {
-    // Define your API query here
-    const query = encodeURIComponent(searchInput);
-    axios.get(`https://api.api-ninjas.com/v1/nutrition?query=${query}`, {
-      headers: {
-        'X-Api-Key': 'seMwjmUADAPENhjZO+hQ8Q==5NGkyMDEynw0BN1R'
-      },
-    })
-    .then((response) => {
-      setAPIData(response.data);
-      setFilteredResults(response.data); // Assuming you want to display all data initially
-    })
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-  }, [searchInput]);
-
-  const searchItems = (searchValue) => {
-    setSearchInput(searchValue);
-  };
 
     return (
         <>  
