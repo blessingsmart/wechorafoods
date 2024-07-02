@@ -13,7 +13,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("https://serverside.wechorafoods.com/api/dashboard", {
+        fetch("https://serverside.wechorafoods.com/api/profile", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ const Profile = () => {
             <SideNav  />
         </div>
         <div className='flex flex-col basis-4/5 px-2 border-2 border-orange-400'>
-            <div  className='basis-1/5'>
+            <div className='basis-1/5'>
                 <NavBar />
             </div>
             <h1 className='text-center py-5 font-bold md:text-4xl text-2xl text-orange-600'>WELCOME TO YOUR PROFILE</h1> 
@@ -58,7 +58,7 @@ const Profile = () => {
                                     <p>Name: </p><p>{userData.name}</p>
                                 </div>
                                 <div className='flex justify-between px-2 py-2'>
-                                    <p>Email: </p><p>{userData.name}</p>
+                                    <p>Email: </p><p>{userData.email}</p>
                                 </div>
                                 <div className='flex justify-between px-2 py-2'>
                                     <p>Age: </p><p>{userData.age}</p>

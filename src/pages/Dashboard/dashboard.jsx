@@ -37,7 +37,7 @@ const Dashboard = () => {
         })
         
         .catch((error) => console.error('Error fetching user data:', error));
-    }, [history]);
+    }, []);
 
 
   const [APIData, setAPIData] = useState([]);
