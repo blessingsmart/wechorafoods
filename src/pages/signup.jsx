@@ -19,7 +19,7 @@ const SignUp = () => {
             email: "",
             password: "",
             confirm_password: "",
-            g: "",
+            gender: "",
             height: "",
             weight: "",
             age: "",
@@ -128,10 +128,10 @@ const SignUp = () => {
                         <div>
                             <h2>Gender</h2>
                             <select
-                                value={formData.g}
+                                value={formData.gender}
                                 onChange={handleChange}
-                                label="g"
-                                name="g"
+                                label="gender"
+                                name="gender"
                                 type="text"
                                 placeholder="Gender..."
                                 className="text-black p-2 w-full border border-gray-600 rounded-md"
