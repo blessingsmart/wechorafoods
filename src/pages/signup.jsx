@@ -128,7 +128,7 @@ const SignUp = () => {
                         <div>
                             <h2>Gender</h2>
                             <select
-                                value={formData.gender}
+                                value={formData.g}
                                 onChange={handleChange}
                                 label="g"
                                 name="g"
