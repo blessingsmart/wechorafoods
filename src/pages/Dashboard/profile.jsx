@@ -13,7 +13,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("https://serverside.wechorafoods.com/api/profile", {
+        fetch("https://serverside.wechorafoods.com/api/dashboard", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
