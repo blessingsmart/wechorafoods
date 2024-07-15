@@ -3,6 +3,7 @@ import { useState } from "react";
 import Popup from "../components/popup";
 import Modal from "react-modal";
 import  food from "..//assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -11,7 +12,7 @@ const BASE_URL = "https://severside-wechorafoods.com/";
 
 
 const SignUp = () => {
-    
+        const navigate = useNavigate()
         const [formData, setFormData] = useState({
             firstname: "",
             lastname: "",
@@ -45,7 +46,7 @@ const SignUp = () => {
                 return;
             }
             try {
-                const response = await fetch("https://serverside.wechorafoods.com/api/register", {
+                const response = await fetch("http://localhost:5000/api/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -57,6 +58,7 @@ const SignUp = () => {
                     const data = await response.json();
                     setMessage("Signup successful!");
                     setIsOpen(true);
+                    navigate("/login");
                 } else {
                     const errorData = await response.json();
                     setMessage(errorData.message);

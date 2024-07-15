@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import Loading from "../src/components/loading";
 import { createBrowserRouter }  from "react-router-dom";
+import Update from "./pages/Dashboard/update";
 
 const Home = lazy(() => import("./pages/home"));
 const About = lazy(() => import("./pages/about"));
@@ -109,6 +110,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <Profile />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/update",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Update />
             </React.Suspense>
         ),
     },

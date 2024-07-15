@@ -10,8 +10,12 @@ const Dashboard = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        if (!token) {
+            history('/login'); // Redirect to login if token is not present
+            return;
+        }
 
-        fetch('https://serverside.wechorafoods.com/api/dashboard', {
+        fetch('http://localhost:5000/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,6 +30,8 @@ const Dashboard = () => {
         })
         .then((data) =>{ 
         setUserData(data);
+        setHideId(true);   
+        setShowId(true);
         })
         
         .catch((error) => console.error('Error fetching user data:', error));
@@ -65,7 +71,7 @@ const Dashboard = () => {
                     </div>
                     ) : (
                         <p>Loading...</p>
-                    )} 
+                    )}
                 </div>
             </div>
         </>
