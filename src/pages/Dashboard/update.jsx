@@ -11,8 +11,6 @@ function Update() {
     const [updateAge, setUpdateAge] = useState("");
     const [updateGender, setUpdateGender] = useState("");
     const [updateActivity_level, setUpdateActivity_level] = useState("");
-    const [updateOldDate, setUpdateOldDate] = useState("");
-    const [updateNewDate, setUpdateNewDate] = useState("");
     
     useEffect(() => {
         console.log(location);
@@ -39,9 +37,7 @@ function Update() {
                 height: updateHeight,
                 age: updateAge,
                 gender: updateGender,
-                activity_level: updateActivity_level,
-                oldDate: updateOldDate,
-                newDate: updateNewDate
+                activity_level: updateActivity_level
             })
         })
         .then((res) => res.json())
