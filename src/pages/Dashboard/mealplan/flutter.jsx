@@ -41,7 +41,7 @@ const Flutter = () => {
                    console.log(response);
                    if (response.status === 'successful') {
                     try {
-                      await axios.post(('http://localhost:5000/api/payment'), {
+                      await axios.post(('https://severside-wechorafoods.com/api/payment'), {
                         subscriberName: subscriberName,
                         email: email,
                         planSubscribed: planSubscribed,

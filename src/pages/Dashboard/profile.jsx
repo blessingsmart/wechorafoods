@@ -22,7 +22,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("http://localhost:5000/api/dashboard", {
+        fetch("https://severside-wechorafoods.com/api/dashboard", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,14 +75,14 @@ const Profile = () => {
         <div className='basis-1/5 border-2 border-orange-400'>
             <SideNav  />
         </div>
-        <div className='flex flex-col basis-4/5 px-2 border-2 border-orange-400'>
+        <div className='flex flex-col basis-4/5  border-2 border-orange-400'>
             <div className='basis-1/5'>
                 <NavBar />
             </div>
             <h1 className='text-center py-5 font-bold md:text-4xl text-2xl text-orange-600'>WELCOME TO YOUR PROFILE</h1> 
             {userData ? (
-            <div className='bg-gradient-to-b from-orange-100 to-white border-4 border-orange-400 md:flex gap-4 my-10'>
-                <div className='md:basis-2/7 border-4 border-orange-400 p-4 flex justify-center'>
+            <div className='bg-gradient-to-b from-orange-100 to-white border-y-4 border-orange-400 md:flex gap-2 my-10'>
+                <div className='md:basis-2/7 border-r-4 border-orange-400 p-4 flex justify-center'>
 
                         <div className=''>
                             <img src={food} alt="" className='w-64 h-64 leading-4 border-4 border-orange-400 flex items-center justify-center'/>
@@ -115,7 +115,7 @@ const Profile = () => {
                         </div>
                     
                 </div>
-                <div className='md:flex gap-4 md:basis-5/7'>
+                <div className='md:flex gap-4 md:basis-5/7 px-4'>
                     <div>
                         <div>
                             <div className="content-section">
@@ -128,7 +128,7 @@ const Profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='mt-5'>
+                        <div className='mt-5 hidden'>
                             <table className='min-w-full divide-y divide-gray-200'>
                                 <thead>
                                     <tr className='bg-gray-200'>
@@ -146,7 +146,7 @@ const Profile = () => {
                                 </tbody>
                             </table>
                         </div>
-                        <div className='bg-orange-600 text-white px-4 py-2 rounded-xl hover:scale-105 duration-200 mt-32 text-center mx-16 hidden' onClick={() => navigate("/update", {state: userData})}>
+                        <div className='bg-orange-600 text-white px-4 py-2 rounded-xl hover:scale-105 duration-200 mt-32 text-center mx-16' onClick={() => navigate("/update", {state: userData})}>
                             <button className='py-2 font-bold text-xl'>Update Data</button>
                         </div>
                         <div className='mt-10'>

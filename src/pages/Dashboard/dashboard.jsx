@@ -15,7 +15,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('http://localhost:5000/api/dashboard', {
+        fetch('https://severside-wechorafoods.com/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
