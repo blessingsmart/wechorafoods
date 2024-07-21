@@ -10,7 +10,7 @@ const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [hideId, setHideId] = useState(false); // Initialize hideId as true
     const [showId, setShowId] = useState(false); // Initialize hideId as true
-    const navigate = useNavigate();
+    const navigate = useNavigate() ;
 
     const [updateWeight, setUpdateWeight] = useState("");
     const [updateHeight, setUpdateHeight] = useState("");
