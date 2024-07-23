@@ -10,7 +10,7 @@ const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [hideId, setHideId] = useState(false); // Initialize hideId as true
     const [showId, setShowId] = useState(false); // Initialize hideId as true
-    const navigate = useNavigate() ;
+    const navigate = useNavigate();
 
     const [updateWeight, setUpdateWeight] = useState("");
     const [updateHeight, setUpdateHeight] = useState("");
@@ -22,7 +22,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("https://severside-wechorafoods.com/api/dashboard", {
+        fetch("https://serverside.wechorafoods.com/api/dashboard", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -46,7 +46,7 @@ const SignUp = () => {
                 return;
             }
             try {
-                const response = await fetch("https://severside-wechorafoods.com/api/register", {
+                const response = await fetch("https://serverside.wechorafoods.com/api/register", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

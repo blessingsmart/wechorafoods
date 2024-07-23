@@ -24,7 +24,7 @@ function Update() {
 
     const updateData = () => {
         const token = localStorage.getItem('token');
-        fetch("http://localhost:5000/api/updateUser", {
+        fetch("https://serverside.wechorafoods.com/api/updateUser", {
             method: "POST",
             crossDomain: true,
             headers: {
