@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link as RouterLink, Link } from 'react-router-dom';
 import SideNav from '../../components/Dashboard/sideNav';
-import axios from "axios";
 import NavBar from '../../components/Dashboard/navbar';
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
+import Footer from "../../components/footer";
 
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
@@ -17,7 +17,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('http://localhost:5000/api/dashboard', {
+        fetch('https://severside-wechorafoods.com/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
     return (
         <>  
-            <div className='flex'>
+            <div className='flex max-w-screen justify-center px-16 md:px-0'>
                 <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
                     <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 </div>
@@ -55,26 +55,29 @@ const Dashboard = () => {
                     )}
                     {userData ? (
                     <div className='p-10'>
-                        <h3 className='text-2xl text-center font-bold my-5 p-5'><span className='text-3xl'>{userData.name},  </span>  Thank you for signing up. Your health information is as follows</h3>
-                        <div className='grid grid-cols-3 gap-2'>
-                            <button className='h-32 max-w-60 bg-orange-600 rounded-lg p-5'>
-                                <h2 className='text-xl'>BMR</h2>
-                                <p className='text-5xl font-bold'>{userData.bmr}</p>
-                            </button>
-                            <button className='h-32 bg-orange-600 max-w-60 rounded-lg p-5'>
-                                <h2 className='text-xl'>BMI</h2>
-                                <p className='text-5xl font-bold'>{userData.bmi}</p>
-                            </button>
-                            <button className='h-32 bg-orange-600 max-w-60 rounded-lg p-5'>
-                                <h2 className='text-xl'>TEE</h2>
-                                <p className='text-5xl font-bold'>{userData.tdee}</p>
-                            </button>
+                        <h3 className='md:text-2xl text-sm text-center font-semi-bold my-5 p-5'><span className='md:text-3xl font-bold'>{userData.name},  </span>  Thank you for signing up. Your health information is as follows</h3>
+                        <div className='md:grid md:grid-cols-3 gap-10 px-16'>
+                            <div className='border-2 border-orange-400 rounded-lg md:p-5 py-3 my-5 text-center'>
+                                <h2 className='md:text-xl'>BMR</h2>
+                                <p className='md:text-5xl  font-bold'>{userData.bmr}</p>
+                            </div>
+                            <div className='border-2 border-orange-400 rounded-lg md:p-5 py-3 my-5 text-center'>
+                                <h2 className='md:text-xl'>BMI</h2>
+                                <p className='md:text-5xl  font-bold'>{userData.bmi}</p>
+                            </div>
+                            <div className='border-2 border-orange-400 rounded-lg md:p-5 py-3 p-2 my-5 text-center'>
+                                <h2 className='md:text-xl'>TEE</h2>
+                                <p className='md:text-5xl  font-bold'>{userData.tdee}</p>
+                            </div>
                         </div>
                     </div>
                     ) : (
                         <p>Loading...</p>
                     )}
                 </div>
+            </div>
+            <div className="border-t border-gray-600 mt-32">
+                < Footer />
             </div>
         </>
     );

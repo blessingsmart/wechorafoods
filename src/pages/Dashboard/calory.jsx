@@ -8,6 +8,7 @@ import  gym_walkout from "../..//assets/gym_walkout.jpg";
 import  jogging_logo from "../..//assets/jogging_logo.png";
 import  power_yoga from "../..//assets/power_yoga.png";
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
+import Footer from "../../components/footer";
 
 function Calory() {
   const [APIData, setAPIData] = useState([]);
@@ -38,19 +39,19 @@ function Calory() {
 
   return (
     <>
-    <div className="flex">
+    <div className="flex max-w-screen justify-center">
       <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
         <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
       </div>
       <div className='basis-4/5'>
         <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
-        <h1 className="font-bold text-4xl p-8 text-center">Welcome to Wechora Calory Checker</h1>
+        <h1 className="font-bold md:text-4xl text-xl p-8 text-center">Welcome to Wechora Calory Checker</h1>
         <div style={{ padding: 20 }}>
           <form onSubmit={(e) => { e.preventDefault(); searchItems(searchInput); }}>
             <p className="text-center">Let's Find Your Food Calorie Count!</p>
             <div className="flex m-4 justify-center">
               <input
-                className="w-[60%] text-gray-600 border border-gray-600 rounded-md p-2"
+                className="md:w-[60%] w-32 text-gray-600 border border-gray-600 rounded-full px-2"
                 label="calory"
                 name="calory"
                 type="text"
@@ -59,7 +60,7 @@ function Calory() {
                 placeholder="Enter Food Name"
                 id="calory"
               />
-              <button type="submit" className="mx-4 bg-[#f45906] rounded-md border p-2 text-xl">Find calories</button>
+              <button type="submit" className="mx-4 bg-[#f45906] rounded-md border px-2 md:p-3 md:text-xl text-sm">Find calories</button>
             </div>
           </form>
           {filteredResults.map((item, index) => (
@@ -139,6 +140,9 @@ function Calory() {
           ))}
         </div>
       </div>
+    </div>
+    <div className="border-t border-gray-600 mt-32">
+      < Footer />
     </div>
     </>
   );

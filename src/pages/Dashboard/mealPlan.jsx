@@ -4,6 +4,7 @@ import NavBar from '../../components/Dashboard/navbar'
 import { Link as RouterLink } from 'react-router-dom'
 import  yogurt from "../../assets/ProbioticGreekYogurt.jpg";
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
+import Footer from "../../components/footer";
 
 const MealPlan = () => {
     const { openSideNav, handleMenuClick } = NavFunctions();
@@ -48,7 +49,7 @@ const MealPlan = () => {
     ]
   return (
     <>
-        <div className="flex">
+        <div className="flex max-w-screen justify-center">
             <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
                 <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
             </div>
@@ -86,6 +87,9 @@ const MealPlan = () => {
                     </ul>
                 </div>
             </div>
+        </div>
+        <div className="border-t border-gray-600 mt-32">
+            < Footer />
         </div>
     </>
   )

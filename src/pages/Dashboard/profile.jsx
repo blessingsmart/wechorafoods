@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Plotly from 'plotly.js-dist-min';
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
 import gym_walkout from '../../assets/gym_walkout.jpg'
+import Footer from "../../components/footer";
 
 
 const Profile = () => {
@@ -25,7 +26,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("http://localhost:5000/api/dashboard", {
+        fetch("https://severside-wechorafoods.com/api/dashboard", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ const Profile = () => {
   return (
     
     <>
-    <div className='flex max-w-screen justify-center'>
+    <div className='flex max-w-screen justify-center px-16 md:px-0'>
         <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
             <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         </div>
@@ -115,7 +116,7 @@ const Profile = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='bg-orange-600 text-white px-4 py-2 rounded-xl hover:scale-105 duration-200 mt-32 text-center mx-16' onClick={() => navigate("/update", {state: userData})}>
+                        <div className='bg-orange-600 text-white px-4 md:py-2 rounded-xl hover:scale-105 duration-200 md:mt-32 mt-16 text-center md:mx-16 mx-10' onClick={() => navigate("/update", {state: userData})}>
                             <button className='py-2 font-bold text-xl'>Update Data</button>
                         </div>
                         <div className='my-10'>
@@ -126,29 +127,35 @@ const Profile = () => {
                         <hr/>
                         <div className='my-5'>
                             <ul className='md:flex md:gap-4 gap-2'>
-                                <li className='my-10'>
+                                <li className='my-10 flex md:block gap-4'>
                                     <img src={gym_walkout} alt="project1" className='md:w-60 w-full animate-pulse'/>
-                                    <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
-                                        <span>Wechora Fitness</span>
-                                        <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    </a>
-                                    <p className='text-xs mt-2'>44, king george .v. road</p>
+                                    <div className='mt-10 md:mt-2'>
+                                        <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
+                                            <span>Wechora Fitness</span>
+                                            <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        </a>
+                                        <p className='text-xs mt-2'>44, king george .v. road</p>
+                                    </div>
                                 </li>
-                                <li className='my-10'>
+                                <li className='my-10 flex md:block gap-4'>
                                     <img src={gym_walkout} alt="project1" className='md:w-60 w-full animate-pulse'/>
-                                    <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
-                                        <span>Wechora Fitness</span>
-                                        <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    </a>
-                                    <p className='text-xs mt-2'>44, king george .v. road</p>
+                                    <div className='mt-10 md:mt-2'>
+                                        <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
+                                            <span>Wechora Fitness</span>
+                                            <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        </a>
+                                        <p className='text-xs mt-2'>44, king george .v. road</p>
+                                    </div>
                                 </li>
-                                <li className='my-10'>
+                                <li className='my-10 flex md:block gap-4'>
                                     <img src={gym_walkout} alt="project1" className='md:w-60 w-full animate-pulse'/>
-                                    <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
-                                        <span>Wechora Fitness</span>
-                                        <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                    </a>
-                                    <p className='text-xs mt-2'>44, king george .v. road</p>
+                                    <div className='mt-10 md:mt-2'>
+                                        <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
+                                            <span>Wechora Fitness</span>
+                                            <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                        </a>
+                                        <p className='text-xs mt-2'>44, king george .v. road</p>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -160,6 +167,9 @@ const Profile = () => {
             )} 
             
         </div>
+    </div>
+    <div className="border-t border-gray-600 mt-32">
+      < Footer />
     </div>
 </>
   )
