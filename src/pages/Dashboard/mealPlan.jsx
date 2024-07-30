@@ -3,8 +3,11 @@ import SideNav from '../../components/Dashboard/sideNav'
 import NavBar from '../../components/Dashboard/navbar'
 import { Link as RouterLink } from 'react-router-dom'
 import  yogurt from "../../assets/ProbioticGreekYogurt.jpg";
+import { NavFunctions } from '../../components/Dashboard/navFunctions';
 
 const MealPlan = () => {
+    const { openSideNav, handleMenuClick } = NavFunctions();
+
     const links = [
         {
             id: 1,
@@ -46,11 +49,11 @@ const MealPlan = () => {
   return (
     <>
         <div className="flex">
-            <div className="basis-1/5">
-                <SideNav />
+            <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
+                <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
             </div>
             <div className='basis-4/5'>
-                <NavBar />
+                <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 <div>
                     <h1 className="font-bold text-7xl p-8 text-center text-orange-600">Meal Plans</h1>
                     <p className='font-bold mx-6 text-xl text-center'>Our delicious meal plans are designed by registered dietitians and food experts to help you lose weight, eat more fiber, go vegan and more. Browse dozens of meal plans to find one that's right for you.</p>

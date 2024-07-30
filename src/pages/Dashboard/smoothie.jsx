@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import SideNav from '../../components/Dashboard/sideNav';
 import NavBar from '../../components/Dashboard/navbar';
-import SmoothieSelector from '../../components/Dashboard/smoothieselector';
 import {typeOfSmoothie} from './data';
 import {typeOfFruitJuice} from './data';
 import {typeOfParfait} from './data';
@@ -15,9 +14,11 @@ import { ingredients } from './data';
 import Footer from "../../components/footer";
 import { Link } from "react-router-dom";
 import { AiOutlineClose } from 'react-icons/ai'
+import { NavFunctions } from '../../components/Dashboard/navFunctions';
 
 const Smoothie = ()=>{
   const [addItem, setAddItem] = useState([]);
+  const { openSideNav, handleMenuClick } = NavFunctions();
 
   const handleAddItem = (newItem) => {
     const itemExist = addItem.find(item => item.id === newItem.id);
@@ -56,11 +57,11 @@ const Smoothie = ()=>{
 return (
   <>
     <div className="flex">
-      <div className="basis-1/5">
-        <SideNav />
+      <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
+        <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
       </div>
       <div className="basis-4/5 ">
-        <NavBar />
+        <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         <div className="">
           <h1 className="font-bold md:text-6xl text-2xl md:p-8 pt-4 text-center text-orange-600">Build Your Perfect Smoothie!</h1>
           <div className="">
@@ -211,7 +212,6 @@ return (
               <button className="rounded-full py-2 px-5 hover:text-white hover:bg-orange-600 ">Fruity</button>
               <button className="rounded-full py-2 px-5 hover:text-white hover:bg-orange-600">Classic Smoothie</button>
             </div>
-            <SmoothieSelector /> 
           </div>
         </div>
       </div>

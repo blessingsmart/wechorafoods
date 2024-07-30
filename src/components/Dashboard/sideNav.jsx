@@ -1,43 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HiMenu } from "react-icons/hi";
-import { BsGrid, BsPeople, BsBook, BsGear } from "react-icons/bs";
+import { BsGrid, BsPeople } from "react-icons/bs";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import logo from "../../assets/logo.png";
 
-const SideNav = ({
-  activeDashboard,
-  activeProfile,
-  active,
-}) => {
-  const [openSideNav, setOpenSideNav] = useState(false);
-  const [displayIconName, setDisplayIconName] = useState(false);
-
-  const handleToggleSideNav = () => {
-    setOpenSideNav(!openSideNav);
-    setDisplayIconName(false);
-  };
+const SideNav = ({ openSideNav, handleMenuClick }) => {
 
   return (
     <>
-      {/* <div
-        className={`bg-orange-600 z-[100] absolute top-0 items-center justify-center flex `}
-      >
-        <HiMenu
-          style={{
-            cursor: "pointer",
-            height: "60px",
-            width: "60px",
-            transition: "transform 200ms ease",
-            transform: displayIconName ? "rotate(180deg)" : " none",
-          }}
-        />
-      </div> */}
-
-      <div
-        className={`sticky z-[100] top-0 border-r h-screen`}
-      >
-          <Link className="flex  text-black font-bold justify-center items-center pt-2" to="/">
+      <div className={`sticky z-[100] top-0 border-r h-screen`}>
+        <div className="flex border-b">
+          <Link className="flex text-black font-bold justify-center items-center pt-2" to="/">
             <img
               src={logo}
               className="max-w-20"
@@ -45,7 +18,11 @@ const SideNav = ({
             />
             <div>WECHORA FOODS</div>
           </Link>
-        
+          <span className={openSideNav ? 'md:text-4xl text-3xl cursor-pointer md:hidden block pt-8 md:pt-7 px-3 md:px-2' : 'hidden'}>
+              <ion-icon name={!openSideNav ? 'menu' : 'close'} onClick={handleMenuClick}></ion-icon>
+          </span>
+        </div>
+
         <div className="flex justify-center items-center text-black  flex-col pt-6 ">
           <Link
             className={`py-5 px-10 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}

@@ -7,11 +7,13 @@ import  brisk_logo from "../..//assets/brisk_logo.jpg";
 import  gym_walkout from "../..//assets/gym_walkout.jpg";
 import  jogging_logo from "../..//assets/jogging_logo.png";
 import  power_yoga from "../..//assets/power_yoga.png";
+import { NavFunctions } from '../../components/Dashboard/navFunctions';
 
 function Calory() {
   const [APIData, setAPIData] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const { openSideNav, handleMenuClick } = NavFunctions();
 
   useEffect(() => {
     // Define your API query here
@@ -37,11 +39,11 @@ function Calory() {
   return (
     <>
     <div className="flex">
-      <div className='basis-1/5'>
-          <SideNav />
+      <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
+        <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
       </div>
       <div className='basis-4/5'>
-        <NavBar/>
+        <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         <h1 className="font-bold text-4xl p-8 text-center">Welcome to Wechora Calory Checker</h1>
         <div style={{ padding: 20 }}>
           <form onSubmit={(e) => { e.preventDefault(); searchItems(searchInput); }}>

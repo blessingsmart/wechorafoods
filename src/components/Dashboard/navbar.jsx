@@ -1,23 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { GoBell } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 
-const NavBar = () => {
+const NavBar = ({ openSideNav, handleMenuClick }) => {
+
   return (
-    <div className="border-b py-3 px-5 flex justify-between items-center">
-            <div className="flex gap-2 items-center">
-                <h3>Hello {"costumer"}</h3>
-            </div>
-            <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 border rounded-full px-3">
-                    <CiSearch />
-                    <input type="text"
-                            placeholder="Search"
-                            className=" border-0 py-1 bg-transparent" />
-                </div>
-                <GoBell />
-            </div>
+    <div className="max-w-screen border-b p-3 flex justify-between items-center">
+        <span className={!openSideNav ? 'text-2xl basis-1/5 cursor-pointer block md:hidden' : 'hidden'}>
+          <ion-icon name={openSideNav ? 'close' : 'menu'} onClick={handleMenuClick}></ion-icon>
+        </span>
+        <div className="flex items-center basis-2/5">
+            <h3 className='text-sm font-bold text-gray-500'>Hello {"costumer"}</h3>
         </div>
+        <div className="flex items-center basis-2/5">
+            <div className="flex items-center border rounded-full gap-2">
+                <CiSearch />
+                <input type="text"
+                        placeholder="Search"
+                        className="text-sm py-1 bg-transparent" />
+            </div>
+            <GoBell />
+        </div>
+    </div>
   )
 }
 

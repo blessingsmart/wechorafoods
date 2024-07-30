@@ -3,10 +3,12 @@ import { useNavigate, Link as RouterLink, Link } from 'react-router-dom';
 import SideNav from '../../components/Dashboard/sideNav';
 import axios from "axios";
 import NavBar from '../../components/Dashboard/navbar';
+import { NavFunctions } from '../../components/Dashboard/navFunctions';
 
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
     const history = useNavigate();
+    const { openSideNav, handleMenuClick } = NavFunctions();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -15,7 +17,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('https://serverside.wechorafoods.com/api/dashboard', {
+        fetch('http://localhost:5000/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,11 +42,11 @@ const Dashboard = () => {
     return (
         <>  
             <div className='flex'>
-                <div className='basis-1/5'>
-                <SideNav />
+                <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
+                    <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 </div>
                 <div className='basis-4/5'>
-                    <NavBar />
+                    <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick} />
                     {userData ? (
                     <main className="bg-gray-100 text-white"> 
                     </main>
