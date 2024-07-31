@@ -39,7 +39,7 @@ function Calory() {
 
   return (
     <>
-    <div className="flex max-w-screen justify-center">
+    <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
       <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
         <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
       </div>

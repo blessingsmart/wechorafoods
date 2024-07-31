@@ -23,7 +23,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://severside-wechorafoods.com/api/login', {
+            const response = await fetch('https://serverside.wechorafoods.com/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

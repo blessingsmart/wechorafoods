@@ -13,72 +13,84 @@ const SideNav = ({ openSideNav, handleMenuClick }) => {
           <Link className="flex text-black font-bold justify-center items-center pt-2" to="/">
             <img
               src={logo}
-              className="max-w-20"
+              className="md:max-w-20 max-w-12"
               alt="wechora logo"
             />
-            <div>WECHORA FOODS</div>
+            <div className="md:text-sm text-[8px] font-bold">WECHORA FOODS</div>
           </Link>
-          <span className={openSideNav ? 'md:text-4xl text-3xl cursor-pointer md:hidden block pt-8 md:pt-7 px-3 md:px-2' : 'hidden'}>
+          <span className={openSideNav ? 'md:text-4xl text-xl cursor-pointer md:hidden block pt-5 md:pt-7 md:px-2 pl-2' : 'hidden'}>
               <ion-icon name={!openSideNav ? 'menu' : 'close'} onClick={handleMenuClick}></ion-icon>
           </span>
         </div>
 
         <div className="flex justify-center items-center text-black  flex-col pt-6 ">
           <Link
-            className={`py-5 px-10 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/dashboard"
           >
-            <BsGrid />
-            <span className=''>
+            <span className="md:pl-0 pl-2">
+              <BsGrid/>
+            </span>
+            <span className='md:text-sm text-[10px]'>
               Dashboard
             </span>
           </Link>
           <Link
-            className={`py-5 px-10 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/calory"
           >
-            <BsGrid />
-            <span className=''>
+            <span className="md:pl-0 pl-2">
+              <BsGrid />
+            </span>
+            <span className='md:text-sm text-[10px]'>
               Calory Checker
             </span>
           </Link>
           <Link
-            className={`py-5 px-10 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/smoothie"
           >
-            <BsGrid />
-            <span className=''>
+            <span className="md:pl-0 pl-2">
+              <BsGrid />
+            </span>
+            <span className='md:text-sm text-[10px]'>
               Smoothie Selector
             </span>
           </Link>
           <Link
-            className={`py-5 px-10 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/mealPlan"
           >
-            <BsGrid />
-            <span className=''>
+            <span className="md:pl-0 pl-2">
+              <BsGrid />
+            </span>
+            <span className='md:text-sm text-[10px]'>
               Meal Plan
             </span>
           </Link>
           <Link
-            className={`py-5 px-10 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`py-5 md:px-10 px-2 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/profile"
           > 
-              <BsPeople/>
-            <span>
+              <span className="md:pl-0 pl-2">
+                <BsPeople />
+              </span>
+            <span className="md:text-sm text-[10px]">
               Profile
             </span>
           </Link>
         </div>
           <Link
             
-            className={` py-5 px-10 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={` py-5 md:px-10 px-2 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/"
           >
-            <RiLogoutBoxRLine  />
-              <span>
-                Logout
-              </span>
+            <span className="md:pl-0 pl-2">
+              <RiLogoutBoxRLine />
+            </span>
+            <span className="md:text-sm text-[10px]">
+              Logout
+            </span>
           </Link>
       </div>
     </>

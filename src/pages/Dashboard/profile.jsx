@@ -26,7 +26,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("https://severside-wechorafoods.com/api/dashboard", {
+        fetch("https://serverside.wechorafoods.com/api/dashboard", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -91,18 +91,18 @@ const Profile = () => {
   return (
     
     <>
-    <div className='flex max-w-screen justify-center px-16 md:px-0'>
+    <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
         <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
             <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         </div>
-        <div className='flex flex-col basis-4/5 border-2 border-orange-400'>
+        <div className='flex flex-col basis-4/5 border-2 md:border-orange-400'>
             <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
             <h1 className='text-center py-5 font-bold md:text-4xl text-sm text-orange-600'>WELCOME TO YOUR PROFILE</h1> 
             {userData ? (
-            <div className='bg-gradient-to-b from-orange-100 to-white border-y-4 border-orange-400 md:flex md:gap-2 my-10'>
-                <div className='md:basis-2/5 border-r-4 border-orange-400 pt-4 flex justify-center'>
+            <div className='bg-gradient-to-b from-orange-100 to-white border-y-4 md:border-orange-400 md:flex md:gap-2 my-10'>
+                <div className='md:basis-2/5 border-r-4 md:border-orange-400 pt-4 flex justify-center'>
                     <div className=''>
-                        <img src={food} alt="" className='w-64 h-64 leading-4 border-4 border-orange-400 flex items-center justify-center'/>
+                        <img src={food} alt="" className='w-64 h-64 leading-4 border-4 md:border-orange-400 flex items-center justify-center'/>
                     </div>
                 </div>
                 <div className='md:flex md:basis-3/5 px-4'>
@@ -120,7 +120,7 @@ const Profile = () => {
                             <button className='py-2 font-bold text-xl'>Update Data</button>
                         </div>
                         <div className='my-10'>
-                            <div className='my-5 px-5 py-10 border-4 border-orange-400 text-center'>
+                            <div className='my-5 px-5 py-10 border-4 md:border-orange-400 text-center'>
                                 <span className=''>{userData.bmiAvg.greeting},<span className='font-bold'> {userData.name}</span> ! {userData.bmiAvg.difference} <Link className=' text-orange-400 font-bold'>Smoothie</Link></span>
                             </div>
                         </div>
@@ -128,9 +128,9 @@ const Profile = () => {
                         <div className='my-5'>
                             <ul className='md:flex md:gap-4 gap-2'>
                                 <li className='my-10 flex md:block gap-4'>
-                                    <img src={gym_walkout} alt="project1" className='md:w-60 w-full animate-pulse'/>
-                                    <div className='mt-10 md:mt-2'>
-                                        <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
+                                    <img src={gym_walkout} alt="project1" className='md:w-70 w-full animate-pulse'/>
+                                    <div className='mt-2'>
+                                        <a href="" className='flex font-bold mt-2 text-xl text-[#000]'>
                                             <span>Wechora Fitness</span>
                                             <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                         </a>
@@ -139,8 +139,8 @@ const Profile = () => {
                                 </li>
                                 <li className='my-10 flex md:block gap-4'>
                                     <img src={gym_walkout} alt="project1" className='md:w-60 w-full animate-pulse'/>
-                                    <div className='mt-10 md:mt-2'>
-                                        <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
+                                    <div className='mt-2'>
+                                        <a href="" className='flex font-bold mt-2 text-xl text-[#000]'>
                                             <span>Wechora Fitness</span>
                                             <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                         </a>
@@ -149,8 +149,8 @@ const Profile = () => {
                                 </li>
                                 <li className='my-10 flex md:block gap-4'>
                                     <img src={gym_walkout} alt="project1" className='md:w-60 w-full animate-pulse'/>
-                                    <div className='mt-10 md:mt-2'>
-                                        <a href="" className='flex font-bold mt-3 text-xl text-[#000]'>
+                                    <div className='mt-2'>
+                                        <a href="" className='flex font-bold mt-2 text-xl text-[#000]'>
                                             <span>Wechora Fitness</span>
                                             <svg className='mx-2 mt-[5px]' stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="ml-1 group-hover:stroke-teal-300 lg:ml-2" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                                         </a>

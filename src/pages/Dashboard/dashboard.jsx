@@ -17,7 +17,7 @@ const Dashboard = () => {
             return;
         }
 
-        fetch('https://severside-wechorafoods.com/api/dashboard', {
+        fetch('https://serverside.wechorafoods.com/api/dashboard', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
     return (
         <>  
-            <div className='flex max-w-screen justify-center px-16 md:px-0'>
+            <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
                 <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
                     <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 </div>
