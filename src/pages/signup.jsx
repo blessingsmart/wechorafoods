@@ -12,7 +12,6 @@ const BASE_URL = "https://severside-wechorafoods.com/";
 
 
 const SignUp = () => {
-        const [userType, setUserType] = useState("")
         const navigate = useNavigate()
         const [formData, setFormData] = useState({
             userType: "",
@@ -42,7 +41,7 @@ const SignUp = () => {
         };
     
         const handleSubmit = async (e) => {
-            if (userType === "admin" && secretKey !== "passkey"){
+            if (formData.userType === "admin" && secretKey !== "passkey"){
                 e.preventDefault();
                 alert("Invalid admin")
             }else{
@@ -94,26 +93,26 @@ const SignUp = () => {
                     </h2>
                     <span className="flex gap-5 mt-5 text-xl">
                         <p className="">Register as</p>
-                        <p>
+                        <p className={formData.userType !== "user" ? null : "animate-pulse"}>
                             <input 
                                 type="radio"
                                 name= "userType"
                                 value="user"
-                                onChange={(e) => setUserType(e.target.value)}
-                            />User
+                                onChange={handleChange}
+                            /><span> User</span>
                         </p>
-                        <p>
+                        <p className={formData.userType === "admin" ? "animate-pulse": null}>
                             <input 
                                 type="radio"
                                 name= "userType"
                                 value="admin"
-                                onChange={(e) => setUserType(e.target.value)}
-                            />Admin
+                                onChange={handleChange}
+                            /><span> Admin</span>
                         </p>
                     </span>
                 </div>
                 <div className="flex flex-col gap-5 my-5">
-                    {userType === "admin" ? 
+                    {formData.userType === "admin" ? 
                         <div>
                         <h2>Secret Key</h2>
                         <input
@@ -124,7 +123,7 @@ const SignUp = () => {
                         />
                         </div> : null
                     }
-                    <div className="flex">
+                    <div className="flex justify-between">
                         <div>
                             <h2>First Name</h2>
                             <input
@@ -150,7 +149,7 @@ const SignUp = () => {
                             />
                         </div>
                     </div>
-                    <div className="flex">
+                    <div className="flex justify-between">
                         <div>
                             <h2>Username</h2>
                             <input

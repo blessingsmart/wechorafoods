@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import  food from "..//assets/logo.png";
 
 const Login = () => {
-
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+
     const [error, setError] = useState('');
     const history = useNavigate();
 
@@ -31,11 +31,16 @@ const Login = () => {
                 body: JSON.stringify(formData),
             });
             const data = await response.json();
+            console.log(data)
             if (!response.ok) {
                 throw new Error(data.message || 'Login failed');
             }
             localStorage.setItem('token', data.token);
-            history('/dashboard'); // Redirect to dashboard after successful login
+            if(data.user.userType === "admin"){
+                history('/adminDashboard'); // Redirect to adminDashboard after successful login
+            }else{
+                history('/dashboard'); // Redirect to dashboard after successful login
+            }
         } catch (error) {
             setError(error.message);
         }
