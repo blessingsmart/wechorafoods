@@ -42,10 +42,10 @@ const Dashboard = () => {
     return (
         <>  
             <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
-                <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
+                <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-[15%]'}`}>
                     <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 </div>
-                <div className='basis-4/5'>
+                <div className={openSideNav ? 'flex flex-col basis-[85%] border-2 md:border-orange-400' : 'flex flex-col border-2 md:border-orange-400'}>
                     <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick} />
                     {userData ? (
                     <main className="bg-gray-100 text-white"> 

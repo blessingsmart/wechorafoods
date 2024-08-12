@@ -9,26 +9,26 @@ const SideNav = ({ openSideNav, handleMenuClick }) => {
   return (
     <>
       <div className={`sticky z-[100] top-0 border-r h-screen`}>
-        <div className="flex border-b">
+        <div className="flex border-b px-[5px] md:px-0">
           <Link className="flex text-black font-bold justify-center items-center pt-2" to="/">
             <img
               src={logo}
               className="md:max-w-20 max-w-12"
               alt="wechora logo"
             />
-            <div className="md:text-sm text-[8px] font-bold">WECHORA FOODS</div>
+            <div className="md:text-[10px] text-[6px] font-bold">WECHORA FOODS</div>
           </Link>
-          <span className={openSideNav ? 'md:text-4xl text-xl cursor-pointer md:hidden block pt-5 md:pt-7 md:px-2 pl-2' : 'hidden'}>
-              <ion-icon name={!openSideNav ? 'menu' : 'close'} onClick={handleMenuClick}></ion-icon>
-          </span>
         </div>
 
-        <div className="flex justify-center items-center text-black  flex-col pt-6 ">
+        <div className="text-black">
+          <span className={openSideNav ? 'md:text-4xl text-xl text-center cursor-pointer md:hidden block md:px-2 py-2 hover:text-orange-600 hover:bg-orange-600/20 ' : 'hidden'} onClick={handleMenuClick}>
+              <ion-icon name={!openSideNav ? 'menu' : 'close'}></ion-icon>
+          </span>
           <Link
-            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/dashboard"
           >
-            <span className="md:pl-0 pl-2">
+            <span className="">
               <BsGrid/>
             </span>
             <span className='md:text-sm text-[10px]'>
@@ -36,32 +36,32 @@ const SideNav = ({ openSideNav, handleMenuClick }) => {
             </span>
           </Link>
           <Link
-            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/calory"
           >
-            <span className="md:pl-0 pl-2">
+            <span className="">
               <BsGrid />
             </span>
             <span className='md:text-sm text-[10px]'>
-              Calory Checker
+              Calory
             </span>
           </Link>
           <Link
-            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/smoothie"
           >
-            <span className="md:pl-0 pl-2">
+            <span className="">
               <BsGrid />
             </span>
             <span className='md:text-sm text-[10px]'>
-              Smoothie Selector
+              Smoothie
             </span>
           </Link>
           <Link
-            className={`py-5 md:px-10 px-2 w-full flex  items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/mealPlan"
           >
-            <span className="md:pl-0 pl-2">
+            <span className="">
               <BsGrid />
             </span>
             <span className='md:text-sm text-[10px]'>
@@ -69,10 +69,10 @@ const SideNav = ({ openSideNav, handleMenuClick }) => {
             </span>
           </Link>
           <Link
-            className={`py-5 md:px-10 px-2 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/profile"
           > 
-              <span className="md:pl-0 pl-2">
+              <span className="">
                 <BsPeople />
               </span>
             <span className="md:text-sm text-[10px]">
@@ -82,10 +82,10 @@ const SideNav = ({ openSideNav, handleMenuClick }) => {
         </div>
           <Link
             
-            className={` py-5 md:px-10 px-2 w-full flex items-center gap-3 hover:text-orange-600  hover:bg-orange-600/20 `}
+            className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/"
           >
-            <span className="md:pl-0 pl-2">
+            <span className="">
               <RiLogoutBoxRLine />
             </span>
             <span className="md:text-sm text-[10px]">

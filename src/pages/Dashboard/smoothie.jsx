@@ -57,10 +57,10 @@ const Smoothie = ()=>{
 return (
   <>
     <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
-      <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>
+      <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-[15%]'}`}>
         <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
       </div>
-      <div className="flex flex-col basis-4/5 border-2 md:border-orange-400 ">
+      <div className={openSideNav ? 'flex flex-col basis-[85%] border-2 md:border-orange-400' : 'flex flex-col border-2 md:border-orange-400'}>
         <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         <div className="">
           <h1 className="font-bold md:text-6xl text-sm md:p-8 pt-4 text-center text-orange-600">Build Your Perfect Smoothie!</h1>
