@@ -5,7 +5,7 @@ import NavBar from '../../components/Dashboard/navbar';
 import { Link, useNavigate } from "react-router-dom";
 import Plotly from 'plotly.js-dist-min';
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
-import gym_walkout from '../../assets/gym_walkout.jpg'
+import gym_walkout from '../../assets/gym_walkout.jpg';
 import Footer from "../../components/footer";
 
 
@@ -89,7 +89,6 @@ const Profile = () => {
     }, [userData]);
 
   return (
-    
     <>
     <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
         <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-1/5'}`}>

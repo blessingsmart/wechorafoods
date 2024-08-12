@@ -15,6 +15,7 @@ const MealPlan = lazy(() => import("./pages/Dashboard/mealPlan"));
 const WeightGain = lazy(() => import("./pages/Dashboard/mealplan/weightGain"));
 const WeightLoss = lazy(() => import("./pages/Dashboard/mealplan/weightLoss"));
 const PaymentPlan = lazy(() => import("./pages/Dashboard/mealplan/paymentPlan"));
+const AdminDashboard = lazy(() => import("./pages/admin/adminDashboard"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -118,6 +119,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <Update />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/adminDashboard",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <AdminDashboard />
             </React.Suspense>
         ),
     },

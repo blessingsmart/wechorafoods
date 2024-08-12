@@ -12,8 +12,10 @@ const BASE_URL = "https://severside-wechorafoods.com/";
 
 
 const SignUp = () => {
+        const [userType, setUserType] = useState("")
         const navigate = useNavigate()
         const [formData, setFormData] = useState({
+            userType: "",
             firstname: "",
             lastname: "",
             username: "",
@@ -29,6 +31,7 @@ const SignUp = () => {
 
         const [isOpen, setIsOpen] = useState(false);
         const [message, setMessage] = useState("");
+        const [secretKey, setSecretKey] = useState("");
     
         const handleChange = (e) => {
             const { name, value } = e.target;
@@ -39,37 +42,41 @@ const SignUp = () => {
         };
     
         const handleSubmit = async (e) => {
-            e.preventDefault();
-            if (!formData.firstname || !formData.firstname || !formData.username || !formData.email || !formData.password || !formData.confirm_password) {
-                setMessage("Please fill in all fields.");
-                setIsOpen(true);
-                return;
-            }
-            try {
-                const response = await fetch("https://serverside.wechorafoods.com/api/register", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    setMessage("Signup successful!");
+            if (userType === "admin" && secretKey !== "passkey"){
+                e.preventDefault();
+                alert("Invalid admin")
+            }else{
+                e.preventDefault();
+                if (!formData.firstname || !formData.firstname || !formData.username || !formData.email || !formData.password || !formData.confirm_password) {
+                    setMessage("Please fill in all fields.");
                     setIsOpen(true);
-                    navigate("/login");
-                } else {
-                    const errorData = await response.json();
-                    setMessage(errorData.message);
+                    return;
+                }
+                try {
+                    const response = await fetch("https://serverside.wechorafoods.com/api/register", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        setMessage("Signup successful!");
+                        setIsOpen(true);
+                        navigate("/login");
+                    } else {
+                        const errorData = await response.json();
+                        setMessage(errorData.message);
+                        setIsOpen(true);
+                    }
+
+                } catch (error) {
+                    setMessage("An error occurred. Please try again later.");
                     setIsOpen(true);
                 }
-
-            } catch (error) {
-                setMessage("An error occurred. Please try again later.");
-                setIsOpen(true);
             }
-            
         };
 
         const closeModal = () => {
@@ -78,16 +85,45 @@ const SignUp = () => {
     
     
     return (
-        <main className="bg-orange-600 text-white md:h-screen px-3 md:px-0 flex">
+        <main className="bg-orange-600 text-white md:h-full px-3 md:px-0 flex">
             <img src={food} alt="" className="hidden md:block" />
             <form onSubmit={handleSubmit} className="mx-auto  max-w-[60rem] mt-3 px-5">
                 <div className="my-3 flex flex-col gap-2">
-                    <h2 className="text-2xl font-bold">WELCOME TO
+                    <h2 className="text-3xl font-bold">WELCOME TO
                     <RouterLink to="/"> WECHORA FOODS</RouterLink> 
                     </h2>
-                    <p className="">Register your account</p>
+                    <span className="flex gap-5 mt-5 text-xl">
+                        <p className="">Register as</p>
+                        <p>
+                            <input 
+                                type="radio"
+                                name= "userType"
+                                value="user"
+                                onChange={(e) => setUserType(e.target.value)}
+                            />User
+                        </p>
+                        <p>
+                            <input 
+                                type="radio"
+                                name= "userType"
+                                value="admin"
+                                onChange={(e) => setUserType(e.target.value)}
+                            />Admin
+                        </p>
+                    </span>
                 </div>
                 <div className="flex flex-col gap-5 my-5">
+                    {userType === "admin" ? 
+                        <div>
+                        <h2>Secret Key</h2>
+                        <input
+                            type="text"
+                            placeholder="Secret key..."
+                            className="text-black p-2 w-full border border-gray-600 rounded-md"
+                            onChange={(e) => setSecretKey(e.target.value)}
+                        />
+                        </div> : null
+                    }
                     <div className="flex">
                         <div>
                             <h2>First Name</h2>
