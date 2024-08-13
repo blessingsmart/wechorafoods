@@ -9,7 +9,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
     <>
       <div className={`sticky z-[100] top-0 h-screen`}>
         <div className="flex flex-col items-center border-b">
-          <Link className="flex text-black font-bold justify-center items-center pr-2" to="/">
+          <Link className="flex flex-col items-center border-b">
             <img
               src={logo}
               className="md:max-w-20 max-w-12"
@@ -25,7 +25,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
           </span>
           <Link
             className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
-            to="/dashboard"
+            to="/adminDashboard"
           >
             <span className="">
               <BsGrid/>
@@ -36,7 +36,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
           </Link>
           <Link
             className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
-            to="/calory"
+            to="/trainer"
           >
             <span className="">
                 <BsPerson />
@@ -47,7 +47,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
           </Link>
           <Link
             className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
-            to="/smoothie"
+            to="/client"
           >
             <span className="">
                 <BsPeople />
@@ -58,7 +58,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
           </Link>
           <Link
             className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
-            to="/mealPlan"
+            to="/message"
           >
             <span className="">
               <BsChat />
@@ -69,7 +69,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
           </Link>
           <Link
             className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
-            to="/profile"
+            to="/settings"
           > 
               <span className="">
                 <BsGear />

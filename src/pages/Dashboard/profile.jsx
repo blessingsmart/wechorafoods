@@ -90,11 +90,11 @@ const Profile = () => {
 
   return (
     <>
-    <div className={openSideNav? 'flex max-w-screen justify-center': 'flex max-w-screen justify-center px-5 md:px-0'}>
-        <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-[15%]'}`}>
+    <div className='flex max-w-screen'>
+        <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-[10%]'}`}>
             <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         </div>
-        <div className={openSideNav ? 'flex flex-col basis-[85%] border-2 md:border-orange-400' : 'flex flex-col border-2 md:border-orange-400'}>
+        <div className={openSideNav ? 'basis-[90%] rounded-l-xl bg-gray-200 mt-0 md:mt-2': 'basis-[100%] rounded-l-xl bg-gray-200 mt-0 md:mt-2'}>
             <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
             <h1 className='text-center py-5 font-bold md:text-4xl text-sm text-orange-600'>WELCOME TO YOUR PROFILE</h1> 
             {userData ? (

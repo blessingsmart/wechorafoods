@@ -16,6 +16,10 @@ const WeightGain = lazy(() => import("./pages/Dashboard/mealplan/weightGain"));
 const WeightLoss = lazy(() => import("./pages/Dashboard/mealplan/weightLoss"));
 const PaymentPlan = lazy(() => import("./pages/Dashboard/mealplan/paymentPlan"));
 const AdminDashboard = lazy(() => import("./pages/admin/adminDashboard"));
+const Client = lazy(() => import("./pages/admin/clients"));
+const Message = lazy(() => import("./pages/admin/message"));
+const Trainer = lazy(() => import("./pages/admin/trainer"));
+const Settings = lazy(() => import("./pages/admin/settings"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -127,6 +131,38 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <AdminDashboard />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/client",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Client />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/message",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Message />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/trainer",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Trainer />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/settings",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <Settings />
             </React.Suspense>
         ),
     },

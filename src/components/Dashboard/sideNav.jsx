@@ -8,9 +8,9 @@ const SideNav = ({ openSideNav, handleMenuClick }) => {
 
   return (
     <>
-      <div className={`sticky z-[100] top-0 border-r h-screen`}>
-        <div className="flex border-b px-[5px] md:px-0">
-          <Link className="flex text-black font-bold justify-center items-center pt-2" to="/">
+      <div className={`sticky z-[100] top-0 h-screen`}>
+        <div className="flex flex-col items-center border-b">
+          <Link className="flex flex-col items-center border-b">
             <img
               src={logo}
               className="md:max-w-20 max-w-12"
