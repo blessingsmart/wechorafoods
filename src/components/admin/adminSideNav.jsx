@@ -17,12 +17,12 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
             />
             <div className="md:text-[10px] text-[6px] font-bold">WECHORA FOODS</div>
           </Link>
-          <span className={openSideNav ? 'md:text-4xl text-xl cursor-pointer md:hidden block pt-5 md:pt-7 md:px-2 pl-2' : 'hidden'}>
-              <ion-icon name={!openSideNav ? 'menu' : 'close'} onClick={handleMenuClick}></ion-icon>
-          </span>
         </div>
 
-        <div className="text-black mt-8">
+        <div className="text-black mt-2">
+          <span className={openSideNav ? 'md:text-4xl text-xl text-center cursor-pointer md:hidden block md:pt-7 md:px-2' : 'hidden'}>
+              <ion-icon name={!openSideNav ? 'menu' : 'close'} onClick={handleMenuClick}></ion-icon>
+          </span>
           <Link
             className={`flex flex-col items-center py-4 md:px-10 px-2 w-full hover:text-orange-600  hover:bg-orange-600/20 `}
             to="/dashboard"

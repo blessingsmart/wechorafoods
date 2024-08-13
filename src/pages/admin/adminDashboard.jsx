@@ -3,10 +3,12 @@ import AdminSideNav from '../../components/admin/adminSideNav';
 import AdminNavbar from '../../components/admin/adminNavbar';
 import Plotly from 'plotly.js-dist-min';
 import { BsPerson } from "react-icons/bs";
+import { NavFunctions } from '../../components/Dashboard/navFunctions';
 
 
 function AdminDashboard() {
     const token = localStorage.getItem('token');
+    const { openSideNav, handleMenuClick } = NavFunctions();
 
 useEffect(() => {
     fetch("https://serverside.wechorafoods.com/api/dashboard", {
@@ -73,11 +75,11 @@ useEffect(() => {
   return (
     <>
         <div className='flex max-w-screen'>
-            <div className='basis-[10%]'>
-                <AdminSideNav />
+            <div className={openSideNav ? 'md:block' : 'md:block hidden basis-[10%]'}>
+                <AdminSideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
             </div>
             <div className='basis-[90%] rounded-l-xl bg-gray-200 mt-0 md:mt-2'>
-                <AdminNavbar />
+                <AdminNavbar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 <div className='md:mt-10 my-5 rounded-md  md:w-2/3 m-4'>
                     <div className="content-section">
                         <div className="row mx-auto">
