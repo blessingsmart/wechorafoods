@@ -90,7 +90,7 @@ const Profile = () => {
 
   return (
     <>
-    <div className='flex max-w-screen'>
+    <div className='flex max-w-screen'>y
         <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-[10%]'}`}>
             <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         </div>

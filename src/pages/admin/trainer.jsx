@@ -13,7 +13,7 @@ function Trainer() {
             <div className={openSideNav ? 'md:block' : 'md:block hidden basis-[10%]'}>
                 <AdminSideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
             </div>
-            <div className='basis-[90%] rounded-l-xl bg-gray-200 mt-0 md:mt-2'>
+            <div className={openSideNav ? 'basis-[90%] rounded-l-xl bg-gray-200 mt-0 md:mt-2': 'basis-[100%] rounded-l-xl bg-gray-200 mt-0 md:mt-2'}>
                 <AdminNavbar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
                 <div className='md:mt-10 my-5 rounded-md  md:w-2/3 m-4'>Trainer</div>
             </div>
