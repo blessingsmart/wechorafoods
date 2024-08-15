@@ -99,7 +99,7 @@ useEffect(() => {
                                 <h3>Add Trainer</h3>
                             </span>
                         </div>
-                        <div className='overflow-x-auto'>
+                        <div className='overflow-x-auto md:text-sm text-[10px]'>
                             <table className='min-w-full bg-white table-spacing'>
                                 <thead>
                                     <tr className='bg-gray-200 px-2'>
