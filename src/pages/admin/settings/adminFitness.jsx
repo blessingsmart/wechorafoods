@@ -56,23 +56,25 @@ function AdminFitness() {
     ];
 
     const [visibleItems, setVisibleItems] = useState(4);
-    const [isEnabled, setIsEnabled] = useState(true)
+    const [hiddenItems, setHiddenItems] = useState(Array(items.length).fill(false));
     const totalItems = items.length;
 
     const showMoreItems = () => {
         setVisibleItems(totalItems);
     };
 
-    const handleDisable = () => {
-        setIsEnabled(!isEnabled);
+    const handleDisable = (index) => {
+        const updatedHiddenItems = [...hiddenItems];
+        updatedHiddenItems[index] = true;
+        setHiddenItems(updatedHiddenItems);
     };
 
     return (
-        <div className='bg-white'>
+        <div className='bg-white mb-5'>
             <span className='bg-gray-100 rounded-r-md text-gray-400'>Fitness Centers:</span>
             <div className='grid grid-cols-2 md:grid-cols-4 my-5 gap-2 mx-2'>
                 {items.slice(0, visibleItems).map((item, index) => (
-                    <div key={index} className='bg-gray-200 rounded-md'>
+                    <div key={index} className={ hiddenItems[index] ? 'hidden' : 'bg-gray-200 rounded-md'}>
                         <div>
                             <img src={item.img} alt="" className='w-full rounded-md' />
                         </div>
@@ -83,7 +85,7 @@ function AdminFitness() {
                                     <h4>Visit</h4>
                                     <BsBoxArrowUpRight />
                                 </a>
-                                <button className='bg-blue-500 px-2'>
+                                <button className='bg-blue-500 px-2' onClick={() => handleDisable(index)}>
                                     <BsPower/>
                                 </button>
                             </div>
