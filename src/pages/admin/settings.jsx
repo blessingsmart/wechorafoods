@@ -54,7 +54,7 @@ function Settings() {
                             </button>
                         ))}
                     </div>
-                    <div className='rounded-md w-4/5'>
+                    <div className='rounded-md w-4/5 mb-16'>
                         <p className='mx-2'>{tabs[activeTab].content}</p>
                     </div>
                 </div>
