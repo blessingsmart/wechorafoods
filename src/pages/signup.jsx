@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
-const BASE_URL = "https://severside-wechorafoods.com/";
+const BASE_URL = "https://serverside.wechorafoods.com/";
 
 
 

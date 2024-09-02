@@ -20,6 +20,7 @@ const Client = lazy(() => import("./pages/admin/clients"));
 const Message = lazy(() => import("./pages/admin/message"));
 const Trainer = lazy(() => import("./pages/admin/trainer"));
 const Settings = lazy(() => import("./pages/admin/settings"));
+const AddFitness = lazy(() => import("./pages/admin/settings/addFitness"));
 
 const BrowserRouter = createBrowserRouter([
     {
@@ -163,6 +164,14 @@ const BrowserRouter = createBrowserRouter([
         element: (
             <React.Suspense fallback={<Loading />}>
                 <Settings />
+            </React.Suspense>
+        ),
+    },
+    {
+        path: "/add-fitness",
+        element: (
+            <React.Suspense fallback={<Loading />}>
+                <AddFitness />
             </React.Suspense>
         ),
     },
