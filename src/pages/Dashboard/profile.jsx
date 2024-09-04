@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Plotly from 'plotly.js-dist-min';
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
 import Footer from "../../components/footer";
-import { BsGlobe } from 'react-icons/bs';
+import { BsGlobe, BsTelephoneFill, BsChevronDoubleDown } from 'react-icons/bs';
 
 
 const Profile = () => {
@@ -26,7 +26,7 @@ const Profile = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         
-        fetch("http://localhost:5000/api/dashboard", {
+        fetch("https://serverside.wechorafoods.com/api/dashboard", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -55,8 +55,6 @@ const Profile = () => {
 
     useEffect(() => {
         if (userData && userData.bmiAvg) {
-            // Log the data structure to verify it's correct
-            console.log("BMI Average Data:", userData.bmiAvg.differentAverage);
             const totalValues = {
                 protein: 0,
                 fats: 0,
@@ -90,7 +88,34 @@ const Profile = () => {
 
 //************************** Onboard Fitness Function ************************************************//
     const [onBoardFitness, setOnBoardFitness] = useState([]);
+    const [isHidden, setIsHidden] = useState([]);
+    const [countDown, setCountDown] = useState(20);
+    
+      
+    const handleSeeMore = (index) => {
+    const seeMore = [...isHidden];
+    seeMore[index] = false;
+    setIsHidden(seeMore);
+    };
+    
+    const handleDelayedNavigation = (item) => {
+        setIsHidden((prev) => prev.map(() => true)); // Update correctly
 
+        const countDownInterval = setInterval(() => {
+            setCountDown((preCountDown) => preCountDown - 1);
+        }, 100); // Adjust interval as needed
+
+        setTimeout(() => {
+            clearInterval(countDownInterval);
+            navigate('/fitnessDetails', {state: item});
+        }, 2000); // Adjusted to match countdown timing
+    };
+
+    useEffect(() => {
+        if(countDown <= 0){
+            clearInterval(countDown);
+        }
+    }, [countDown]);
 
     useEffect(() => {
         fetch("https://serverside.wechorafoods.com/api/onBoardFitness", {
@@ -109,7 +134,7 @@ const Profile = () => {
 
   return (
     <>
-    <div className='flex max-w-screen'>y
+    <div className='flex max-w-screen'>
         <div className={`${openSideNav ? 'md:block' : 'md:block hidden basis-[10%]'}`}>
             <SideNav openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
         </div>
@@ -152,43 +177,69 @@ const Profile = () => {
                     </div>
                     <div className='md:flex'>
                         <div className='basis-1/3 overflow-y-auto h-64 mt-5 custom-scrollbar mx-5'>
-                            {onBoardFitness.map((item, index) => (
-                                <ul key={index} className='p-2 bg-gradient-to-b from-orange-100 to-white'>
-                                    <li className='py-5 flex gap-4'>
-                                        <span className='font-bold text-xl text-[#000]'>
-                                            <span className='uppercase md:text-2xl'>{item.fitnessName}</span>
-                                            <p className='text-xs mt-4'>{item.fitnessAddress}</p>
-                                            <a href={item.fitnessWebsite} className='flex justify-center items-center gap-2 mt-[2px] px-1 mr-4 bg-orange-600 text-center rounded-md hover:scale-105 duration-200'><BsGlobe className='mt-1'/><span>website</span></a>
-                                        </span>
-                                        <a href=""><img src={`../../../src/imagesFitness/${item.fitnessImage}`} alt="project1" className='md:w-16 animate-pulse'/></a>
+                            {onBoardFitness.slice(0).map((item, index) => (
+                                <ul key={index} className='p-2 bg-gradient-to-b from-orange-100 to-white mb-5 rounded-2xl'>
+                                    <li className='py-3'>
+                                        <div className='flex justify-between gap-4'>
+                                            <span className='w-1/2 font-bold text-xl text-[#000]'>
+                                                <span className='uppercase md:text-2xl'>{item.fitnessName}</span>
+                                                <p className='text-xs mt-6'>You are one workout away from a good mood.</p>
+                                                <a href={item.fitnessWebsite} className='flex justify-center mt-[2px] items-center text-sm gap-2 bg-orange-600 rounded-md hover:scale-105 duration-200 w-2/3'><BsTelephoneFill className='mt-1'/><span>Contact Us</span></a>
+                                            </span>
+                                            <div className='w-1/2 flex justify-center'>
+                                                <a href=""><img src={`https://serverside.wechorafoods.com/assets/${item.fitnessImage}`} alt="project1" className='md:w-16 animate-pulse'/></a>
+                                            </div>
+                                        </div>
+                                        {isHidden[index] ? (
+                                            <div>
+                                                <hr className='mt-2'/>
+                                                <div className='flex grid grid-cols-2 mt-2'>
+                                                    <p className='text-xs mt-[2px]'><span className='font-black'>Address:</span> {item.fitnessAddress}</p>
+                                                    <p className='text-xs mt-[2px]'><span className='font-black'>Phone:</span> {item.fitnessContact}</p>
+                                                    <p className='text-xs mt-[2px]'><span className='font-black'>Email:</span> {item.fitnessEmail}</p>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            null
+                                        )}
+                                        
+                                        {isHidden[index] ? (
+                                            null
+                                        ) : (
+                                            <p className='flex gap-1 text-blue-500 justify-center cursor-pointer text-xs mt-4 hover:scale-105 duration-200' onClick={() => handleDelayedNavigation(item)} disabled={isHidden}><span onClick={() => handleSeeMore(index)}>More</span><BsChevronDoubleDown className='mt-1'/></p>
+                                        )}
                                     </li>
                                 </ul>
                             ))}
                         </div>
                         <div className='basis-1/3 overflow-y-auto h-64 mt-5 custom-scrollbar mx-5'>
                             {onBoardFitness.map((item, index) => (
-                                <ul key={index} className='p-2 bg-gradient-to-b from-orange-100 to-white'>
-                                    <li className='py-5 flex gap-4'>
+                                <ul key={index} className='p-2 bg-gradient-to-b from-orange-100 to-white mb-5 rounded-2xl'>
+                                    <li className='py-5 flex justify-between gap-4'>
                                         <span className='font-bold text-xl text-[#000]'>
                                             <span className='uppercase md:text-2xl'>{item.fitnessName}</span>
                                             <p className='text-xs mt-4'>{item.fitnessAddress}</p>
                                             <a href={item.fitnessWebsite} className='flex justify-center items-center gap-2 mt-[2px] px-1 mr-4 bg-orange-600 text-center rounded-md hover:scale-105 duration-200'><BsGlobe className='mt-1'/><span>website</span></a>
                                         </span>
-                                        <a href=""><img src={`../../../src/imagesFitness/${item.fitnessImage}`} alt="project1" className='md:w-16 animate-pulse'/></a>
+                                        <div className='w-1/4'>
+                                            <a href=""><img src={`https://serverside.wechorafoods.com/assets/${item.fitnessImage}`} alt="project1" className='md:w-16 animate-pulse'/></a>
+                                        </div>
                                     </li>
                                 </ul>
                             ))}
                         </div>
                         <div className='basis-1/3 overflow-y-auto h-64 mt-5 custom-scrollbar mx-5'>
                             {onBoardFitness.map((item, index) => (
-                                <ul key={index} className='p-2 bg-gradient-to-b from-orange-100 to-white'>
-                                    <li className='py-5 flex gap-4'>
+                                <ul key={index} className='p-2 bg-gradient-to-b from-orange-100 to-white mb-5 rounded-2xl'>
+                                    <li className='py-5 flex justify-between gap-4'>
                                         <span className='font-bold text-xl text-[#000]'>
                                             <span className='uppercase md:text-2xl'>{item.fitnessName}</span>
                                             <p className='text-xs mt-4'>{item.fitnessAddress}</p>
                                             <a href={item.fitnessWebsite} className='flex justify-center items-center gap-2 mt-[2px] px-1 mr-4 bg-orange-600 text-center rounded-md hover:scale-105 duration-200'><BsGlobe className='mt-1'/><span>website</span></a>
                                         </span>
-                                        <a href=""><img src={`../../../src/imagesFitness/${item.fitnessImage}`} alt="project1" className='md:w-16 animate-pulse'/></a>
+                                        <div className='w-1/4'>
+                                            <a href=""><img src={`https://serverside.wechorafoods.com/assets/${item.fitnessImage}`} alt="project1" className='md:w-16 animate-pulse'/></a>
+                                        </div>
                                     </li>
                                 </ul>
                             ))}
