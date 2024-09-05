@@ -2,8 +2,8 @@ import React from 'react';
 import SideNav from '../../../components/Dashboard/sideNav';
 import NavBar from '../../../components/Dashboard/navbar';
 import { NavFunctions } from '../../../components/Dashboard/navFunctions';
-import { useLocation } from 'react-router-dom';
-import { BsGeoAlt, BsFillTelephoneFill, BsEnvelope, BsGlobe, BsInstagram, BsFacebook, BsImage } from 'react-icons/bs';
+import { Link, useLocation } from 'react-router-dom';
+import { BsGeoAlt, BsFillTelephoneFill, BsEnvelope, BsGlobe, BsInstagram, BsFacebook, BsArrowLeftCircle } from 'react-icons/bs';
 
 function FitnessDetails() {
     const location = useLocation();
@@ -17,7 +17,10 @@ function FitnessDetails() {
             </div>
             <div className={openSideNav ? 'basis-[90%] rounded-l-xl bg-gray-200 mt-0 md:mt-2': 'basis-[100%] rounded-l-xl bg-gray-200 mt-0 md:mt-2'}>
                 <NavBar openSideNav={openSideNav} handleMenuClick={handleMenuClick}/>
-                <h1 className='text-center py-5 font-bold md:text-7xl text-4xl text-gray-600 uppercase  mt-16'>{location.state.fitnessName}</h1>
+                <div className='flex justify-center items-center w-[10%] mt-16'>
+                    <Link to="/profile" className='text-5xl hover:scale-105 duration-200'><BsArrowLeftCircle/></Link>
+                </div>
+                <h1 className='text-center py-5 font-bold md:text-7xl text-4xl text-gray-600 uppercase'>{location.state.fitnessName}</h1>
                 <div className='flex gap-2 mx-5 mt-16'>
                     <div className='basis-1/2'>
                         <div className='my-5 text-center'>
