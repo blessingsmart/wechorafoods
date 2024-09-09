@@ -47,7 +47,7 @@ function AdminFitness() {
         <div className='bg-white mb-5'>
             <span className='bg-gray-100 rounded-r-md text-gray-400'>Fitness Centers:</span>
             <div className='flex justify-end  mr-2'>
-                <Link to="/add-fitness" className='bg-blue-500 text-end flex px-2 py-1 rounded-md text-white font-bold'><span className='mt-[2px]'><BsPlus/></span><span>Add New</span></Link>
+                <Link to="/add-fitness" className='bg-blue-500 text-end flex px-2 py-1 rounded-md text-white font-bold hover:scale-105 duration-200'><span className='mt-[2px]'><BsPlus/></span><span>Add New</span></Link>
             </div>
             <div className='w-[95%] my-5 gap-2 mx-auto overflow-auto'>
                 <table className='table-fixed'>
