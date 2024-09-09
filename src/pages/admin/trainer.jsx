@@ -23,12 +23,13 @@ function Trainer() {
                         <Link to="/add-fitness" className='bg-blue-500 text-end flex px-2 py-1 rounded-md text-white font-bold hover:scale-105 duration-200'><span className='mt-[2px]'><BsPlus/></span><span>Add Training</span></Link>
                     </div>
                     <div className='flex gap-3'>
-                        <div className='basis-2/3'>
-                            <div className="bg-black w-[120vh] h-[70vh] flex my-10">
+                        <div className='basis-2/3 mb-10'>
+                            <div className="bg-black w-[120vh] h-[70vh] flex mt-10">
                                 <video className="w-full h-full p-5 object-cover" controls>
                                     <source src={UploadVideo} type="video/mp4" />
                                 </video>
                             </div>
+                            <h1 className='font-black mt-2 uppercase'>Performance Summary 1</h1>
                         </div>
                         <div className='basis-1/3'>
                             <div className='bg-orange-400 my-10 rounded-md'>
