@@ -28,7 +28,7 @@ function AdminFitness() {
     };
 
     useEffect(() => {
-        fetch("https://serverside.wechorafoods.com/api/onBoardFitness", {
+        fetch("http://localhost:5000/api/onBoardFitness", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

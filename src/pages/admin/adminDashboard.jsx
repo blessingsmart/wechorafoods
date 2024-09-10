@@ -11,7 +11,7 @@ function AdminDashboard() {
     const { openSideNav, handleMenuClick } = NavFunctions();
 
 useEffect(() => {
-    fetch("https://serverside.wechorafoods.com/api/dashboard", {
+    fetch("http://localhost:5000/api/dashboard", {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',

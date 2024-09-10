@@ -48,7 +48,7 @@ function AddFitness() {
         });
 
         try {
-            const response = await fetch("https://serverside.wechorafoods.com/api/fitness", {
+            const response = await fetch("http://localhost:5000/api/fitness", {
                 method: "POST",
                 body: formData,
             });

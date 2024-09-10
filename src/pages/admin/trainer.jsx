@@ -24,7 +24,7 @@ function Trainer() {
                     </div>
                     <div className='flex gap-3'>
                         <div className='basis-2/3 mb-10'>
-                            <div className="bg-black w-[120vh] h-[70vh] flex mt-10">
+                            <div className="bg-black w-full md:h-[70vh] h-[45vh] flex mt-10">
                                 <video className="w-full h-full p-5 object-cover" controls>
                                     <source src={UploadVideo} type="video/mp4" />
                                 </video>
@@ -36,26 +36,79 @@ function Trainer() {
                                 <h1 className='font-black text-2xl my-2 uppercase text-center'>Questions</h1>
                             </div>
                             <div className='mx-4'>
-                                <p className='flex gap-5'>
+                                <p className='flex gap-5 text-xs md:text-sm'>
                                     <span className='font-black'>1.</span>
                                     <p>Who is the president of nigeria</p>
                                 </p>
-                                <div className='my-3'>
-                                    <p className='flex gap-3 mx-8  text-xs'>
+                                <div className='my-3 text-[8px] md:text-xs mx-2 md:mx-8'>
+                                    <p className='flex gap-3'>
                                         <span className='font-black'>a.</span>
                                         <p>Alhaji Bola Ahmed Tinubu</p>
                                     </p>
-                                    <p className='flex gap-3 mx-8  text-xs'>
+                                    <p className='flex gap-3'>
                                         <span className='font-black'>b.</span>
                                         <p>Alhaji Bola Ahmed Tinubu</p>
                                     </p>
-                                    <p className='flex gap-3 mx-8  text-xs'>
+                                    <p className='flex gap-3'>
                                         <span className='font-black'>c.</span>
                                         <p>Alhaji Bola Ahmed Tinubu</p>
                                     </p>
-                                    <p className='flex gap-3 mx-8  text-xs'>
+                                    <p className='flex gap-3'>
                                         <span className='font-black'>d.</span>
                                         <p>Alhaji Bola Ahmed Tinubu</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='md:w-2/3 my-10 border-2 border-black bg-gray-400'>
+                        <div className='flex justify-center items-center'>
+                            <h1 className='font-black mt-2 uppercase text-xl'>Performance Summary 1</h1>
+                        </div>
+                        <div className='flex'>
+                            <div className='basis-1/2 pt-14 px-2'>
+                                <table className='md:text-xl'>
+                                    <thead>
+                                        <tr className='border-b border-black uppercase'>
+                                            <th className='px-2 py-2 text-start truncate'>Division</th>
+                                            <th className='px-2 py-2 text-star truncate'>Aggregate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='border-b border-black'>
+                                        <tr>
+                                            <td className='px-2 py-2 text-start truncate border-r border-black'>total question</td>
+                                            <td className='px-2 py-2 text-start truncate'>200</td>
+                                        </tr>
+                                        <tr>
+                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Successful:</td>
+                                            <td className='px-2 py-2 text-start truncate'>70/200</td>
+                                        </tr>
+                                        <tr>
+                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Unsuccessful:</td>
+                                            <td className='px-2 py-2 text-start truncate'>30/200</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className='basis-1/2 pt-16 px-2'>
+                                <div className='flex gap-3'>
+                                    <div className='w-1/2'>
+                                        <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
+                                            <span className='uppercase'>Score</span>
+                                            <h4 className=''>200</h4>
+                                        </p>
+                                    </div>
+                                    <div className='w-1/2'>
+                                        <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
+                                            <span className='uppercase'>Score</span>
+                                            <h4 className=''>200</h4>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className='py-5'>
+                                    <p className='font-black bg-gray-100 py-3 rounded-md md:text-2xl text-xl text-center'>
+                                        <span className='uppercase'>Score</span>
+                                        <h4 className=''>200</h4>
                                     </p>
                                 </div>
                             </div>
