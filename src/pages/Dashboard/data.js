@@ -874,3 +874,33 @@ export const ingredients = [
   },
 
 ];
+export const question = [
+  {
+    id: "1",
+    ask: "Who is the president of Nigeria"
+  },
+  {
+    id: "2",
+    ask: "Who is the formal president of Nigeria"
+  }
+]
+export const answer = [
+  {
+    id: "1",
+    ask: [
+      ["a", "Alhaji"],
+      ["b", "Alhaji Bola Ahmed Tinubu"],
+      ["c", "Alhaji Bola"],
+      ["d", "Alhaji Tinubu"]
+    ]
+  },
+  {
+    id: "2",
+    ask: [
+      ["a", "Muhammadu Buhari"],
+      ["b", "Bukola Saraki"],
+      ["c", "Alhaji Rufai"],
+      ["d", "Alhaji Oseni"]
+    ]
+  }
+]

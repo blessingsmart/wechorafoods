@@ -7,7 +7,7 @@ const AdminSideNav = ({ openSideNav, handleMenuClick }) => {
 
   return (
     <>
-      <div className={`sticky z-[100] top-0 h-screen`}>
+      <div className={`sticky z-[10] top-0 h-screen`}>
         <div className="flex flex-col items-center border-b">
           <Link className="flex flex-col items-center border-b">
             <img
