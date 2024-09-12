@@ -213,7 +213,7 @@ function Trainer() {
                             {getQuestion.map((item, index) =>(
                                 <div key={index} className='mx-4'>
                                     <p className='flex gap-5 text-xs md:text-sm'>
-                                        <span className='font-black'>1.</span>
+                                        <span className='font-black'>{item._id}</span>
                                         <p>{item.question}</p>
                                     </p>
                                     <div className='my-3 text-[8px] md:text-xs mx-2 md:mx-8'>
