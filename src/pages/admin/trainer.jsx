@@ -1,22 +1,88 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminSideNav from '../../components/admin/adminSideNav';
 import AdminNavbar from '../../components/admin/adminNavbar';
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
-import { Link } from 'react-router-dom';
 import { BsPlus } from 'react-icons/bs';
 import UploadVideo from '../../assets/sampleVideoUpload.mp4';
-import { question, answer } from '../Dashboard/data'
-import { BsX } from "react-icons/bs";
 import food from "../../assets/logo.png";
 
 
 function Trainer() {
     const { openSideNav, handleMenuClick } = NavFunctions();
     const [isOpen, setIsOpen] = useState(false);
+    const [getQuestion, setGetQuestion] = useState([])
+    const [questionData, setQuestionData] = useState({
+        question: "",
+        optionA: "",
+        optionB: "",
+        optionC: "",
+        optionD: "",
+    })
+
 
     const togglePopup = () => {
         setIsOpen(!isOpen);
     };
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setQuestionData({
+            ...questionData,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        if(!questionData.question || !questionData.optionA || !questionData.optionB || !questionData.optionC || !questionData.optionD){
+            alert('Fill in all fields')
+            return
+        }
+        try{
+            const response = await fetch("http://localhost:5000/api/trainingQuestion", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(questionData),
+            })
+            if(response.ok){
+                const data = await response.json();
+                alert(data.message || 'Question uploaded successfully');
+                setIsOpen(false);
+                setQuestionData({question: "", optionA: "", optionB: "", optionC: "", optionD: ""})
+            }else{
+                const errorData = await response.json();
+                alert(errorData.message || 'Server error nn');
+            }
+        } catch (error) {
+            console.log(error);
+            alert('Network error. please try again later');
+
+        }
+    };
+
+    useEffect(() => {
+        fetch("http://localhost:5000/api/getTrainingQuestion", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then((response) => {
+            if(!response.ok){
+                throw new Error('Error fetching questions')
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            setGetQuestion(data)
+        })
+        .catch((error) => {
+            console.log(error || 'Server error nn')
+        })
+    }, [])
 
   return (
     <>
@@ -41,27 +107,77 @@ function Trainer() {
                     />
                     <div className='md:basis-2/4 md:px-0 px-5 my-10 py-10 bg-gray-200 rounded-r-lg flex flex-col justify-center gap-10'>
                         <h1 className='text-center uppercase text-2xl font-bold'>Register a new fitness center</h1>
-                        <form className="mx-auto w-full px-4">
+                        <form onSubmit={handleSubmit} className="mx-auto w-full px-4">
                             <div>
-                                <div className='md:flex md:justify-between md:gap-2'>
-                                    <div className='basis-1/2 my-5'>
-                                        <h2 className='md:basis-1/4'>Fitness Center</h2>
-                                        <div className='md:basis-3/4 flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
+                                <div className='basis-1/2 my-5 text-center'>
+                                    <h2 className='md:basis-1/4 uppercase'>Question</h2>
+                                    <div className='md:basis-3/4 flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
+                                        <input
+                                            label="question"
+                                            value={questionData.question}
+                                            onChange={handleChange}
+                                            name="question"
+                                            type="text"
+                                            placeholder="Enter question..."
+                                            className="w-full border-none focus:outline-none"
+                                        />
+                                    </div>
+                                </div>
+                                <div className='flex justify-between gap-2'>
+                                    <div className='basis-1/2 my-5 flex gap-1 justify-center'>
+                                        <h2 className='mt-2'>A.</h2>
+                                        <div className='flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
                                             <input
-                                                label="name"
-                                                name="fitnessName"
+                                                label="optionA"
+                                                value={questionData.optionA}
+                                                onChange={handleChange}
+                                                name="optionA"
                                                 type="text"
-                                                placeholder="Enter center name..."
+                                                placeholder="Enter option A..."
                                                 className="w-full border-none focus:outline-none"
                                             />
                                         </div>
                                     </div>
-                                    <div className='my-5'>
-                                        <h2 className='md:basis-1/4'>Image</h2>
-                                        <div className='md:basis-3/4 flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
+                                    <div className='basis-1/2 my-5 flex gap-1 justify-center'>
+                                        <h2 className='mt-2'>B.</h2>
+                                        <div className='flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
                                             <input
-                                                name="fitnessImage"
-                                                type="file"
+                                                label="optionB"
+                                                value={questionData.optionB}
+                                                onChange={handleChange}
+                                                name="optionB"
+                                                type="text"
+                                                placeholder="Enter option B..."
+                                                className="w-full border-none focus:outline-none"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='flex justify-between gap-2'>
+                                    <div className='basis-1/2 my-5 flex gap-1 justify-center'>
+                                        <h2 className='mt-2'>C.</h2>
+                                        <div className='flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
+                                            <input
+                                                label="optionC"
+                                                value={questionData.optionC}
+                                                onChange={handleChange}
+                                                name="optionC"
+                                                type="text"
+                                                placeholder="Enter option C..."
+                                                className="w-full border-none focus:outline-none"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className='basis-1/2 my-5 flex gap-1 justify-center'>
+                                        <h2 className='mt-2'>D.</h2>
+                                        <div className='flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
+                                            <input
+                                                label="optionD"
+                                                value={questionData.optionD}
+                                                onChange={handleChange}
+                                                name="optionD"
+                                                type="text"
+                                                placeholder="Enter option D..."
                                                 className="w-full border-none focus:outline-none"
                                             />
                                         </div>
@@ -69,13 +185,13 @@ function Trainer() {
                                 </div>
                             </div>
                             <button
-                                className="w-full mt-6 bg-orange-600 px-3 text- rounded-full p-2"
+                                className="w-full mt-6 bg-orange-600 px-3 text- rounded-full p-2 hover:scale-105 duration-200"
                                 type="submit">
-                                Register Center
+                                Submit
                             </button>
                         </form>
-                        <div className='flex justify-end items-end mt-24'>
-                            <button onClick={togglePopup} className="mt-2 px-4 py-2 rounded-md bg-gray-400 bg-opacity-50 mx-2 hover:scale-105 duration-200">close</button>
+                        <div className='flex justify-end items-end mt-20'>
+                            <button onClick={togglePopup} className="mt-2 px-4 py-2 rounded-md bg-red-700 bg-opacity-50 mx-2 hover:scale-105 duration-200">close</button>
                         </div>
                     </div>
                 </div>
@@ -94,30 +210,32 @@ function Trainer() {
                             <div className='bg-orange-400 my-10 rounded-md'>
                                 <h1 className='font-black text-2xl my-2 uppercase text-center'>Questions</h1>
                             </div>
-                            <div className='mx-4'>
-                                <p className='flex gap-5 text-xs md:text-sm'>
-                                    <span className='font-black'>1.</span>
-                                    <p>Who is the president of nigeria</p>
-                                </p>
-                                <div className='my-3 text-[8px] md:text-xs mx-2 md:mx-8'>
-                                    <p className='flex gap-3'>
-                                        <span className='font-black'>a.</span>
-                                        <p>Alhaji Bola Ahmed Tinubu</p>
+                            {getQuestion.map((item, index) =>(
+                                <div key={index} className='mx-4'>
+                                    <p className='flex gap-5 text-xs md:text-sm'>
+                                        <span className='font-black'>1.</span>
+                                        <p>{item.question}</p>
                                     </p>
-                                    <p className='flex gap-3'>
-                                        <span className='font-black'>b.</span>
-                                        <p>Alhaji Bola Ahmed Tinubu</p>
-                                    </p>
-                                    <p className='flex gap-3'>
-                                        <span className='font-black'>c.</span>
-                                        <p>Alhaji Bola Ahmed Tinubu</p>
-                                    </p>
-                                    <p className='flex gap-3'>
-                                        <span className='font-black'>d.</span>
-                                        <p>Alhaji Bola Ahmed Tinubu</p>
-                                    </p>
+                                    <div className='my-3 text-[8px] md:text-xs mx-2 md:mx-8'>
+                                        <p className='flex gap-3'>
+                                            <span className='font-black'>a.</span>
+                                            <p>{item.optionA}</p>
+                                        </p>
+                                        <p className='flex gap-3'>
+                                            <span className='font-black'>b.</span>
+                                            <p>{item.optionB}</p>
+                                        </p>
+                                        <p className='flex gap-3'>
+                                            <span className='font-black'>c.</span>
+                                            <p>{item.optionC}</p>
+                                        </p>
+                                        <p className='flex gap-3'>
+                                            <span className='font-black'>d.</span>
+                                            <p>{item.optionD}</p>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                     <div className='md:w-2/3 my-10 border-2 border-black bg-gray-400'>
