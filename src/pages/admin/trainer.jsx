@@ -100,6 +100,44 @@ function Trainer() {
         })
     )}
 
+{/**************************************************** Function for handling the answer checked button*************************************************************/}
+const [uploadVideo, setUploadVideo] = useState(null);
+
+    const handleVideoUpload = (e) => {
+        setUploadVideo(e.target.files[0]);
+    };
+
+    const handleSubmitVideo = async (e) => {
+        e.preventDefault();
+        if (!uploadVideo) {
+            alert('The form is empty');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('video', uploadVideo);
+
+        try {
+            const response = await fetch("http://localhost:5000/api/video", {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const isVideo = await response.json();
+                alert(isVideo.message || "Video uploaded successfully");
+                setUploadVideo(null);
+                e.target.reset(); // Reset the form fields, including the file input
+            } else {
+                const errorData = await response.json();
+                alert(errorData.message || "Server error");
+            }
+        } catch (error) {
+            console.log(error);
+            alert("Network error, Please try again later");
+        }
+    };
+
   return (
     <>
         <div className='flex max-w-screen'>
@@ -227,17 +265,17 @@ function Trainer() {
                                 />
                                 <div className='md:basis-2/4 md:px-0 px-5 my-10 py-10 bg-gray-200 rounded-r-lg flex flex-col justify-center gap-10'>
                                     <h1 className='text-center uppercase text-2xl font-bold'>Upload new video</h1>
-                                    <form onSubmit={handleSubmit} className="mx-auto w-full px-4">
+                                    <form onSubmit={handleSubmitVideo} className="mx-auto w-full px-4">
                                         <div>
                                             <div className='basis-1/2 my-5 text-center'>
-                                                <h2 className='md:basis-1/4 uppercase'>Question</h2>
+                                                <h2 className='md:basis-1/4 uppercase'>Video</h2>
                                                 <div className='md:basis-3/4 flex gap-1 bg-white text-black p-2 border border-gray-600 rounded-md'>
                                                     <input
                                                         label="question"
-                                                        value={questionData.question}
-                                                        onChange={handleChange}
+                                                        onChange={handleVideoUpload}
                                                         name="question"
-                                                        type="text"
+                                                        type="file"
+                                                        accept="video/*"
                                                         placeholder="Enter question..."
                                                         className="w-full border-none focus:outline-none"
                                                     />
