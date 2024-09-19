@@ -21,21 +21,27 @@ function Trainer() {
         correctAnswer: "",
     });
     const [uploadVideo, setUploadVideo] = useState(null);
-    const questionInputRef = useRef(null);
-
-//************Calculations: Average, TotalScore***********************************************************************
     const [getTotalScore, setGetTotalScore] = useState(0);
 
+    // For handling quiz results submission
+    const [resultData, setResultData] = useState({
+        totalQuestions: 0,
+        successful: 0,
+        unsuccessful: 0,
+    });
+
+    const questionInputRef = useRef(null);
+
+    // ************Calculations: Average, TotalScore ***********************************************************************
     const handleGetScores = () => {
         let score = 0;
         getQuestion.forEach((question) => {
-            if(selectedAnswer[question._id] === question.correctAnswer) {
+            if (selectedAnswer[question._id] === question.correctAnswer) {
                 score += 1; // Increment score for each correct answer
             }
-        })
+        });
         setGetTotalScore(score);
     };
-
 
     const handleUploadQuestion = (option) => {
         setIsUploadQuestion(!isUploadQuestion);
@@ -171,6 +177,48 @@ function Trainer() {
             questionInputRef.current.focus();
         }
     }, [isUploadQuestion]);
+
+    // ************** Refactored handleSubmitResult ****************
+    const handleSubmitResult = async () => {
+        const totalQuestions = getQuestion.length;
+        const successful = (getTotalScore / totalQuestions) * 100;
+        const unsuccessful = 100 - successful;
+
+        setResultData({
+            totalQuestions: totalQuestions,
+            successful: successful,
+            unsuccessful: unsuccessful
+        });
+
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                history('/login'); // Redirect to login if token is not present
+                return;
+            }
+            const response = await fetch("http://localhost:5000/api/TestResult", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    totalQuestions: totalQuestions,
+                    successful: successful,
+                    unsuccessful: unsuccessful
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error submitting results');
+            }
+
+            const data = await response.json();
+            console.log('Result saved:', data);
+        } catch (error) {
+            console.error('Error saving the result', error);
+        }
+    };
 
   return (
     <>
@@ -450,7 +498,7 @@ function Trainer() {
                                     </div>
                                 ))}
                                 <div className='flex justify-center my-24'>
-                                    <button onClick={handleGetScores} className='bg-blue-800 py-2 px-5 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
+                                    <button onClick={handleSubmitResult} className='bg-blue-800 py-2 px-5 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
                                 </div>
                             </div>
                         </div>
