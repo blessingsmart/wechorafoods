@@ -5,8 +5,13 @@ import { NavFunctions } from '../../components/Dashboard/navFunctions';
 import { BsPlus } from 'react-icons/bs';
 import UploadVideo from '../../assets/sampleVideoUpload.mp4';
 import food from "../../assets/logo.png";
+import { BsDownload } from 'react-icons/bs';
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { saveAs } from 'file-saver';
+import { useNavigate } from 'react-router-dom';
 
 function Trainer() {
+    const history = useNavigate();
     const { openSideNav, handleMenuClick } = NavFunctions();
     const [isUploadQuestion, setIsUploadQuestion] = useState(false);
     const [isUploadVideo, setIsUploadVideo] = useState(false);
@@ -30,7 +35,7 @@ function Trainer() {
         unsuccessful: 0,
     });
 
-    const questionInputRef = useRef(null);
+    const questionInputRef = useRef(null); // focusing the cursor on the first input box, indicating that you should fill the form
 
     // ************Calculations: Average, TotalScore ***********************************************************************
     const handleGetScores = () => {
@@ -176,16 +181,20 @@ function Trainer() {
         if (isUploadQuestion && questionInputRef.current) {
             questionInputRef.current.focus();
         }
+        return () => {
+            document.body.style.overflow = 'auto'; // cleanup on component unmount
+        };
     }, [isUploadQuestion]);
+    
 
     // ************** Refactored handleSubmitResult ****************
     const handleSubmitResult = async () => {
-        const totalQuestions = getQuestion.length;
-        const successful = (getTotalScore / totalQuestions) * 100;
-        const unsuccessful = 100 - successful;
+        const score = getQuestion.length;
+        const successful = (getTotalScore / score) * 2;
+        const unsuccessful = 2 - successful;
 
         setResultData({
-            totalQuestions: totalQuestions,
+            score: score,
             successful: successful,
             unsuccessful: unsuccessful
         });
@@ -203,9 +212,9 @@ function Trainer() {
                     Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    totalQuestions: totalQuestions,
                     successful: successful,
-                    unsuccessful: unsuccessful
+                    unsuccessful: unsuccessful,
+                    score: score,
                 }),
             });
 
@@ -219,6 +228,63 @@ function Trainer() {
             console.error('Error saving the result', error);
         }
     };
+
+// ************ Converting test result to Pdf file ***********************************************************************
+    const [textData, setTextData] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            history('/login'); // Redirect to login if token is not present
+            return;
+        }
+        fetch("http://localhost:5000/api/resultPDF", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then((response) => {
+            if(!response.ok){
+                throw new Error('Unauth')
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data)
+            setTextData(data)
+        })
+        .catch((error) => {
+            console.Error('Error fetching the pdf file', error);
+        });
+    }, []);
+
+    const generatePDFWithPDFLib = async () => {
+        const pdfDoc = await PDFDocument.create();
+        const page = pdfDoc.addPage([600, 400]);
+
+        const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+
+        const text = "Your text content here";
+        page.drawText(textData, {
+        x: 50,
+        y: 350,
+        size: 24,
+        font: timesRomanFont,
+        color: rgb(0, 0, 0),
+        });
+
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        saveAs(blob, 'editable-text.pdf');
+    };
+
+    const [isHidden, setIsHidden] = useState(false);
+
+    const handleHidden = () => {
+        setIsHidden(!isHidden)
+    }
 
   return (
     <>
@@ -497,92 +563,74 @@ function Trainer() {
                                         </div>
                                     </div>
                                 ))}
-                                <div className='flex justify-center my-24'>
-                                    <button onClick={handleSubmitResult} className='bg-blue-800 py-2 px-5 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
+                                <div className='flex justify-center'>
+                                    <button onClick={handleSubmitResult} className='bg-blue-800 py-2 px-5  my-24 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
+                                    <button onClick={handleHidden} className='bg-blue-800 py-2 px-5  my-24 text-white rounded-full hover:scale-105 duration-200'>View result</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='my-10 border-2 border-black bg-gray-400 mx-5'>
-                    <div className='flex justify-center items-center'>
-                        <h1 className='font-black mt-2 uppercase text-xl'>Performance Summary 1</h1>
-                    </div>
-                    <div className='md:flex'>
-                        <div className='basis-3/5 pt-14 px-2'>
-                            <table className='md:text-xl w-full'>
-                                <thead>
-                                    <tr className='border-b border-black uppercase'>
-                                        <th className='px-2 py-2 text-start truncate'>Division</th>
-                                        <th className='px-2 py-2 text-start truncate'>Aggregate</th>
-                                    </tr>
-                                </thead>
-                                <tbody className='border-b border-black'>
-                                    <tr>
-                                        <td className='px-2 py-2 text-start truncate border-r border-black'>Total Questions</td>
-                                        <td className='px-2 py-2 text-start truncate'>{(getQuestion.length) || 0}</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-2 py-2 text-start truncate border-r border-black'>Successful:</td>
-                                        <td className='px-2 py-2 text-start truncate'>{(getTotalScore) || 0}/{(getQuestion.length) || 0}</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='px-2 py-2 text-start truncate border-r border-black'>Unsuccessful:</td>
-                                        <td className='px-2 py-2 text-start truncate'>{(getQuestion.length - getTotalScore) || 0}/{(getQuestion.length) || 0}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className='basis-2/5 pt-16 px-2'>
-                            <div className='flex gap-3'>
-                                <div className='w-1/2'>
-                                    <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
-                                        <span className='uppercase'>Score</span>
-                                        <h4 className=''>{(getTotalScore) || 0}</h4>
-                                    </p>
-                                </div>
-                                <div className='w-1/2'>
-                                    <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
-                                        <span className='uppercase'>Another Metric</span>
-                                        <h4 className=''>150</h4>
-                                    </p>
-                                </div>
-                            </div>
-                            <div className='py-5'>
-                                <p className='font-black bg-gray-100 py-3 rounded-md md:text-2xl text-xl text-center'>
-                                    <span className='uppercase'>Overall Score</span>
-                                    <h4 className=''>200</h4>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='md:basis-1/4 mt-10'>
+                <div className='flex justify-center mb-5'>
+                    <button onClick={generatePDFWithPDFLib} className='bg-gray-600 py-2 px-5 text-white rounded-md hover:scale-105 duration-200 flex gap-3 mx-5'><span>Download Result</span><BsDownload className='text-xl'/></button>
+                    <button onClick={handleHidden} className='bg-blue-800 py-2 px-5 text-white rounded-md hover:scale-105 duration-200 flex gap-3 mx-5'>View result</button>
+                </div>
+                {isHidden ? (
+                    <div className='my-10 border-2 border-black bg-gray-400 mx-5'>
                         <div className='flex justify-center items-center'>
-                            <h1 className='font-black mt-2 uppercase text-xl'>Selected answer</h1>
+                            <h1 className='font-black mt-2 uppercase text-xl'>Performance Summary 1</h1>
                         </div>
-                        <table className='w-full mt-10'>
-                            <thead className='border-b border-black uppercase'>
-                                <tr>
-                                    <th className='px-2 py-2 text-center truncate'>Question</th>
-                                    <th className='px-2 py-2 text-center truncate'>Selected Answer</th>
-                                    <th className='px-2 py-2 text-center truncate'>Remarks</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {getQuestion.map((item) => (
-                                <tr key={item._id}>
-                                    <td className='px-2 py-2 text-center truncate border-r'>Q: {item._id}</td>
-                                    <td className='px-2 py-2 text-center truncate border-r'>{selectedAnswer[item._id]}</td>
-                                    {selectedAnswer[item._id] === item.correctAnswer ? (
-                                    <td className='text-green-900 px-2 py-2 text-center truncate border-r'>Correct Answer!</td>
-                                ) : (<td className='text-red-700 px-2 py-2 text-center truncate border-r'>Wrong Answer!</td>)
-                                }
-                                </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <div className='md:flex'>
+                            <div className='basis-3/5 pt-14 px-2'>
+                                <table className='md:text-xl w-full'>
+                                    <thead>
+                                        <tr className='border-b border-black uppercase'>
+                                            <th className='px-2 py-2 text-start truncate'>Division</th>
+                                            <th className='px-2 py-2 text-start truncate'>Aggregate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='border-b border-black'>
+                                        <tr>
+                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Total Questions</td>
+                                            <td className='px-2 py-2 text-start truncate'>5</td>
+                                        </tr>
+                                        <tr>
+                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Successful:</td>
+                                            <td className='px-2 py-2 text-start truncate'>successful</td>
+                                        </tr>
+                                        <tr>
+                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Unsuccessful:</td>
+                                            <td className='px-2 py-2 text-start truncate'>unsuccessful</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className='basis-2/5 pt-16 px-2'>
+                                <div className='flex gap-3'>
+                                    <div className='w-1/2'>
+                                        <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
+                                            <span className='uppercase'>Score</span>
+                                            <h4 className=''>100</h4>
+                                        </p>
+                                    </div>
+                                    <div className='w-1/2'>
+                                        <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
+                                            <span className='uppercase'>Another Metric</span>
+                                            <h4 className=''>150</h4>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className='py-5'>
+                                    <p className='font-black bg-gray-100 py-3 rounded-md md:text-2xl text-xl text-center'>
+                                        <span className='uppercase'>Overall Score</span>
+                                        <h4 className=''>200</h4>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                ) : (null)}
+                
             </div>
         </div>
     </>
