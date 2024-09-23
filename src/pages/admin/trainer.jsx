@@ -230,12 +230,12 @@ function Trainer() {
     };
 
 // ************ Converting test result to Pdf file ***********************************************************************
-    const [textData, setTextData] = useState('');
+    const [textData, setTextData] = useState({});
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
-            history('/login'); // Redirect to login if token is not present
+            history('/login'); // Replace history with navigate for React Router v6
             return;
         }
         fetch("http://localhost:5000/api/resultPDF", {
@@ -246,45 +246,129 @@ function Trainer() {
             },
         })
         .then((response) => {
-            if(!response.ok){
-                throw new Error('Unauth')
+            if (!response.ok) {
+                throw new Error('Unauth');
             }
             return response.json();
         })
         .then((data) => {
-            console.log(data)
-            setTextData(data)
+            setTextData(data);
         })
         .catch((error) => {
-            console.Error('Error fetching the pdf file', error);
+            console.error('Error fetching the pdf file', error); // Fix typo
         });
     }, []);
 
     const generatePDFWithPDFLib = async () => {
         const pdfDoc = await PDFDocument.create();
         const page = pdfDoc.addPage([600, 400]);
-
+    
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+    
+        // Define table positions and column widths
+        const startX = 150;
+        const startY = 300;
+        const rowHeight = 25;
+        const columnWidths = [150, 150]; // Adjust width for two columns: name and value
+    
+        // Define table data in a dictionary format (name-value pairs)
+        const text = textData || {
+            userId: "12345",
+            successful: 10,
+            unsuccessful: 5,
+            score: 85,
+        };
+    
+        const data = {
+            "User ID": text.userId.toString(),
+            "Successful": text.successful.toString(),
+            "Unsuccessful": text.unsuccessful.toString(),
+            "Score": text.score.toString(),
+        };
 
-        const text = "Your text content here";
-        page.drawText(textData, {
-        x: 50,
-        y: 350,
-        size: 24,
-        font: timesRomanFont,
-        color: rgb(0, 0, 0),
+        const title = "Test Performance Summary"; // Title content
+        const titleFontSize = 18; // Font size for title
+        const titleYPosition = startY + 30; // Position title above the table (adjust as needed)
+
+        // Draw title
+        page.drawText(title, {
+            x: startX + 35, // Align with table's X position
+            y: titleYPosition, // Set Y position above the table
+            size: titleFontSize,
+            font: timesRomanFont,
+            color: rgb(0, 0, 0),
         });
-
+    
+        // Draw table headers (Name and Value)
+        const headers = ["Name", "Value"];
+        headers.forEach((header, i) => {
+            page.drawText(header, {
+                x: startX + i * columnWidths[i] + 5, // +5 for padding
+                y: startY - 20, // Adjust Y for text positioning
+                size: 20,
+                font: timesRomanFont,
+                color: rgb(0, 0, 0),
+            });
+        });
+    
+        // Draw border for headers (top, bottom, left, and right)
+        page.drawRectangle({
+            x: startX,
+            y: startY - rowHeight,
+            width: columnWidths.reduce((a, b) => a + b, 0),
+            height: rowHeight,
+            borderWidth: 1,
+            borderColor: rgb(0, 0, 0),
+        });
+    
+        // Draw table data (Name-Value pairs)
+        let currentY = startY - rowHeight - 10; // Y position for data (below headers)
+        Object.entries(data).forEach(([key, value], rowIndex) => {
+            // Draw "Name" (key) column
+            page.drawText(key, {
+                x: startX + 5, // Padding for first column
+                y: currentY - 12,
+                size: 12,
+                font: timesRomanFont,
+                color: rgb(0, 0, 0),
+            });
+    
+            // Draw "Value" column
+            page.drawText(value, {
+                x: startX + columnWidths[0] + 10, // Start after first column
+                y: currentY - 10,
+                size: 12,
+                font: timesRomanFont,
+                color: rgb(0, 0, 0),
+            });
+    
+            // Draw full border around the current row (top, bottom, left, right)
+            page.drawRectangle({
+                x: startX,
+                y: currentY - rowHeight + 10, // Adjust Y for row height
+                width: columnWidths.reduce((a, b) => a + b, 0),
+                height: rowHeight,
+                borderWidth: 1,
+                borderColor: rgb(0, 0, 0),
+            });
+    
+            // Update Y position for the next row
+            currentY -= rowHeight;
+        });
+    
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        saveAs(blob, 'editable-text.pdf');
+        saveAs(blob, 'tabular-text-with-borders.pdf');
     };
+    
+    
+    
 
     const [isHidden, setIsHidden] = useState(false);
 
     const handleHidden = () => {
-        setIsHidden(!isHidden)
-    }
+        setIsHidden(!isHidden);
+    };
 
   return (
     <>
@@ -565,7 +649,6 @@ function Trainer() {
                                 ))}
                                 <div className='flex justify-center'>
                                     <button onClick={handleSubmitResult} className='bg-blue-800 py-2 px-5  my-24 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
-                                    <button onClick={handleHidden} className='bg-blue-800 py-2 px-5  my-24 text-white rounded-full hover:scale-105 duration-200'>View result</button>
                                 </div>
                             </div>
                         </div>
