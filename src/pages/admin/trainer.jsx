@@ -3,7 +3,6 @@ import AdminSideNav from '../../components/admin/adminSideNav';
 import AdminNavbar from '../../components/admin/adminNavbar';
 import { NavFunctions } from '../../components/Dashboard/navFunctions';
 import { BsPlus } from 'react-icons/bs';
-import UploadVideo from '../../assets/sampleVideoUpload.mp4';
 import food from "../../assets/logo.png";
 import { BsDownload } from 'react-icons/bs';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
@@ -171,6 +170,27 @@ function Trainer() {
             alert("Network error. Please try again later");
         }
     };
+
+    const [videoData, setVideoData] = useState("")
+    useEffect(() => {
+        fetch("http://localhost:5000/api/getVideo", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then((response) => {
+            if(!response.ok){
+                throw new Error("Error Occured fetching the video")
+            }
+            return response.json()
+        })
+        .then((data) => {
+            setVideoData(data)
+            console.log(data)
+        })
+        .catch((err) => console.error("Failed to fetch video", err))
+    }, []);
 
     useEffect(() => {
         if (isUploadQuestion) {
@@ -581,11 +601,11 @@ function Trainer() {
                     )}
                     <div className='md:flex gap-3'>
                         <div className='basis-2/3 mb-10'>
-                            <div className="bg-black w-full md:h-[70vh] h-[45vh] flex mt-10">
-                                <video className="w-full h-full p-5 object-cover" controls>
-                                    <source src={UploadVideo} type="video/mp4" />
-                                </video>
-                            </div>
+                                <div className="bg-black w-full md:h-[70vh] h-[45vh] flex mt-10">
+                                    <video className="w-full h-full p-5 object-cover" controls>
+                                        <source src={`https://serverside.wechorafoods.com/assets/${videoData.video}`} type="video/mp4" />
+                                    </video>
+                                </div>
                             <h1 className='font-black mt-2 uppercase'>Performance Summary 1</h1>
                         </div>
                         <div className='basis-1/3'>
