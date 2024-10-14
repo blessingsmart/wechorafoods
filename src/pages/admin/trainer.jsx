@@ -12,10 +12,6 @@ import { useNavigate } from 'react-router-dom';
 function Trainer() {
     const history = useNavigate();
     const { openSideNav, handleMenuClick } = NavFunctions();
-    const [isUploadQuestion, setIsUploadQuestion] = useState(false);
-    const [isUploadVideo, setIsUploadVideo] = useState(false);
-    const [getQuestion, setGetQuestion] = useState([]);
-    const [selectedAnswer, setSelectedAnswer] = useState({});
     const [questionData, setQuestionData] = useState({
         question: "",
         optionA: "",
@@ -24,43 +20,14 @@ function Trainer() {
         optionD: "",
         correctAnswer: "",
     });
-    const [uploadVideo, setUploadVideo] = useState(null);
-    const [getTotalScore, setGetTotalScore] = useState(0);
 
-    // For handling quiz results submission
-    const [resultData, setResultData] = useState({
-        totalQuestions: 0,
-        successful: 0,
-        unsuccessful: 0,
-    });
+    
+    const [selectedAnswer, setSelectedAnswer] = useState({});
 
-    const questionInputRef = useRef(null); // focusing the cursor on the first input box, indicating that you should fill the form
-
-    // ************Calculations: Average, TotalScore ***********************************************************************
-    const handleGetScores = () => {
-        let score = 0;
-        getQuestion.forEach((question) => {
-            if (selectedAnswer[question._id] === question.correctAnswer) {
-                score += 1; // Increment score for each correct answer
-            }
-        });
-        setGetTotalScore(score);
-    };
-
-    const handleUploadQuestion = (option) => {
-        setIsUploadQuestion(!isUploadQuestion);
-        setQuestionData({ ...questionData, correctAnswer: option });
-    };
-
-    const handleUploadVideo = () => {
-        setIsUploadVideo(!isUploadVideo);
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setQuestionData(prevData => ({
-            ...prevData,
-            [name]: value
+    const handleCheckedAnswer = (questionId, answer) => {
+        setSelectedAnswer((prevAnswer) => ({
+            ...prevAnswer,
+            [questionId]: answer
         }));
     };
 
@@ -71,10 +38,21 @@ function Trainer() {
         }));
     };
 
-    const handleCheckedAnswer = (questionId, answer) => {
-        setSelectedAnswer((prevAnswer) => ({
-            ...prevAnswer,
-            [questionId]: answer
+    
+// ************ FUNCTION TO QUESTION TO THE DATABASE ***********************************************************************   
+    const [isUploadQuestion, setIsUploadQuestion] = useState(false);
+
+        // fuction to open/close the form to fill and upload the question
+    const handleUploadQuestion = (option) => {
+        setIsUploadQuestion(!isUploadQuestion);
+        setQuestionData({ ...questionData, correctAnswer: option });
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setQuestionData(prevData => ({
+            ...prevData,
+            [name]: value
         }));
     };
 
@@ -95,7 +73,6 @@ function Trainer() {
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message || 'Question uploaded successfully');
-                setIsUploadQuestion(false);
                 setQuestionData({
                     question: "",
                     optionA: "",
@@ -113,6 +90,28 @@ function Trainer() {
             alert('Network error. Please try again later');
         }
     };
+
+    // function for resetting the form and focusing the mouse on the form for you to add next question
+    const questionInputRef = useRef(null); // focusing the cursor on the first input box, indicating that you should fill the form
+
+    useEffect(() => {
+        if (isUploadQuestion) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        if (isUploadQuestion && questionInputRef.current) {
+            questionInputRef.current.focus();
+        }
+        return () => {
+            document.body.style.overflow = 'auto'; // cleanup on component unmount
+        };
+    }, [isUploadQuestion]);
+
+
+
+// ************ FUNCTION TO RETRIEVE THE QUESTION FROM THE DATABASE ***********************************************************************
+    const [getQuestion, setGetQuestion] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5000/api/getTrainingQuestion", {
@@ -135,6 +134,36 @@ function Trainer() {
                 console.log(error || 'Server error');
             });
     }, []);
+    
+    // Function to load the next page of questions
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemPerPage = 10;
+    const [start, setStart] = useState(1);
+    const [end, setEnd] = useState(10);
+
+    const handlePageChange = (page) => {
+        const totalPages = Math.ceil(getQuestion.length / itemPerPage);
+        if (page < 1 || page > totalPages) return; // Prevent out-of-bounds pages
+        setCurrentPage(page);
+        setStart((page - 1) * itemPerPage + 1);
+        setEnd(Math.min(page * itemPerPage, getQuestion.length));
+    };
+    
+    // Render questions
+    const currentQuestions = getQuestion.slice(start - 1, end);
+
+    
+    
+
+
+// ************ FUNCTION TO VIDEO CLIP TO THE DATABASE ***********************************************************************   
+    const [isUploadVideo, setIsUploadVideo] = useState(false);
+    const [uploadVideo, setUploadVideo] = useState(null);
+
+    //function to open/close the form to fill and upload the video clip
+    const handleUploadVideo = () => {
+        setIsUploadVideo(!isUploadVideo);
+    };
 
     const handleVideoUpload = (e) => {
         setUploadVideo(e.target.files[0]);
@@ -171,7 +200,10 @@ function Trainer() {
         }
     };
 
-    const [videoData, setVideoData] = useState("")
+
+// ************ FUNCTION TO RETRIEVE THE VIDEO CLIP FROM THE DATABASE ***********************************************************************
+    const [videoData, setVideoData] = useState("");
+
     useEffect(() => {
         fetch("http://localhost:5000/api/getVideo", {
             method: "GET",
@@ -192,65 +224,56 @@ function Trainer() {
         .catch((err) => console.error("Failed to fetch video", err))
     }, []);
 
-    useEffect(() => {
-        if (isUploadQuestion) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
-        if (isUploadQuestion && questionInputRef.current) {
-            questionInputRef.current.focus();
-        }
-        return () => {
-            document.body.style.overflow = 'auto'; // cleanup on component unmount
-        };
-    }, [isUploadQuestion]);
+    
     
 
-    // ************** Refactored handleSubmitResult ****************
-    const handleSubmitResult = async () => {
-        const score = getQuestion.length;
-        const successful = (getTotalScore / score) * 2;
-        const unsuccessful = 2 - successful;
+// ************** Refactored handleSubmitResult ****************
+// For handling quiz results submission
 
-        setResultData({
-            score: score,
-            successful: successful,
-            unsuccessful: unsuccessful
+const handleSubmitResult = async () => {
+    // Calculate the score directly
+    let score = 0;
+    currentQuestions.forEach((question) => {
+        if (selectedAnswer[question._id] === question.correctAnswer) {
+            score += 1;
+        }
+        
+    });
+
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            history('/login'); // Redirect to login if token is not present
+            return;
+        }
+
+        const response = await fetch("http://localhost:5000/api/TestResult", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                successful: score, // Use the calculated score here
+                unsuccessful: currentQuestions.length - score,
+                totalQuestions: currentQuestions.length,
+            }),
         });
 
-        try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                history('/login'); // Redirect to login if token is not present
-                return;
-            }
-            const response = await fetch("http://localhost:5000/api/TestResult", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    successful: successful,
-                    unsuccessful: unsuccessful,
-                    score: score,
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Error submitting results');
-            }
-
-            const data = await response.json();
-            console.log('Result saved:', data);
-        } catch (error) {
-            console.error('Error saving the result', error);
+        if (!response.ok) {
+            throw new Error('Error submitting results');
         }
-    };
+
+        await response.json();
+    } catch (error) {
+        console.error('Error saving the result', error);
+    }
+};
+
 
 // ************ Converting test result to Pdf file ***********************************************************************
-    const [textData, setTextData] = useState({});
+    const [resultData, setResultData] = useState({});
+
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -272,7 +295,7 @@ function Trainer() {
             return response.json();
         })
         .then((data) => {
-            setTextData(data);
+            setResultData(data)
         })
         .catch((error) => {
             console.error('Error fetching the pdf file', error); // Fix typo
@@ -292,7 +315,7 @@ function Trainer() {
         const columnWidths = [150, 150]; // Adjust width for two columns: name and value
     
         // Define table data in a dictionary format (name-value pairs)
-        const text = textData || {
+        const text = resultData || {
             userId: "12345",
             successful: 10,
             unsuccessful: 5,
@@ -300,10 +323,10 @@ function Trainer() {
         };
     
         const data = {
-            "User ID": text.userId.toString(),
-            "Successful": text.successful.toString(),
-            "Unsuccessful": text.unsuccessful.toString(),
-            "Score": text.score.toString(),
+            "User ID": resultData.userId.toString(),
+            "Successful": resultData.successful.toString(),
+            "Unsuccessful": resultData.unsuccessful.toString(),
+            "Total": resultData.totalQuestions.toString(),
         };
 
         const title = "Test Performance Summary"; // Title content
@@ -607,13 +630,18 @@ function Trainer() {
                                     </video>
                                 </div>
                             <h1 className='font-black mt-2 uppercase'>Performance Summary 1</h1>
+                            <div className='flex justify-center mt-24'>
+                                <button onClick={generatePDFWithPDFLib} className='bg-gray-600 py-2 px-5 text-white rounded-md hover:scale-105 duration-200 flex gap-3 mx-5'><span>Download Result</span><BsDownload className='text-xl'/></button>
+                                <button onClick={handleHidden} className='bg-blue-800 py-2 px-5 text-white rounded-md hover:scale-105 duration-200 flex gap-3 mx-5'>View result</button>
+                            </div>
                         </div>
                         <div className='basis-1/3'>
                             <div className='bg-orange-400 mt-10 rounded-t-md'>
                                 <h1 className='font-black text-2xl mt-2 uppercase text-center'>Questions</h1>
                             </div>
-                            <div className='border-2 border-gray-400 h-[56%] overflow-y-auto'>
-                                {getQuestion.slice(0).map((item, index) =>(
+                            <div className='border-2 border-gray-400 h-[65vh] overflow-y-auto mb-16 md:mb-0'>
+
+                            {currentQuestions.slice(0).map((item, index) =>(
                                     <div key={index} className='mx-4 mt-10'>
                                         <p className='flex gap-5 text-xs md:text-sm'>
                                             <span className='font-black'>{item._id}</span>
@@ -667,75 +695,83 @@ function Trainer() {
                                         </div>
                                     </div>
                                 ))}
-                                <div className='flex justify-center'>
-                                    <button onClick={handleSubmitResult} className='bg-blue-800 py-2 px-5  my-24 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='flex justify-center mb-5'>
-                    <button onClick={generatePDFWithPDFLib} className='bg-gray-600 py-2 px-5 text-white rounded-md hover:scale-105 duration-200 flex gap-3 mx-5'><span>Download Result</span><BsDownload className='text-xl'/></button>
-                    <button onClick={handleHidden} className='bg-blue-800 py-2 px-5 text-white rounded-md hover:scale-105 duration-200 flex gap-3 mx-5'>View result</button>
-                </div>
-                {isHidden ? (
-                    <div className='my-10 border-2 border-black bg-gray-400 mx-5'>
-                        <div className='flex justify-center items-center'>
-                            <h1 className='font-black mt-2 uppercase text-xl'>Performance Summary 1</h1>
-                        </div>
-                        <div className='md:flex'>
-                            <div className='basis-3/5 pt-14 px-2'>
-                                <table className='md:text-xl w-full'>
-                                    <thead>
-                                        <tr className='border-b border-black uppercase'>
-                                            <th className='px-2 py-2 text-start truncate'>Division</th>
-                                            <th className='px-2 py-2 text-start truncate'>Aggregate</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className='border-b border-black'>
-                                        <tr>
-                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Total Questions</td>
-                                            <td className='px-2 py-2 text-start truncate'>5</td>
-                                        </tr>
-                                        <tr>
-                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Successful:</td>
-                                            <td className='px-2 py-2 text-start truncate'>successful</td>
-                                        </tr>
-                                        <tr>
-                                            <td className='px-2 py-2 text-start truncate border-r border-black'>Unsuccessful:</td>
-                                            <td className='px-2 py-2 text-start truncate'>unsuccessful</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className='basis-2/5 pt-16 px-2'>
-                                <div className='flex gap-3'>
-                                    <div className='w-1/2'>
-                                        <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
-                                            <span className='uppercase'>Score</span>
-                                            <h4 className=''>100</h4>
-                                        </p>
-                                    </div>
-                                    <div className='w-1/2'>
-                                        <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
-                                            <span className='uppercase'>Another Metric</span>
-                                            <h4 className=''>150</h4>
-                                        </p>
+
+
+                                    <div className='flex justify-center gap-4'>
+                                        <button onClick={handleSubmitResult} className='bg-blue-800 py-2 px-5 my-24 text-white rounded-full hover:scale-105 duration-200'>Submit</button>
+                                        <button 
+                                            onClick={() => handlePageChange(currentPage + 1)} 
+                                            disabled={end >= getQuestion.length} 
+                                            className='bg-blue-800 py-2 px-5 my-24 text-white rounded-full hover:scale-105 duration-200'>
+                                            Next
+                                        </button>
+
                                     </div>
                                 </div>
-                                <div className='py-5'>
-                                    <p className='font-black bg-gray-100 py-3 rounded-md md:text-2xl text-xl text-center'>
-                                        <span className='uppercase'>Overall Score</span>
-                                        <h4 className=''>200</h4>
-                                    </p>
-                                </div>
                             </div>
                         </div>
+
                     </div>
-                ) : (null)}
-                
+
+                    <div>
+                        {isHidden ? (
+                            <div className='my-10 border-2 border-black bg-gray-400 mx-5'>
+                                <div className='flex justify-center items-center'>
+                                    <h1 className='font-black mt-2 uppercase text-xl'>Performance Summary 1</h1>
+                                </div>
+                                <div className='md:flex'>
+                                    <div className='basis-3/5 pt-14 px-2'>
+                                        <table className='md:text-xl w-full'>
+                                            <thead>
+                                                <tr className='border-b border-black uppercase'>
+                                                    <th className='px-2 py-2 text-start truncate'>Division</th>
+                                                    <th className='px-2 py-2 text-start truncate'>Aggregate</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className='border-b border-black'>
+                                                <tr>
+                                                    <td className='px-2 py-2 text-start truncate border-r border-black'>Total Questions</td>
+                                                    <td className='px-2 py-2 text-start truncate'>{resultData.totalQuestions}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='px-2 py-2 text-start truncate border-r border-black'>Successful:</td>
+                                                    <td className='px-2 py-2 text-start truncate'>{resultData.successful}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td className='px-2 py-2 text-start truncate border-r border-black'>Unsuccessful:</td>
+                                                    <td className='px-2 py-2 text-start truncate'>{resultData.unsuccessful}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div className='basis-2/5 pt-16 px-2'>
+                                        <div className='flex gap-3'>
+                                            <div className='w-1/2'>
+                                                <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
+                                                    <span className='uppercase'>Score</span>
+                                                    <h4 className=''>100</h4>
+                                                </p>
+                                            </div>
+                                            <div className='w-1/2'>
+                                                <p className='font-black bg-gray-100 py-3 rounded-md md:text-xl text-sm text-center'>
+                                                    <span className='uppercase'>Another Metric</span>
+                                                    <h4 className=''>150</h4>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className='py-5'>
+                                            <p className='font-black bg-gray-100 py-3 rounded-md md:text-2xl text-xl text-center'>
+                                                <span className='uppercase'>Overall Score</span>
+                                                <h4 className=''>200</h4>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (null)}
+                    </div>
+                </div>
             </div>
-        </div>
     </>
   )
 }
